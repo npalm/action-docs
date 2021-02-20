@@ -1,0 +1,38 @@
+name: 'build-test'
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    
+
+jobs:
+  build: 
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ["10", "12", "14"]
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Check format and lint
+        run: npm run format-check && npm run lint
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build and package
+        run: npm build
+
+      # - name: Publish
+      #   if: ${{ github.event_name != 'pull_request' && matrix.node-version == 14 }}
+      #   env:
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #   run: npm publish 

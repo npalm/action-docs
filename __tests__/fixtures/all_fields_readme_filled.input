@@ -1,0 +1,39 @@
+<!-- terraform-docs-description -->
+## Description
+
+Default test abc
+
+
+<!-- terraform-docs-description -->
+
+<!-- terraform-docs-inputs -->
+## Inputs
+
+| parameter | description | required | default |
+| - | - | - | - |
+| inputA | A description A | `false` |  |
+| inputB | A description B | `true` |  |
+| inputD | A description D | `false` | D |
+
+
+
+<!-- terraform-docs-inputs -->
+
+<!-- terraform-docs-outputs -->
+## Outputs
+
+| parameter | description |
+| - | - |
+| outputB | A description B |
+
+
+
+<!-- terraform-docs-outputs -->
+
+<!-- terraform-docs-runs -->
+## Run
+
+This action is an `docker` action.
+
+
+<!-- terraform-docs-runs -->

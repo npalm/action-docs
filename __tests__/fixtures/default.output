@@ -1,0 +1,22 @@
+## Description
+
+Default test
+
+## Inputs
+
+| parameter | description | required | default |
+| - | - | - | - |
+| inputA | A description | `false` | test |
+
+
+## Outputs
+
+| parameter | description |
+| - | - |
+| outputA | A description |
+
+
+## Runs
+
+This action is an `node12` action.
+

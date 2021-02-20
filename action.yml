@@ -1,0 +1,16 @@
+name: 'An Action'
+description: 'Default test'
+author: 'Niek Palm'
+inputs:
+  inputA:
+    required: false
+    description: 'A description'
+    default: test
+
+outputs:
+  outputA:
+    description: 'A description'
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
