@@ -1,6 +1,6 @@
 {
   "name": "action-docs",
-  "version": "0.1.0-beta.6",
+  "version": "0.1.0-beta.7",
   "description": "Generate GitHub action docs based on action.yml",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
