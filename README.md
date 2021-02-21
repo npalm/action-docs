@@ -1,6 +1,6 @@
 # Action docs
 
-This cli let you generate, and update document for GitHub actions based on the action definition yml.
+A clie to generate, and update documentation for GitHub actions based on the action definition yml.
 
 ## TL;DR
 
