@@ -1,6 +1,6 @@
 # Action docs
 
-A clie to generate, and update documentation for GitHub actions based on the action definition yml.
+A clie to generate, and update documentation for GitHub actions based on the action definition yml. To update your README in a GitHub workflow you can use the [action-docs-action](https://github.com/npalm/action-docs-action).
 
 ## TL;DR
 
