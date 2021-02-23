@@ -53,7 +53,3 @@ generateActionMarkdownDocs({
   .catch((e) => console.error(e.message));
 /* eslint-enable */
 
-// if (args["update-readme"]) {
-//   console.log("--------ddd-");
-// }
-// console.log(args);
