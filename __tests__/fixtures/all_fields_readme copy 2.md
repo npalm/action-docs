@@ -1,12 +1,12 @@
-<!-- terraform-docs-description -->
+<!-- action-docs-description -->
 ## Description
 
 Default test
 
 
-<!-- terraform-docs-description -->
+<!-- action-docs-description -->
 
-<!-- terraform-docs-inputs -->
+<!-- action-docs-inputs -->
 ## Inputs
 
 | parameter | description | required | default |
@@ -18,9 +18,9 @@ Default test
 
 
 
-<!-- terraform-docs-inputs -->
+<!-- action-docs-inputs -->
 
-<!-- terraform-docs-outputs -->
+<!-- action-docs-outputs -->
 ## Outputs
 
 | parameter | description |
@@ -30,4 +30,4 @@ Default test
 
 
 
-<!-- terraform-docs-outputs -->
+<!-- action-docs-outputs -->

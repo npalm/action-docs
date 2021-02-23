@@ -83,13 +83,13 @@ async function updateReadme(
   section: string
 ): Promise<void> {
   const to = new RegExp(
-    `<!-- terraform-docs-${section} -->(?:(?:\n.*)+<!-- terraform-docs-${section} -->)?`
+    `<!-- action-docs-${section} -->(?:(?:\n.*)+<!-- action-docs-${section} -->)?`
   );
 
   await replaceInFile.replaceInFile({
     files: file,
     from: to,
-    to: `<!-- terraform-docs-${section} -->\n${text}\n<!-- terraform-docs-${section} -->`,
+    to: `<!-- action-docs-${section} -->\n${text}\n<!-- action-docs-${section} -->`,
   });
 }
 
