@@ -52,4 +52,3 @@ generateActionMarkdownDocs({
   })
   .catch((e) => console.error(e.message));
 /* eslint-enable */
-
