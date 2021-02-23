@@ -2,4 +2,4 @@ export {
   generateActionMarkdownDocs,
   Options,
   defaultOptions,
-} from "./terraform-docs";
+} from "./action-docs";

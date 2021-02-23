@@ -14,20 +14,20 @@ cd <your github action>
 action-docs
 
 # update reamde
-action-ducs --update-readme
+action-docs --update-readme
 ```
 
 Update your README.md
 
 ```
 ## Add the following comment blocks to your README.md
-<!-- terraform-docs-description -->
+<!-- action-docs-description -->
 
-<!-- terraform-docs-inputs -->
+<!-- action-docs-inputs -->
 
-<!-- terraform-docs-outputs -->
+<!-- action-docs-outputs -->
 
-<!-- terraform-docs-runs -->
+<!-- action-docs-runs -->
 
 ## Run the cli
 action-docs -u
@@ -56,13 +56,13 @@ Options:
 Action-docs can update your README based on the `action.yml`. The following sections can be updated: description, inputs, outputs and runs. Add the following tags to your README and run `actiond-docs -u`.
 
 ```
-<!-- terraform-docs-description -->
+<!-- action-docs-description -->
 
-<!-- terraform-docs-inputs -->
+<!-- action-docs-inputs -->
 
-<!-- terraform-docs-outputs -->
+<!-- action-docs-outputs -->
 
-<!-- terraform-docs-runs -->
+<!-- action-docs-runs -->
 ```
 
 For updating other Markdown files add the name of the file to the command `action-docs -u <file>`.
