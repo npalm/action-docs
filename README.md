@@ -1,10 +1,10 @@
 # Action docs
 
-A clie to generate, and update documentation for GitHub actions based on the action definition yml. To update your README in a GitHub workflow you can use the [action-docs-action](https://github.com/npalm/action-docs-action).
+A CLI to generate and update documentation for GitHub actions, based on the action definition `.yml`. To update your README in a GitHub workflow you can use the [action-docs-action](https://github.com/npalm/action-docs-action).
 
 ## TL;DR
 
-Generate docs via cli.
+Generate docs via CLI.
 
 ```bash
 npm install -g action-docs
@@ -51,9 +51,9 @@ Options:
 ```
 
 
-### Update the README.
+### Update the README
 
-Action-docs can update your README based on the `action.yml`. The following sections can be updated: description, inputs, outputs and runs. Add the following tags to your README and run `actiond-docs -u`.
+Action-docs can update your README based on the `action.yml`. The following sections can be updated: description, inputs, outputs and runs. Add the following tags to your README and run `action-docs -u`.
 
 ```
 <!-- action-docs-description -->
@@ -113,9 +113,9 @@ await generateActionMarkdownDocs({
 
 ## Contribution
 
-We welcome contribution, please checkout the [contribution guide](CONTRIBUTING.md). 
+We welcome contributions, please checkout the [contribution guide](CONTRIBUTING.md). 
 
 
 ## License
 
-This project are released under the [MIT License](./LICENSE).
+This project is released under the [MIT License](./LICENSE).
