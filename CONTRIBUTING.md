@@ -17,7 +17,7 @@ Before you begin:
 
 ## We Develop with Github
 
-We use github to host code, to track issues and feature requests, as well as accept pull requests.
+We use GitHub to host code, to track issues and feature requests, as well as accept pull requests.
 
 ## Pull Requests
 
@@ -61,13 +61,13 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 
 ### Setup you local environment.
 
-1. Ensure you have the Node.js version we use, check [.npmrc](.npmrc). You can easily run multiple NOde version with [nvm](https://github.com/nvm-sh/nvm).
+1. Ensure you have the Node.js version we use, check [.npmrc](.npmrc). You can easily run multiple Node version with [nvm](https://github.com/nvm-sh/nvm).
 
 2. Install dependencies `npm install`
 
 3. See the `package.json` how to run the test.
 
-4. Run the cli locally 
+4. Run the CLI locally 
 
    ```bash
    npm run dev src/cli.ts <options>
@@ -99,5 +99,4 @@ For creating a README.md fixture, first create the readme input file for the tes
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under its MIT License.
-
+By contributing, you agree that your contributions will be licensed under the MIT License.
