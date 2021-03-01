@@ -32,7 +32,7 @@ const args = yargs.options({
   },
 }).argv;
 
-args["no-banner"] &&
+args["banner"] === undefined &&
   console.info(
     chalk.blue(figlet.textSync("ACTION-DOCS", { horizontalLayout: "full" }))
   );
@@ -41,11 +41,11 @@ args["no-banner"] &&
 generateActionMarkdownDocs({
   actionFile: args.action,
   tocLevel: args["toc-level"],
-  updateReadme: args["update-readme"] !== "" ? false : true,
+  updateReadme: args["update-readme"] === undefined ? false : true,
   readmeFile:
-    args["update-readme"] && args["update-readme"] !== ""
-      ? args["update-readme"]
-      : defaultOptions.readmeFile,
+    args["update-readme"] === undefined || args["update-readme"] === ""
+      ? defaultOptions.readmeFile
+      : args["update-readme"],
 })
   .then((r) => {
     console.info(r);
