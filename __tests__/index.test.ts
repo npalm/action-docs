@@ -1,5 +1,6 @@
-import { generateActionMarkdownDocs } from "../src";
+import { generateActionMarkdownDocs, Options } from "../src";
 import { readFileSync, writeFileSync } from "fs";
+import { option } from "yargs";
 
 test("With defaults.", async () => {
   const markdown = await generateActionMarkdownDocs();
@@ -48,10 +49,20 @@ test("Update filled readme (all fields)", async () => {
   );
 });
 
+test("Update readme (all fields) CRLF", async () => {
+  await testReadme(
+    "__tests__/fixtures/all_fields_action.yml.crlf",
+    "__tests__/fixtures/all_fields_readme.input.crlf",
+    "__tests__/fixtures/all_fields_readme.output.crlf",
+    { lineBreaks: "\r\n" }
+  );
+});
+
 async function testReadme(
   actionFile: string,
   originalReadme: string,
-  fixtureReadme: string
+  fixtureReadme: string,
+  overwriteOptions?: Options
 ) {
   const expected = <string>readFileSync(fixtureReadme, "utf-8");
   const original = <string>readFileSync(originalReadme, "utf-8");
@@ -60,6 +71,7 @@ async function testReadme(
     actionFile: actionFile,
     updateReadme: true,
     readmeFile: originalReadme,
+    ...overwriteOptions,
   });
 
   const updated = <string>readFileSync(originalReadme, "utf-8");

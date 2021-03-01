@@ -95,3 +95,4 @@ typings/
 Thumbs.db
 
 .npmrc
+lib
