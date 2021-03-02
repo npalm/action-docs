@@ -1,13 +1,14 @@
 import { load } from "js-yaml";
 import { readFileSync } from "fs";
 import replaceInFile from "replace-in-file";
+import { LineBreakType, getLineBreak } from "./linebreak";
 
 export interface Options {
   tocLevel?: number;
   actionFile?: string;
   updateReadme?: boolean;
   readmeFile?: string;
-  lineBreaks?: string;
+  lineBreaks?: LineBreakType;
 }
 
 interface ActionMarkdown {
@@ -22,15 +23,21 @@ interface DefaultOptions {
   actionFile: string;
   updateReadme: boolean;
   readmeFile: string;
-  lineBreaks: string;
+  lineBreaks: LineBreakType;
 }
+
+// enum LineBreak {
+//   CR = "\r",
+//   LF = "\n",
+//   CRLF = "\r'n",
+// }
 
 export const defaultOptions: DefaultOptions = {
   tocLevel: 2,
   actionFile: "action.yml",
   updateReadme: false,
   readmeFile: "README.md",
-  lineBreaks: "\n",
+  lineBreaks: "LF",
 };
 interface ActionInput {
   required?: boolean;
@@ -46,7 +53,7 @@ function createMdTable(options: DefaultOptions, data: string[][]): string {
     for (const c of line) {
       result = `${result} ${c} |`;
     }
-    result = `${result}${options.lineBreaks}`;
+    result = `${result}${getLineBreak(options.lineBreaks)}`;
   }
 
   return result;
@@ -69,7 +76,6 @@ export async function generateActionMarkdownDocs(
   };
 
   const docs = generateActionDocs(options);
-
   if (options.updateReadme) {
     await updateReadme(options, docs.description, "description");
     await updateReadme(options, docs.inputs, "inputs");
@@ -92,7 +98,11 @@ async function updateReadme(
   await replaceInFile.replaceInFile({
     files: options.readmeFile,
     from: to,
-    to: `<!-- action-docs-${section} -->${options.lineBreaks}${text}${options.lineBreaks}<!-- action-docs-${section} -->`,
+    to: `<!-- action-docs-${section} -->${getLineBreak(
+      options.lineBreaks
+    )}${text}${getLineBreak(
+      options.lineBreaks
+    )}<!-- action-docs-${section} -->`,
   });
 }
 
@@ -102,9 +112,11 @@ function createMarkdownSection(
   header: string
 ): string {
   return data !== ""
-    ? `${getToc(options.tocLevel)} ${header}${options.lineBreaks}${
+    ? `${getToc(options.tocLevel)} ${header}${getLineBreak(
         options.lineBreaks
-      }${data}${options.lineBreaks}${options.lineBreaks}`
+      )}${getLineBreak(options.lineBreaks)}${data}${getLineBreak(
+        options.lineBreaks
+      )}${getLineBreak(options.lineBreaks)}`
     : "";
 }
 

@@ -41,13 +41,15 @@ The following options are available via the CLI
 
 ```
 Options:
-      --help           Show help                                       [boolean]
-      --version        Show version number                             [boolean]
-  -t, --toc-level      TOC level used for markdown
+      --help               Show help                                   [boolean]
+      --version            Show version number                         [boolean]
+  -t, --toc-level          TOC level used for markdown
                                                 [number] [required] [default: 2]
-  -a, --action         GitHub action file       [string] [default: "action.yml"]
-      --no-banner      Print no banner
-  -u, --update-readme  Update readme file.                              [string]
+  -a, --action             GitHub action file   [string] [default: "action.yml"]
+      --no-banner          Print no banner
+  -u, --update-readme      Update readme file.                          [string]
+      --line-breaks, --lb  Used line breaks in the generated docs.
+                          [string] [choices: "CR", "LF", "CRLF"] [default: "LF"]
 ```
 
 

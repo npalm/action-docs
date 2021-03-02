@@ -54,7 +54,7 @@ test("Update readme (all fields) CRLF", async () => {
     "__tests__/fixtures/all_fields_action.yml.crlf",
     "__tests__/fixtures/all_fields_readme.input.crlf",
     "__tests__/fixtures/all_fields_readme.output.crlf",
-    { lineBreaks: "\r\n" }
+    { lineBreaks: "CRLF" }
   );
 });
 
