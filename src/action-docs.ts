@@ -1,12 +1,14 @@
 import { load } from "js-yaml";
 import { readFileSync } from "fs";
 import replaceInFile from "replace-in-file";
+import { LineBreakType, getLineBreak } from "./linebreak";
 
 export interface Options {
   tocLevel?: number;
   actionFile?: string;
   updateReadme?: boolean;
   readmeFile?: string;
+  lineBreaks?: LineBreakType;
 }
 
 interface ActionMarkdown {
@@ -21,13 +23,21 @@ interface DefaultOptions {
   actionFile: string;
   updateReadme: boolean;
   readmeFile: string;
+  lineBreaks: LineBreakType;
 }
+
+// enum LineBreak {
+//   CR = "\r",
+//   LF = "\n",
+//   CRLF = "\r'n",
+// }
 
 export const defaultOptions: DefaultOptions = {
   tocLevel: 2,
   actionFile: "action.yml",
   updateReadme: false,
   readmeFile: "README.md",
+  lineBreaks: "LF",
 };
 interface ActionInput {
   required?: boolean;
@@ -35,7 +45,7 @@ interface ActionInput {
   default?: string;
 }
 
-function createMdTable(data: string[][]): string {
+function createMdTable(options: DefaultOptions, data: string[][]): string {
   let result = "";
 
   for (const line of data) {
@@ -43,7 +53,7 @@ function createMdTable(data: string[][]): string {
     for (const c of line) {
       result = `${result} ${c} |`;
     }
-    result = `${result}\n`;
+    result = `${result}${getLineBreak(options.lineBreaks)}`;
   }
 
   return result;
@@ -66,39 +76,48 @@ export async function generateActionMarkdownDocs(
   };
 
   const docs = generateActionDocs(options);
-
   if (options.updateReadme) {
-    await updateReadme(options.readmeFile, docs.description, "description");
-    await updateReadme(options.readmeFile, docs.inputs, "inputs");
-    await updateReadme(options.readmeFile, docs.outputs, "outputs");
-    await updateReadme(options.readmeFile, docs.runs, "runs");
+    await updateReadme(options, docs.description, "description");
+    await updateReadme(options, docs.inputs, "inputs");
+    await updateReadme(options, docs.outputs, "outputs");
+    await updateReadme(options, docs.runs, "runs");
   }
 
   return `${docs.description + docs.inputs + docs.outputs + docs.runs}`;
 }
 
 async function updateReadme(
-  file: string,
+  options: DefaultOptions,
   text: string,
   section: string
 ): Promise<void> {
   const to = new RegExp(
-    `<!-- action-docs-${section} -->(?:(?:\n.*)+<!-- action-docs-${section} -->)?`
+    `<!-- action-docs-${section} -->(?:(?:\r\n|\r|\n.*)+<!-- action-docs-${section} -->)?`
   );
 
   await replaceInFile.replaceInFile({
-    files: file,
+    files: options.readmeFile,
     from: to,
-    to: `<!-- action-docs-${section} -->\n${text}\n<!-- action-docs-${section} -->`,
+    to: `<!-- action-docs-${section} -->${getLineBreak(
+      options.lineBreaks
+    )}${text}${getLineBreak(
+      options.lineBreaks
+    )}<!-- action-docs-${section} -->`,
   });
 }
 
 function createMarkdownSection(
-  tocLevel: number,
+  options: DefaultOptions,
   data: string,
   header: string
 ): string {
-  return data !== "" ? `${getToc(tocLevel)} ${header}\n\n${data}\n\n` : "";
+  return data !== ""
+    ? `${getToc(options.tocLevel)} ${header}${getLineBreak(
+        options.lineBreaks
+      )}${getLineBreak(options.lineBreaks)}${data}${getLineBreak(
+        options.lineBreaks
+      )}${getLineBreak(options.lineBreaks)}`
+    : "";
 }
 
 function generateActionDocs(options: DefaultOptions): ActionMarkdown {
@@ -142,26 +161,21 @@ function generateActionDocs(options: DefaultOptions): ActionMarkdown {
     }
   }
 
-  const inputMdTable = createMdTable(inputHeaders.concat(inputRows));
-  const outputMdTable = createMdTable(outputHeaders.concat(outputRows));
+  const inputMdTable = createMdTable(options, inputHeaders.concat(inputRows));
+  const outputMdTable = createMdTable(
+    options,
+    outputHeaders.concat(outputRows)
+  );
 
   const descriptionMd = createMarkdownSection(
-    options.tocLevel,
+    options,
     yml.description,
     "Description"
   );
-  const inputMd = createMarkdownSection(
-    options.tocLevel,
-    inputMdTable,
-    "Inputs"
-  );
-  const outputMd = createMarkdownSection(
-    options.tocLevel,
-    outputMdTable,
-    "Outputs"
-  );
+  const inputMd = createMarkdownSection(options, inputMdTable, "Inputs");
+  const outputMd = createMarkdownSection(options, outputMdTable, "Outputs");
   const runMd = createMarkdownSection(
-    options.tocLevel,
+    options,
     `This action is an \`${yml.runs.using}\` action.`,
     "Runs"
   );
