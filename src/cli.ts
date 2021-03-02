@@ -4,6 +4,7 @@ import yargs from "yargs";
 import { generateActionMarkdownDocs, defaultOptions } from ".";
 import chalk from "chalk";
 import figlet from "figlet";
+import { getLineBreakType } from "./linebreak";
 
 const args = yargs.options({
   "toc-level": {
@@ -30,6 +31,14 @@ const args = yargs.options({
     type: "string",
     alias: "u",
   },
+  "line-breaks": {
+    description: "Used line breaks in the generated docs.",
+    default: "LF",
+    choices: ["CR", "LF", "CRLF"],
+    demandOption: false,
+    type: "string",
+    alias: "lb",
+  },
 }).argv;
 
 args["banner"] === undefined &&
@@ -46,6 +55,7 @@ generateActionMarkdownDocs({
     args["update-readme"] === undefined || args["update-readme"] === ""
       ? defaultOptions.readmeFile
       : args["update-readme"],
+  lineBreaks: getLineBreakType(args["line-breaks"]),
 })
   .then((r) => {
     console.info(r);
