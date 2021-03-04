@@ -1,0 +1,23 @@
+name: 'dependabot-auto-merge'
+on:
+  pull_request:
+    
+jobs:
+  build: 
+    if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Get installation token
+        uses: npalm/action-app-token@v1.0.0
+        id: app-token
+        with:
+          appId: ${{ secrets.APP_ID }}
+          appPrivateKeyBase64: ${{ secrets.APP_PRIVATE_KEY_BASE64 }}
+          appInstallationType: repo
+          appInstallationValue: ${{ github.repository }}
+
+      - name: Auto merge dependabot
+        uses: ahmadnassri/action-dependabot-auto-merge@v2
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
