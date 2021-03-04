@@ -1,0 +1,15 @@
+name: 'dependabot-auto-merge'
+on:
+  pull_request:
+    
+jobs:
+  build: 
+    if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Auto merge dependabot
+        uses: ahmadnassri/action-dependabot-auto-merge@v2
+        with:
+          github-token: ${{ secrets.TOKEN_DEPENDABOT }}
+
