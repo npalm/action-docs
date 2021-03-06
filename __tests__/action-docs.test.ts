@@ -1,61 +1,77 @@
 import { generateActionMarkdownDocs, Options } from "../src";
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync, copyFileSync, rmSync } from "fs";
+import * as path from "path";
 import { option } from "yargs";
 
-test("With defaults.", async () => {
-  const markdown = await generateActionMarkdownDocs();
-  const expected = <string>(
-    readFileSync("__tests__/fixtures/default.output", "utf-8")
-  );
+const fixtureDir = path.join("__tests__", "fixtures");
 
-  expect(markdown).toEqual(expected);
+// By default an 'action.yml' is expected at the runtime location. Therefore we copy one during th test.
+beforeAll(() => {
+  copyFileSync(path.join(fixtureDir, "action.yml"), "action.yml");
 });
 
-test("A minimal action definition.", async () => {
-  const markdown = await generateActionMarkdownDocs({
-    actionFile: "__tests__/fixtures/minimal_action.yml",
+afterAll(() => {
+  return rmSync("action.yml");
+});
+
+describe("Test output", () => {
+  test("With defaults.", async () => {
+    const markdown = await generateActionMarkdownDocs();
+    const expected = <string>(
+      readFileSync(path.join(fixtureDir, "default.output"), "utf-8")
+    );
+
+    expect(markdown).toEqual(expected);
   });
-  const expected = <string>(
-    readFileSync("__tests__/fixtures/minimal_action.output", "utf-8")
-  );
 
-  expect(markdown).toEqual(expected);
-});
+  test("A minimal action definition.", async () => {
+    const markdown = await generateActionMarkdownDocs({
+      actionFile: path.join(fixtureDir, "minimal_action.yml"),
+    });
+    const expected = <string>(
+      readFileSync(path.join(fixtureDir, "minimal_action.output"), "utf-8")
+    );
 
-test("All fields action definition.", async () => {
-  const markdown = await generateActionMarkdownDocs({
-    actionFile: "__tests__/fixtures/all_fields_action.yml",
+    expect(markdown).toEqual(expected);
   });
-  const expected = <string>(
-    readFileSync("__tests__/fixtures/all_fields_action.output", "utf-8")
-  );
 
-  expect(markdown).toEqual(expected);
+  test("All fields action definition.", async () => {
+    const markdown = await generateActionMarkdownDocs({
+      actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+    });
+    const expected = <string>(
+      readFileSync(path.join(fixtureDir, "all_fields_action.output"), "utf-8")
+    );
+
+    expect(markdown).toEqual(expected);
+  });
 });
 
-test("Update empty readme (all fields)", async () => {
-  await testReadme(
-    "__tests__/fixtures/all_fields_action.yml",
-    "__tests__/fixtures/all_fields_readme.input",
-    "__tests__/fixtures/all_fields_readme.output"
-  );
-});
+describe("Test update readme ", () => {
+  test("Empty readme (all fields)", async () => {
+    await testReadme(
+      path.join(fixtureDir, "all_fields_action.yml"),
+      path.join(fixtureDir, "all_fields_readme.input"),
+      path.join(fixtureDir, "all_fields_readme.output")
+    );
+  });
 
-test("Update filled readme (all fields)", async () => {
-  await testReadme(
-    "__tests__/fixtures/all_fields_action.yml",
-    "__tests__/fixtures/all_fields_readme_filled.input",
-    "__tests__/fixtures/all_fields_readme_filled.output"
-  );
-});
+  test("Filled readme (all fields)", async () => {
+    await testReadme(
+      path.join(fixtureDir, "all_fields_action.yml"),
+      path.join(fixtureDir, "all_fields_readme_filled.input"),
+      path.join(fixtureDir, "all_fields_readme_filled.output")
+    );
+  });
 
-test("Update readme (all fields) CRLF", async () => {
-  await testReadme(
-    "__tests__/fixtures/all_fields_action.yml.crlf",
-    "__tests__/fixtures/all_fields_readme.input.crlf",
-    "__tests__/fixtures/all_fields_readme.output.crlf",
-    { lineBreaks: "CRLF" }
-  );
+  test("Readme (all fields) with CRLF line breaks", async () => {
+    await testReadme(
+      path.join(fixtureDir, "all_fields_action.yml.crlf"),
+      path.join(fixtureDir, "all_fields_readme.input.crlf"),
+      path.join(fixtureDir, "all_fields_readme.output.crlf"),
+      { lineBreaks: "CRLF" }
+    );
+  });
 });
 
 async function testReadme(

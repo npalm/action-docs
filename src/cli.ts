@@ -46,11 +46,13 @@ args["banner"] === undefined &&
     chalk.blue(figlet.textSync("ACTION-DOCS", { horizontalLayout: "full" }))
   );
 
+const updateReadme = args["update-readme"] === undefined ? false : true;
+
 /* eslint-disable github/no-then */
 generateActionMarkdownDocs({
   actionFile: args.action,
   tocLevel: args["toc-level"],
-  updateReadme: args["update-readme"] === undefined ? false : true,
+  updateReadme: updateReadme,
   readmeFile:
     args["update-readme"] === undefined || args["update-readme"] === ""
       ? defaultOptions.readmeFile
@@ -58,7 +60,9 @@ generateActionMarkdownDocs({
   lineBreaks: getLineBreakType(args["line-breaks"]),
 })
   .then((r) => {
+    // if (updateReadme) {
     console.info(r);
+    // }
   })
   .catch((e) => console.error(e.message));
 /* eslint-enable */
