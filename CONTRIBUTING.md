@@ -63,14 +63,14 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 
 1. Ensure you have the Node.js version we use, check [.npmrc](.npmrc). You can easily run multiple Node version with [nvm](https://github.com/nvm-sh/nvm).
 
-2. Install dependencies `npm install`
+2. Install dependencies `yarn install`
 
 3. See the `package.json` how to run the test.
 
 4. Run the CLI locally 
 
    ```bash
-   npm run dev src/cli.ts <options>
+   yarn run dev src/cli.ts <options>
    ```
 
 ### Adding tests
@@ -94,7 +94,7 @@ For creating a README.md fixture, first create the readme input file for the tes
 ### Use a Consistent Coding Style
 
 - we use spaces.
-- You can try running `npm run lint && npm run format` for style unification
+- You can try running `yarn run lint && yarn run format` for style unification
 
 
 ## License

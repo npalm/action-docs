@@ -11,7 +11,7 @@ const args = yargs.options({
     description: "TOC level used for markdown",
     type: "number",
     default: defaultOptions.tocLevel,
-    demandOption: true,
+    demandOption: false,
     alias: "t",
   },
   action: {
@@ -37,7 +37,7 @@ const args = yargs.options({
     choices: ["CR", "LF", "CRLF"],
     demandOption: false,
     type: "string",
-    alias: "lb",
+    alias: "l",
   },
 }).argv;
 
@@ -46,11 +46,13 @@ args["banner"] === undefined &&
     chalk.blue(figlet.textSync("ACTION-DOCS", { horizontalLayout: "full" }))
   );
 
+const updateReadme = args["update-readme"] === undefined ? false : true;
+
 /* eslint-disable github/no-then */
 generateActionMarkdownDocs({
   actionFile: args.action,
   tocLevel: args["toc-level"],
-  updateReadme: args["update-readme"] === undefined ? false : true,
+  updateReadme,
   readmeFile:
     args["update-readme"] === undefined || args["update-readme"] === ""
       ? defaultOptions.readmeFile
@@ -58,7 +60,9 @@ generateActionMarkdownDocs({
   lineBreaks: getLineBreakType(args["line-breaks"]),
 })
   .then((r) => {
+    // if (updateReadme) {
     console.info(r);
+    // }
   })
   .catch((e) => console.error(e.message));
 /* eslint-enable */
