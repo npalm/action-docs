@@ -53,6 +53,7 @@ jobs:
           args: >
             -Dsonar.organization=${{ steps.info.outputs.repo_owner }}
             -Dsonar.projectKey=${{ steps.info.outputs.repo_name }}
+            -Dsonar.branch.name=develop
 
 
       - name: Publish
