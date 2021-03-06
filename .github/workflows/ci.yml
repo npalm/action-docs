@@ -24,8 +24,8 @@ jobs:
         id: info
         run: |
           echo ::set-output name=version::${GITHUB_REF/refs\/tags\//}        
-          echo ::set-output name=repo_name::$(echo $GITHUB_REPOSITORY| cut -d / -f 1)
-          echo ::set-output name=repo_owner::$(echo $GITHUB_REPOSITORY| cut -d / -f 2)
+          echo ::set-output name=repo_name::$(echo $GITHUB_REPOSITORY| cut -d / -f 2)
+          echo ::set-output name=repo_owner::$(echo $GITHUB_REPOSITORY| cut -d / -f 1)
           
       - uses: actions/setup-node@v2
         with:
@@ -51,7 +51,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.organization=${{ steps.info.outputs.repo_name }}
+            -Dsonar.organization=${{ steps.info.outputs.repo_owner }}
             -Dsonar.projectKey=${{ steps.info.outputs.repo_name }}
 
 
