@@ -19,7 +19,7 @@ describe("CLI tests", () => {
       path.join(fixtureDir, "all_fields_action.yml.crlf"),
       path.join(fixtureDir, "all_fields_readme.input.crlf"),
       path.join(fixtureDir, "all_fields_readme.output.crlf"),
-      "--lb CRLF"
+      "-l CRLF"
     );
   });
 
@@ -30,7 +30,7 @@ describe("CLI tests", () => {
 
     const expected = <string>(
       readFileSync(
-        path.join(fixtureDir, "all_fileds_action_toc3_cli.output"),
+        path.join(fixtureDir, "all_fields_action_toc3_cli.output"),
         "utf-8"
       )
     );

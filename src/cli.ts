@@ -11,7 +11,7 @@ const args = yargs.options({
     description: "TOC level used for markdown",
     type: "number",
     default: defaultOptions.tocLevel,
-    demandOption: true,
+    demandOption: false,
     alias: "t",
   },
   action: {
@@ -37,7 +37,7 @@ const args = yargs.options({
     choices: ["CR", "LF", "CRLF"],
     demandOption: false,
     type: "string",
-    alias: "lb",
+    alias: "l",
   },
 }).argv;
 
