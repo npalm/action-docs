@@ -37,10 +37,15 @@ jobs:
         run: yarn run build
 
       - name: SonarCloud Scan
+        if: matrix.node-version == 14 
         uses: sonarsource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization= $(echo $GITHUB_REPOSITORY| cut -d / -f 1)
+            -Dsonar.projectKey=$(echo $GITHUB_REPOSITORY| cut -d / -f 2)
 
       - name: Get the version
         if: ${{ startsWith(github.ref, 'refs/tags/') && matrix.node-version == 14 }}
