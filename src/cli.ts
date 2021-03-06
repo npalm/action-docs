@@ -52,7 +52,7 @@ const updateReadme = args["update-readme"] === undefined ? false : true;
 generateActionMarkdownDocs({
   actionFile: args.action,
   tocLevel: args["toc-level"],
-  updateReadme: updateReadme,
+  updateReadme,
   readmeFile:
     args["update-readme"] === undefined || args["update-readme"] === ""
       ? defaultOptions.readmeFile
