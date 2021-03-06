@@ -44,7 +44,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.organization= $(echo $GITHUB_REPOSITORY| cut -d / -f 1)
+            -Dsonar.organization=$(echo $GITHUB_REPOSITORY| cut -d / -f 1)
             -Dsonar.projectKey=$(echo $GITHUB_REPOSITORY| cut -d / -f 2)
 
       - name: Get the version
