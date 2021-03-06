@@ -26,12 +26,6 @@ interface DefaultOptions {
   lineBreaks: LineBreakType;
 }
 
-// enum LineBreak {
-//   CR = "\r",
-//   LF = "\n",
-//   CRLF = "\r'n",
-// }
-
 export const defaultOptions: DefaultOptions = {
   tocLevel: 2,
   actionFile: "action.yml",
@@ -126,64 +120,59 @@ function generateActionDocs(options: DefaultOptions): ActionMarkdown {
     json: true,
   });
 
-  const inputHeaders: string[][] = [];
-  const inputRows: string[][] = [];
-  if (yml.inputs !== undefined) {
-    inputHeaders[0] = ["parameter", "description", "required", "default"];
-    inputHeaders[1] = ["-", "-", "-", "-"];
+  const inputData = getInputOutput(yml.inputs, "input");
+  const inputMdTable = createMdTable(
+    options,
+    inputData.headers.concat(inputData.rows)
+  );
 
-    //let i = 0;
-    for (let i = 0; i < Object.keys(yml.inputs).length; i++) {
-      const key = Object.keys(yml.inputs)[i];
-      const input = yml.inputs[key] as ActionInput;
-      inputRows[i] = [];
-      inputRows[i].push(key);
-      inputRows[i].push(input.description);
-      inputRows[i].push(
-        input.required ? `\`${String(input.required)}\`` : "`false`"
-      );
-      inputRows[i].push(input.default ? input.default : "");
-    }
-  }
-
-  const outputHeaders: string[][] = [];
-  const outputRows: string[][] = [];
-  if (yml.outputs !== undefined) {
-    outputHeaders[0] = ["parameter", "description"];
-    outputHeaders[1] = ["-", "-"];
-    let i = 0;
-    for (const key of Object.keys(yml.outputs)) {
-      const output = yml.outputs[key] as ActionInput;
-      outputRows[i] = [];
-      outputRows[i].push(key);
-      outputRows[i].push(output.description);
-      i++;
-    }
-  }
-
-  const inputMdTable = createMdTable(options, inputHeaders.concat(inputRows));
+  const outputData = getInputOutput(yml.outputs, "output");
   const outputMdTable = createMdTable(
     options,
-    outputHeaders.concat(outputRows)
-  );
-
-  const descriptionMd = createMarkdownSection(
-    options,
-    yml.description,
-    "Description"
-  );
-  const inputMd = createMarkdownSection(options, inputMdTable, "Inputs");
-  const outputMd = createMarkdownSection(options, outputMdTable, "Outputs");
-  const runMd = createMarkdownSection(
-    options,
-    `This action is an \`${yml.runs.using}\` action.`,
-    "Runs"
+    outputData.headers.concat(outputData.rows)
   );
 
   return {
-    description: descriptionMd,
-    inputs: inputMd,
-    outputs: outputMd,
-    runs: runMd,
+    description: createMarkdownSection(options, yml.description, "Description"),
+    inputs: createMarkdownSection(options, inputMdTable, "Inputs"),
+    outputs: createMarkdownSection(options, outputMdTable, "Outputs"),
+    runs: createMarkdownSection(
+      options,
+      `This action is an \`${yml.runs.using}\` action.`,
+      "Runs"
+    ),
   };
+}
+
+function getInputOutput(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  inputs: any,
+  type: "input" | "output"
+): { headers: string[][]; rows: string[][] } {
+  const headers: string[][] = [];
+  const rows: string[][] = [];
+  if (inputs !== undefined) {
+    headers[0] =
+      type === "input"
+        ? ["parameter", "description", "required", "default"]
+        : ["parameter", "description"];
+    headers[1] = Array(headers[0].length).fill("-");
+
+    //let i = 0;
+    for (let i = 0; i < Object.keys(inputs).length; i++) {
+      const key = Object.keys(inputs)[i];
+      const input = inputs[key] as ActionInput;
+      rows[i] = [];
+      rows[i].push(key);
+      rows[i].push(input.description);
+
+      if (type === "input") {
+        rows[i].push(
+          input.required ? `\`${String(input.required)}\`` : "`false`"
+        );
+        rows[i].push(input.default ? input.default : "");
+      }
+    }
+  }
+  return { headers, rows };
 }

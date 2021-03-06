@@ -1,0 +1,26 @@
+### Description
+
+Default test
+
+### Inputs
+
+| parameter | description | required | default |
+| - | - | - | - |
+| inputA | A description A | `false` |  |
+| inputB | A description B | `true` |  |
+| inputC | A description C | `true` | C |
+| inputD | A description D | `false` | D |
+
+
+### Outputs
+
+| parameter | description |
+| - | - |
+| outputA | A description A |
+| outputB | A description B |
+
+
+### Runs
+
+This action is an `node12` action.
+

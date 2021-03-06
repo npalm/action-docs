@@ -23,21 +23,29 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        run: npm install
+        run: yarn install
 
       - name: Check format and lint
-        run: npm run format-check && npm run lint
+        run: yarn run format-check && yarn run lint
 
       - name: Run tests
-        run: npm test
+        run: yarn test
 
       - name: Build and package
-        run: npm run build
+        run: yarn run build
 
+
+      - name: Get the version
+        if: ${{ startsWith(github.ref, 'refs/tags/') && matrix.node-version == 14 }}
+        id: get_version
+        run: echo ::set-output name=version::${GITHUB_REF/refs\/tags\//}        
+  
       - name: Publish
         if: ${{ startsWith(github.ref, 'refs/tags/') && matrix.node-version == 14 }}
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          VERSION: ${{ steps.get_version.outputs.version }}
         run: |
           echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-          npm publish
+          yarn version --new-version ${VERSION} --no-git-tag-version
+          yarn publish --access public
