@@ -1,5 +1,5 @@
 import { generateActionMarkdownDocs, Options } from "../src";
-import { readFileSync, writeFileSync, copyFileSync, rmSync } from "fs";
+import { readFileSync, writeFileSync, copyFileSync, rmSync, unlink } from "fs";
 import * as path from "path";
 import { option } from "yargs";
 
@@ -11,7 +11,9 @@ beforeAll(() => {
 });
 
 afterAll(() => {
-  return rmSync("action.yml");
+  return unlink("action.yml", (err) => {
+    if (err) throw err;
+  });
 });
 
 describe("Test output", () => {
