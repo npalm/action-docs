@@ -60,9 +60,9 @@ generateActionMarkdownDocs({
   lineBreaks: getLineBreakType(args["line-breaks"]),
 })
   .then((r) => {
-    // if (updateReadme) {
-    console.info(r);
-    // }
+    if (!updateReadme) {
+      console.info(r);
+    }
   })
   .catch((e) => console.error(e.message));
 /* eslint-enable */
