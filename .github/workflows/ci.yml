@@ -51,8 +51,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.organization=${{ steps.info.outpus.repo_name }}
-            -Dsonar.projectKey=${{ steps.info.outpus.repo_name }}
+            -Dsonar.organization=${{ steps.info.outputs.repo_name }}
+            -Dsonar.projectKey=${{ steps.info.outputs.repo_name }}
 
 
       - name: Publish
