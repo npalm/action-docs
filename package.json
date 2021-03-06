@@ -2,6 +2,7 @@
   "name": "action-docs",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": "0.3.0-beta.1",
 =======
   "version": "v0.3.0-beta.3",
@@ -9,6 +10,9 @@
 =======
   "version": "0.3.0-beta.2",
 >>>>>>> d3f9162... v0.3.0-beta.2
+=======
+  "version": "0.3.0-beta.3",
+>>>>>>> c25663a... v0.3.0-beta.3
   "description": "Generate GitHub action docs based on action.yml",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
