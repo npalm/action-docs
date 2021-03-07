@@ -68,5 +68,6 @@ jobs:
         if: github.event_name != 'pull_request' && contains('refs/heads/main', github.ref) && matrix.node-version == 14
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           yarn release --repositoryUrl https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
