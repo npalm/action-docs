@@ -146,32 +146,33 @@ function generateActionDocs(options: DefaultOptions): ActionMarkdown {
 
 function getInputOutput(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  inputs: any,
+  data: any,
   type: "input" | "output"
 ): { headers: string[][]; rows: string[][] } {
   const headers: string[][] = [];
   const rows: string[][] = [];
-  if (inputs !== undefined) {
-    headers[0] =
-      type === "input"
-        ? ["parameter", "description", "required", "default"]
-        : ["parameter", "description"];
-    headers[1] = Array(headers[0].length).fill("-");
+  if (data === undefined) {
+    return { headers, rows };
+  }
 
-    //let i = 0;
-    for (let i = 0; i < Object.keys(inputs).length; i++) {
-      const key = Object.keys(inputs)[i];
-      const input = inputs[key] as ActionInput;
-      rows[i] = [];
-      rows[i].push(key);
-      rows[i].push(input.description);
+  headers[0] =
+    type === "input"
+      ? ["parameter", "description", "required", "default"]
+      : ["parameter", "description"];
+  headers[1] = Array(headers[0].length).fill("-");
 
-      if (type === "input") {
-        rows[i].push(
-          input.required ? `\`${String(input.required)}\`` : "`false`"
-        );
-        rows[i].push(input.default ? input.default : "");
-      }
+  for (let i = 0; i < Object.keys(data).length; i++) {
+    const key = Object.keys(data)[i];
+    const value = data[key] as ActionInput;
+    rows[i] = [];
+    rows[i].push(key);
+    rows[i].push(value.description);
+
+    if (type === "input") {
+      rows[i].push(
+        value.required ? `\`${String(value.required)}\`` : "`false`"
+      );
+      rows[i].push(value.default ? value.default : "");
     }
   }
   return { headers, rows };
