@@ -18,6 +18,19 @@ interface ActionMarkdown {
   runs: string;
 }
 
+interface ActionYml {
+  name: string;
+  description: string;
+  inputs: ActionInputsOutputs;
+  outputs: ActionInputsOutputs;
+  runs: RunType;
+}
+
+interface RunType {
+  using: string;
+  main: string;
+}
+
 interface DefaultOptions {
   tocLevel: number;
   actionFile: string;
@@ -33,16 +46,30 @@ export const defaultOptions: DefaultOptions = {
   readmeFile: "README.md",
   lineBreaks: "LF",
 };
+
+type ActionInputsOutputs = Record<string, ActionInput | ActionOutput>;
+
 interface ActionInput {
   required?: boolean;
   description: string;
   default?: string;
 }
 
-function createMdTable(options: DefaultOptions, data: string[][]): string {
+interface ActionOutput {
+  description: string;
+}
+
+function createMdTable(
+  data: ActionInputsOutputs,
+  options: DefaultOptions,
+  type: "input" | "output"
+): string {
+  const tableData = getInputOutput(data, type);
+  const tableArray = tableData.headers.concat(tableData.rows);
+
   let result = "";
 
-  for (const line of data) {
+  for (const line of tableArray) {
     result = `${result}|`;
     for (const c of line) {
       result = `${result} ${c} |`;
@@ -80,6 +107,26 @@ export async function generateActionMarkdownDocs(
   return `${docs.description + docs.inputs + docs.outputs + docs.runs}`;
 }
 
+function generateActionDocs(options: DefaultOptions): ActionMarkdown {
+  const yml = load(readFileSync(options.actionFile, "utf-8"), {
+    json: true,
+  }) as ActionYml;
+
+  const inputMdTable = createMdTable(yml.inputs, options, "input");
+  const outputMdTable = createMdTable(yml.outputs, options, "output");
+
+  return {
+    description: createMarkdownSection(options, yml.description, "Description"),
+    inputs: createMarkdownSection(options, inputMdTable, "Inputs"),
+    outputs: createMarkdownSection(options, outputMdTable, "Outputs"),
+    runs: createMarkdownSection(
+      options,
+      `This action is an \`${yml.runs.using}\` action.`,
+      "Runs"
+    ),
+  };
+}
+
 async function updateReadme(
   options: DefaultOptions,
   text: string,
@@ -114,39 +161,8 @@ function createMarkdownSection(
     : "";
 }
 
-function generateActionDocs(options: DefaultOptions): ActionMarkdown {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const yml: any = load(readFileSync(options.actionFile, "utf-8"), {
-    json: true,
-  });
-
-  const inputData = getInputOutput(yml.inputs, "input");
-  const inputMdTable = createMdTable(
-    options,
-    inputData.headers.concat(inputData.rows)
-  );
-
-  const outputData = getInputOutput(yml.outputs, "output");
-  const outputMdTable = createMdTable(
-    options,
-    outputData.headers.concat(outputData.rows)
-  );
-
-  return {
-    description: createMarkdownSection(options, yml.description, "Description"),
-    inputs: createMarkdownSection(options, inputMdTable, "Inputs"),
-    outputs: createMarkdownSection(options, outputMdTable, "Outputs"),
-    runs: createMarkdownSection(
-      options,
-      `This action is an \`${yml.runs.using}\` action.`,
-      "Runs"
-    ),
-  };
-}
-
 function getInputOutput(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data: any,
+  data: ActionInputsOutputs,
   type: "input" | "output"
 ): { headers: string[][]; rows: string[][] } {
   const headers: string[][] = [];
