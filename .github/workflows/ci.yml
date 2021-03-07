@@ -54,12 +54,19 @@ jobs:
             -Dsonar.organization=${{ steps.info.outputs.repo_owner }}
             -Dsonar.projectKey=${{ steps.info.outputs.repo_name }}
 
-      - name: Publish
-        if: ${{ startsWith(github.ref, 'refs/tags/') && matrix.node-version == 14 }}
+      - name: Get installation token
+        if: github.event_name != 'pull_request' && contains('refs/heads/main', github.ref) && matrix.node-version == 14
+        uses: npalm/action-app-token@v1.0.0
+        id: app-token
+        with:
+          appId: ${{ secrets.APP_ID }}
+          appPrivateKeyBase64: ${{ secrets.APP_PRIVATE_KEY_BASE64 }}
+          appInstallationType: repo
+          appInstallationValue: ${{ github.repository }}
+
+      - name: Release
+        if: github.event_name != 'pull_request' && contains('refs/heads/main', github.ref) && matrix.node-version == 14
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          VERSION: ${{ steps.info.outputs.version }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-          yarn version --new-version ${VERSION} --no-git-tag-version
-          yarn publish --access public
+          yarn release --repositoryUrl https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git

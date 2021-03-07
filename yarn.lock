@@ -716,7 +716,7 @@
     p-retry "^4.0.0"
     url-join "^4.0.0"
 
-"@semantic-release/npm@^7.0.0":
+"@semantic-release/npm@^7.0.0", "@semantic-release/npm@^7.0.10":
   version "7.0.10"
   resolved "https://registry.yarnpkg.com/@semantic-release/npm/-/npm-7.0.10.tgz#85e5b201e71896ecc3f45d7a496f5485f97df0b8"
   integrity sha512-DXFEhgSt5u22imTWbw8wfcVGB90nFJNcjUBtJI3zswJojzZ7yXpY4i2Va5RBRQRTtj00BfG0stbilAtKrKp35g==
