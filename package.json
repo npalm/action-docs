@@ -13,9 +13,9 @@
     "format-check": "prettier --check **/*.ts",
     "lint": "eslint src/**/*.ts",
     "test": "yarn run test-default && yarn run test-cli",
-    "test-default": "jest --testPathIgnorePatterns=__tests__/cli.test.ts --collect-coverage --coverage",
-    "test-cli": "nyc jest --silent --testMatch=**/cli*test.ts && nyc report --reporter=lcov --reporter=html --report-dir=./coverage_nyc",
-    "all": "npm run build && npm run format && npm run lint && npm test",
+    "test-default": "jest --testTimeout=10000 --testPathIgnorePatterns=__tests__/cli.test.ts --collect-coverage --coverage",
+    "test-cli": "nyc jest --testTimeout=10000 --silent --testMatch=**/cli*test.ts && nyc report --reporter=lcov --reporter=html --report-dir=./coverage_nyc",
+    "all": "yarn run build && yarn run format && yarn run lint && yarn test",
     "watch": "ts-node-dev --respawn --exit-child",
     "dev": "ts-node",
     "release": "semantic-release"
