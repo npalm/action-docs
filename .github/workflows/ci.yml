@@ -1,12 +1,8 @@
 name: 'build-test'
 on:
-  push:
-    branches:
-      - main
-      - develop
-    tags:
-       - '*'
-  pull_request:
+  push: 
+  # See https://docs.github.com/en/actions/reference/events-that-trigger-workflows#pull_request_target for security implications.
+  pull_request_target:
       types: [opened, synchronize, reopened]
 
 jobs:
@@ -23,7 +19,6 @@ jobs:
       - name: Get info
         id: info
         run: |
-          echo ::set-output name=version::${GITHUB_REF/refs\/tags\//}        
           echo ::set-output name=repo_name::$(echo $GITHUB_REPOSITORY| cut -d / -f 2)
           echo ::set-output name=repo_owner::$(echo $GITHUB_REPOSITORY| cut -d / -f 1)
           
@@ -53,21 +48,3 @@ jobs:
           args: >
             -Dsonar.organization=${{ steps.info.outputs.repo_owner }}
             -Dsonar.projectKey=${{ steps.info.outputs.repo_name }}
-
-      - name: Get installation token
-        if: github.event_name != 'pull_request' && contains('refs/heads/main', github.ref) && matrix.node-version == 14
-        uses: npalm/action-app-token@v1.0.0
-        id: app-token
-        with:
-          appId: ${{ secrets.APP_ID }}
-          appPrivateKeyBase64: ${{ secrets.APP_PRIVATE_KEY_BASE64 }}
-          appInstallationType: repo
-          appInstallationValue: ${{ github.repository }}
-
-      - name: Release
-        if: github.event_name != 'pull_request' && contains('refs/heads/main', github.ref) && matrix.node-version == 14
-        env:
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          yarn release --repositoryUrl https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
