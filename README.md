@@ -10,7 +10,19 @@ A CLI to generate and update documentation for GitHub actions, based on the acti
 
 ## TL;DR
 
-Generate docs via CLI.
+### Add the following comment blocks to your README.md
+
+```
+<!-- action-docs-description -->
+
+<!-- action-docs-inputs -->
+
+<!-- action-docs-outputs -->
+
+<!-- action-docs-runs -->
+```
+
+### Generate docs via CLI.
 
 ```bash
 npm install -g action-docs
@@ -23,19 +35,9 @@ action-docs
 action-docs --update-readme
 ```
 
-Update your README.md
+### Run the cli
 
 ```
-## Add the following comment blocks to your README.md
-<!-- action-docs-description -->
-
-<!-- action-docs-inputs -->
-
-<!-- action-docs-outputs -->
-
-<!-- action-docs-runs -->
-
-## Run the cli
 action-docs -u
 ```
 
@@ -56,7 +58,6 @@ Options:
   -l, --line-breaks    Used line breaks in the generated docs.
                           [string] [choices: "CR", "LF", "CRLF"] [default: "LF"]
 ```
-
 
 ### Update the README
 
