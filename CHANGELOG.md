@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.1](https://github.com/npalm/action-docs/compare/1.0.0...1.0.1) (2021-06-20)
+
+
+### Bug Fixes
+
+* remove unsupported node version ([#83](https://github.com/npalm/action-docs/issues/83)) ([9c3326d](https://github.com/npalm/action-docs/commit/9c3326d7ad744319fad0ac5c2783a66abf1bedee))
+
 ## 1.0.0 (2021-03-07)
 
 
