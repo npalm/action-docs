@@ -13,10 +13,6 @@ jobs:
       matrix:
         node-version: ["12", "14", "16"]
     steps:
-      - name: test
-        run: |
-          echo test
-          node --version
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
