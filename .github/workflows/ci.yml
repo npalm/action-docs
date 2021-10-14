@@ -13,12 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ["12"]
+        node-version: ["12", "14", "16"]
     steps:
-      - name: test
-        run: |
-          echo test
-          node --version
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -36,12 +32,14 @@ jobs:
         run: yarn install
 
       - name: Check format and lint
+        if: matrix.node-version == 14 
         run: yarn run format-check && yarn run lint
 
       - name: Run tests
         run: yarn test
 
       - name: Build and package
+        if: matrix.node-version == 14 
         run: yarn run build
 
       - name: SonarCloud Scan
