@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import yargs from "yargs";
-import { generateActionMarkdownDocs, defaultOptions } from ".";
+import { defaultOptions, generateActionMarkdownDocs } from ".";
 import chalk from "chalk";
 import figlet from "figlet";
 import { getLineBreakType } from "./linebreak";
+import yargs from "yargs";
 
 const args = yargs.options({
   "toc-level": {
