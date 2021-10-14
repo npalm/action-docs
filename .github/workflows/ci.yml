@@ -24,10 +24,10 @@ jobs:
           echo ::set-output name=repo_name::$(echo $GITHUB_REPOSITORY| cut -d / -f 2)
           echo ::set-output name=repo_owner::$(echo $GITHUB_REPOSITORY| cut -d / -f 1)
           
+      - run: node --version
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - run: node --version
       - name: Install dependencies
         run: yarn install
 
