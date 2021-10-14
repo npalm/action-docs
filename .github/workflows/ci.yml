@@ -14,6 +14,10 @@ jobs:
       matrix:
         node-version: ["12", "14"]
     steps:
+      - name: test
+        run: |
+          echo test
+          node --version
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -24,7 +28,6 @@ jobs:
           echo ::set-output name=repo_name::$(echo $GITHUB_REPOSITORY| cut -d / -f 2)
           echo ::set-output name=repo_owner::$(echo $GITHUB_REPOSITORY| cut -d / -f 1)
           
-      - run: node --version
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
