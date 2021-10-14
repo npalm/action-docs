@@ -1,7 +1,7 @@
+import { LineBreakType, getLineBreak } from "./linebreak";
 import { load } from "js-yaml";
 import { readFileSync } from "fs";
 import replaceInFile from "replace-in-file";
-import { LineBreakType, getLineBreak } from "./linebreak";
 
 export interface Options {
   tocLevel?: number;
@@ -121,6 +121,7 @@ function generateActionDocs(options: DefaultOptions): ActionMarkdown {
     outputs: createMarkdownSection(options, outputMdTable, "Outputs"),
     runs: createMarkdownSection(
       options,
+      // eslint-disable-next-line i18n-text/no-en
       `This action is an \`${yml.runs.using}\` action.`,
       "Runs"
     ),

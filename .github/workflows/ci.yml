@@ -3,8 +3,7 @@ on:
   push: 
     branches:
       - main
-  # See https://docs.github.com/en/actions/reference/events-that-trigger-workflows#pull_request_target for security implications.
-  pull_request_target:
+  pull_request:
       types: [opened, synchronize, reopened]
 
 jobs:
@@ -12,41 +11,25 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ["12", "14"]
+        node-version: ["12", "14", "16"]
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
-      - name: Get info
-        id: info
-        run: |
-          echo ::set-output name=repo_name::$(echo $GITHUB_REPOSITORY| cut -d / -f 2)
-          echo ::set-output name=repo_owner::$(echo $GITHUB_REPOSITORY| cut -d / -f 1)
           
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --ignore-engines
 
       - name: Check format and lint
+        if: matrix.node-version == 14 
         run: yarn run format-check && yarn run lint
 
       - name: Run tests
         run: yarn test
 
       - name: Build and package
-        run: yarn run build
-
-      - name: SonarCloud Scan
         if: matrix.node-version == 14 
-        uses: sonarsource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.organization=${{ steps.info.outputs.repo_owner }}
-            -Dsonar.projectKey=${{ steps.info.outputs.repo_name }}
+        run: yarn run build
