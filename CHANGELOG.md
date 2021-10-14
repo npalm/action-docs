@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.0.3](https://github.com/npalm/action-docs/compare/1.0.2...1.0.3) (2021-10-14)
+
+
+### Bug Fixes
+
+* **deps:** bump browserslist from 4.16.3 to 4.17.4 ([#140](https://github.com/npalm/action-docs/issues/140)) ([718cf3a](https://github.com/npalm/action-docs/commit/718cf3a264d1983f59146eca55428abc19eee520))
+* **deps:** bump tmpl from 1.0.4 to 1.0.5 ([#139](https://github.com/npalm/action-docs/issues/139)) ([8ef5ec3](https://github.com/npalm/action-docs/commit/8ef5ec36f62bd77b7d20a5ccb34729ef2f0910b2))
+
 ### [1.0.2](https://github.com/npalm/action-docs/compare/1.0.1...1.0.2) (2021-10-14)
 
 
