@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.0.2](https://github.com/npalm/action-docs/compare/1.0.1...1.0.2) (2021-10-14)
+
+
+### Bug Fixes
+
+* upgrade dependencies ([#131](https://github.com/npalm/action-docs/issues/131)) ([095bf99](https://github.com/npalm/action-docs/commit/095bf99ac54124db80a6373768252ee92e02989f))
+* upgrade dependencies ([#132](https://github.com/npalm/action-docs/issues/132)) ([a0c5c92](https://github.com/npalm/action-docs/commit/a0c5c92aa4fd188d8319617eb5a31fe2f5da60ae))
+
 ### [1.0.1](https://github.com/npalm/action-docs/compare/1.0.0...1.0.1) (2021-06-20)
 
 
