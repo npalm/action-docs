@@ -122,7 +122,7 @@ function generateActionDocs(options: DefaultOptions): ActionMarkdown {
     runs: createMarkdownSection(
       options,
       // eslint-disable-next-line i18n-text/no-en
-      `This action is an \`${yml.runs.using}\` action.`,
+      `This action is a \`${yml.runs.using}\` action.`,
       "Runs"
     ),
   };
