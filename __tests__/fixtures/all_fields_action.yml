@@ -16,6 +16,10 @@ inputs:
     description: 'A description D'
     required: false
     default: D
+  inputE:
+    description: 'A description E'
+    required: false
+    default: false
 
 outputs:
   outputA:
