@@ -10,6 +10,7 @@ Default test
 | inputB | A description B | `true` |  |
 | inputC | A description C | `true` | C |
 | inputD | A description D | `false` | D |
+| inputE | A description E | `false` | false |
 
 
 # Outputs

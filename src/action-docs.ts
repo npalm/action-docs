@@ -189,7 +189,7 @@ function getInputOutput(
       rows[i].push(
         value.required ? `\`${String(value.required)}\`` : "`false`"
       );
-      rows[i].push(value.default ? value.default : "");
+      rows[i].push(value.default !== undefined ? value.default : "");
     }
   }
   return { headers, rows };
