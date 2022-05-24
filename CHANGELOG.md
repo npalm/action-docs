@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.4](https://github.com/npalm/action-docs/compare/1.0.3...1.0.4) (2022-05-24)
+
+
+### Bug Fixes
+
+* falsey default values not included ([#219](https://github.com/npalm/action-docs/issues/219)) ([7dc133b](https://github.com/npalm/action-docs/commit/7dc133b903811795d1441b4828d7e11d4e71aea9))
+
 ### [1.0.3](https://github.com/npalm/action-docs/compare/1.0.2...1.0.3) (2021-10-14)
 
 
