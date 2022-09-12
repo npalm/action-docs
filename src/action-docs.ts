@@ -189,7 +189,12 @@ function getInputOutput(
       rows[i].push(
         value.required ? `\`${String(value.required)}\`` : "`false`"
       );
-      rows[i].push(value.default !== undefined ? value.default : "");
+
+      if (value.default !== undefined) {
+        rows[i].push(value.default.toString().replace(/\r\n|\r|\n/g, " "));
+      } else {
+        rows[i].push("");
+      }
     }
   }
   return { headers, rows };
