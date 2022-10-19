@@ -5,14 +5,14 @@ Default test
 ## Inputs
 
 | parameter | description | required | default |
-| - | - | - | - |
+| --- | --- | --- | --- |
 | inputA | A description | `false` | test |
 
 
 ## Outputs
 
 | parameter | description |
-| - | - |
+| --- | --- |
 | outputA | A description |
 
 

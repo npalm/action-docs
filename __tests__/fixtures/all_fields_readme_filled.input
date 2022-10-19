@@ -10,7 +10,7 @@ Default test abc
 ## Inputs
 
 | parameter | description | required | default |
-| - | - | - | - |
+| --- | --- | --- | --- |
 | inputA | A description A | `false` |  |
 | inputB | A description B | `true` |  |
 | inputD | A description D | `false` | D |
@@ -24,7 +24,7 @@ Default test abc
 ## Outputs
 
 | parameter | description |
-| - | - |
+| --- | --- |
 | outputB | A description B |
 
 
