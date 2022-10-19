@@ -176,7 +176,7 @@ function getInputOutput(
     type === "input"
       ? ["parameter", "description", "required", "default"]
       : ["parameter", "description"];
-  headers[1] = Array(headers[0].length).fill("-");
+  headers[1] = Array(headers[0].length).fill("---");
 
   for (let i = 0; i < Object.keys(data).length; i++) {
     const key = Object.keys(data)[i];
