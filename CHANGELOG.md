@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.0](https://github.com/npalm/action-docs/compare/1.0.4...1.1.0) (2022-10-20)
+
+
+### Features
+
+* trim output text ([#271](https://github.com/npalm/action-docs/issues/271)) ([411256a](https://github.com/npalm/action-docs/commit/411256ac3a08096aef37293316bb4171c1321526))
+
+
+### Bug Fixes
+
+* remove new lines from inputs ([#272](https://github.com/npalm/action-docs/issues/272)) ([dbdbd50](https://github.com/npalm/action-docs/commit/dbdbd50f1377f57bd6cd7878381e5260c6c8edeb))
+* Update test for trim [#271](https://github.com/npalm/action-docs/issues/271) ([#297](https://github.com/npalm/action-docs/issues/297)) ([6746b95](https://github.com/npalm/action-docs/commit/6746b951bc0851a277b0854ada8d13f67510b184))
+* Upgrade dependcies ([#296](https://github.com/npalm/action-docs/issues/296)) ([b2a0a32](https://github.com/npalm/action-docs/commit/b2a0a324b4adba7b2aa4b9fee1480c8c55b8e1db))
+
 ### [1.0.4](https://github.com/npalm/action-docs/compare/1.0.3...1.0.4) (2022-05-24)
 
 
