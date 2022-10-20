@@ -5,7 +5,7 @@ Default test
 ### Inputs
 
 | parameter | description | required | default |
-| - | - | - | - |
+| --- | --- | --- | --- |
 | inputA | A description A | `false` |  |
 | inputB | A description B | `true` |  |
 | inputC | A description C | `true` | C |
@@ -16,7 +16,7 @@ Default test
 ### Outputs
 
 | parameter | description |
-| - | - |
+| --- | --- |
 | outputA | A description A |
 | outputB | A description B |
 
