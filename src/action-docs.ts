@@ -142,7 +142,7 @@ async function updateReadme(
     from: to,
     to: `<!-- action-docs-${section} -->${getLineBreak(
       options.lineBreaks
-    )}${text}${getLineBreak(
+    )}${text.trim()}${getLineBreak(
       options.lineBreaks
     )}<!-- action-docs-${section} -->`,
   });

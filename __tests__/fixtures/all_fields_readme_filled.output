@@ -2,8 +2,6 @@
 ## Description
 
 Default test
-
-
 <!-- action-docs-description -->
 
 <!-- action-docs-inputs -->
@@ -16,9 +14,6 @@ Default test
 | inputC | A description C | `true` | C |
 | inputD | A description D | `false` | D |
 | inputE | A description E | `false` | false |
-
-
-
 <!-- action-docs-inputs -->
 
 <!-- action-docs-outputs -->
@@ -28,15 +23,10 @@ Default test
 | --- | --- |
 | outputA | A description A |
 | outputB | A description B |
-
-
-
 <!-- action-docs-outputs -->
 
 <!-- action-docs-runs -->
 ## Runs
 
 This action is a `node12` action.
-
-
 <!-- action-docs-runs -->
