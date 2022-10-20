@@ -37,7 +37,7 @@
     "chalk": "^4.1.0",
     "figlet": "^1.5.0",
     "js-yaml": "^4.0.0",
-    "replace-in-file": "^6.2.0",
+    "replace-in-file": "^6.3.5",
     "yargs": "^17.6.0"
   },
   "files": [
