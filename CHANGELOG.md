@@ -7,6 +7,13 @@
 
 * Upgrade to Node 16 ([b5e2c4e](https://github.com/npalm/action-docs/commit/b5e2c4e20ea1c460500c047d36eaac9a2855a0e8))
 
+## [1.1.1](https://github.com/npalm/action-docs/compare/1.1.0...1.1.1) (2022-12-12)
+
+
+### Bug Fixes
+
+* Upgrade to Node 16 ([b5e2c4e](https://github.com/npalm/action-docs/commit/b5e2c4e20ea1c460500c047d36eaac9a2855a0e8))
+
 ## [1.1.0](https://github.com/npalm/action-docs/compare/1.0.4...1.1.0) (2022-10-20)
 
 
