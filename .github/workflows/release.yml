@@ -1,44 +1,29 @@
-name: 'Release'
+name: Release
+
 on:
-  workflow_dispatch:
-    inputs:
-      options:
-        description: "Extra options for running a release, e.g. -d for a dry run"
-        default: ''
-        required: false
+  push:
+    branches:
+      - main
 
 jobs:
-  release: 
+  release:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14.18.1
-
-      - name: Install dependencies
-        run: yarn 
-
-      - name: Run checks
-        run: yarn run test && yarn lint && yarn run build
-
-      - name: Get installation token
-        uses: npalm/action-app-token@v1.0.0
-        id: app-token
+      - name: Get app installation token
+        uses: npalm/action-app-token@dd4bb16d91ced5659bc618705c96b822c5a42136 # v1.1.0
+        id: token
         with:
           appId: ${{ secrets.APP_ID }}
           appPrivateKeyBase64: ${{ secrets.APP_PRIVATE_KEY_BASE64 }}
           appInstallationType: repo
           appInstallationValue: ${{ github.repository }}
 
+      # bootstrap-sha and release-as needs to be removed after first release
       - name: Release
-        env:
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          yarn release ${{ github.event.inputs.options }} --repositoryUrl https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
+        uses: google-github-actions/release-please-action@af1990728f970ad54c88e130c02a1521988127a2 # v3.7.0
+        with:
+          release-type: terraform-module
+          token: ${{ steps.token.outputs.token }}
+          include-v-in-tag: false
+          signoff: "Niek Palm <dev.npalm@gmail.com>"
+          bootstrap-sha: 78bf422d362ea613ea5511dfa62d30bd00ffc025
