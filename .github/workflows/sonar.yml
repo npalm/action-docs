@@ -11,19 +11,19 @@ jobs:
   build: 
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
         with:
           fetch-depth: 0
 
       - name: Get info
         id: info
         run: |
-          echo ::set-output name=repo_name::$(echo $GITHUB_REPOSITORY| cut -d / -f 2)
-          echo ::set-output name=repo_owner::$(echo $GITHUB_REPOSITORY| cut -d / -f 1)
+          echo "repo_name=$(echo $GITHUB_REPOSITORY| cut -d / -f 2)" >> $GITHUB_OUTPUT
+          echo "repo_owner=$(echo $GITHUB_REPOSITORY| cut -d / -f 1)" >> $GITHUB_OUTPUT
           
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 # v3.5.1
         with:
-          node-version: 14.18.1
+          node-version: 16
       - name: Install dependencies
         run: yarn install
 
@@ -31,8 +31,8 @@ jobs:
         run: yarn run all
 
       - name: SonarCloud Scan
-        if: matrix.node-version == 14 
-        uses: sonarsource/sonarcloud-github-action@master
+        if: matrix.node-version == 16
+        uses: sonarsource/sonarcloud-github-action@cb201f3b2d7a38231a8c042dfea4539c8bea180b # v1.8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

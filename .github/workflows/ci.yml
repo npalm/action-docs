@@ -11,25 +11,25 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ["14", "16"]
+        node-version: ["16", "18"]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
         with:
           fetch-depth: 0
           
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 # v3.5.1
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
         run: yarn install --ignore-engines
 
       - name: Check format and lint
-        if: matrix.node-version == 14 
+        if: matrix.node-version == 16
         run: yarn run format-check && yarn run lint
 
       - name: Run tests
         run: yarn test
 
       - name: Build and package
-        if: matrix.node-version == 14 
+        if: matrix.node-version == 16
         run: yarn run build

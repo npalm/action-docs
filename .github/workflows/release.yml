@@ -12,14 +12,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
         with:
           fetch-depth: 0
           persist-credentials: false
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@8c91899e586c5b171469028077307d293428b516 # v3.5.1
         with:
-          node-version: 14.18.1
+          node-version: 16
 
       - name: Install dependencies
         run: yarn 
@@ -27,8 +27,8 @@ jobs:
       - name: Run checks
         run: yarn run test && yarn lint && yarn run build
 
-      - name: Get installation token
-        uses: npalm/action-app-token@v1.0.0
+      - name: Get app installation token
+        uses: npalm/action-app-token@dd4bb16d91ced5659bc618705c96b822c5a42136 # v1.1.0
         id: app-token
         with:
           appId: ${{ secrets.APP_ID }}
