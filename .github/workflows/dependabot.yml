@@ -7,7 +7,7 @@ permissions:
 
 jobs:
   dependabot:
-    runs-on: [self-hosted, linux, X64, philips]
+    runs-on: ubuntu-latest
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - name: Dependabot metadata
@@ -17,8 +17,6 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Install gh cli
-        run: .github/bin/gh.sh
       - name: Approve a PR
         run: gh pr review --approve "$PR_URL"
         env:
