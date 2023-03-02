@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.2](https://github.com/npalm/action-docs/compare/1.1.1...1.1.2) (2023-03-02)
+
+
+### Bug Fixes
+
+* **deps:** bump json5 from 1.0.1 to 1.0.2 ([#371](https://github.com/npalm/action-docs/issues/371)) ([9352507](https://github.com/npalm/action-docs/commit/9352507c7e04005e644c3f97fda9261db63ba17b))
+* **deps:** bump yargs from 17.6.2 to 17.7.1 ([#372](https://github.com/npalm/action-docs/issues/372)) ([d0fbf54](https://github.com/npalm/action-docs/commit/d0fbf54cf77d00c296704ff4b03e06187a4d16a4))
+
 ## [1.1.1](https://github.com/npalm/action-docs/compare/1.1.0...1.1.1) (2022-12-12)
 
 
