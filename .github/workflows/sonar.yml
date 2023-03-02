@@ -20,18 +20,17 @@ jobs:
         run: |
           echo "repo_name=$(echo $GITHUB_REPOSITORY| cut -d / -f 2)" >> $GITHUB_OUTPUT
           echo "repo_owner=$(echo $GITHUB_REPOSITORY| cut -d / -f 1)" >> $GITHUB_OUTPUT
-          
+
       - uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
         with:
-          node-version: 16
+          node-version: 18
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --ignore-engines
 
       - name: Run all checks and build
         run: yarn run all
 
       - name: SonarCloud Scan
-        if: matrix.node-version == 16
         uses: sonarsource/sonarcloud-github-action@cb201f3b2d7a38231a8c042dfea4539c8bea180b # v1.8
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
