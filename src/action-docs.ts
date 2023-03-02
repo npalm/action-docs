@@ -69,9 +69,6 @@ function createMdTable(
 
   let result = "";
 
-  let abc = "abc\ndef\n";
-  // remove inner line br
-
   for (const line of tableArray) {
     result = `${result}|`;
     for (const c of line) {
