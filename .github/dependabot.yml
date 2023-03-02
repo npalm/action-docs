@@ -7,6 +7,11 @@ updates:
     # Check the npm registry for updates every day (weekdays)
     schedule:
       interval: 'daily'
+    # set descriptive commit message
+    commit-message:
+      prefix-development: 'chore(deps-dev)'
+      prefix: 'fix(deps)'
+      include: 'scope'
 
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
