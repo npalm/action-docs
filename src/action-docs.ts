@@ -69,10 +69,13 @@ function createMdTable(
 
   let result = "";
 
+  let abc = "abc\ndef\n";
+  // remove inner line br
+
   for (const line of tableArray) {
     result = `${result}|`;
     for (const c of line) {
-      result = `${result} ${c} |`;
+      result = `${result} ${c.replace(/(\r\n|\n|\r)/gm, " ")} |`;
     }
     result = `${result}${getLineBreak(options.lineBreaks)}`;
   }

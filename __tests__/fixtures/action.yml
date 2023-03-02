@@ -4,7 +4,15 @@ author: 'Niek Palm'
 inputs:
   inputA:
     required: false
-    description: 'A description'
+    description: |
+      A description
+      This is a multiline description
+    default: test
+  inputB:
+    required: false
+    description: |
+      This is a
+      multiline description
     default: test
 
 outputs:

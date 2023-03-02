@@ -6,7 +6,8 @@ Default test
 
 | parameter | description | required | default |
 | --- | --- | --- | --- |
-| inputA | A description | `false` | test |
+| inputA | A description This is a multiline description  | `false` | test |
+| inputB | This is a multiline description  | `false` | test |
 
 
 ## Outputs
