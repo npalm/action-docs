@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.3](https://github.com/npalm/action-docs/compare/1.1.2...1.1.3) (2023-03-02)
+
+
+### Bug Fixes
+
+* **deps:** bump http-cache-semantics from 4.1.0 to 4.1.1 ([#376](https://github.com/npalm/action-docs/issues/376)) ([a7ef739](https://github.com/npalm/action-docs/commit/a7ef739df207ef7390093ef72ddcc3165f7ffac0))
+
 ## [1.1.2](https://github.com/npalm/action-docs/compare/1.1.1...1.1.2) (2023-03-02)
 
 
