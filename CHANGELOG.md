@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/npalm/action-docs/compare/1.1.3...1.2.0) (2023-03-02)
+
+
+### Features
+
+* support multi-line ([#377](https://github.com/npalm/action-docs/issues/377)) ([ec0aa99](https://github.com/npalm/action-docs/commit/ec0aa995f92fcbb97711cbbc3e9bc787b825be69))
+
 ## [1.1.3](https://github.com/npalm/action-docs/compare/1.1.2...1.1.3) (2023-03-02)
 
 
