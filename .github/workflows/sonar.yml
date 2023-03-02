@@ -20,7 +20,7 @@ jobs:
         run: |
           echo "repo_name=$(echo $GITHUB_REPOSITORY| cut -d / -f 2)" >> $GITHUB_OUTPUT
           echo "repo_owner=$(echo $GITHUB_REPOSITORY| cut -d / -f 1)" >> $GITHUB_OUTPUT
-          
+
       - uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
         with:
           node-version: 18
