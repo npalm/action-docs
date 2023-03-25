@@ -1,11 +1,14 @@
 name: 'Release'
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
-    inputs:
-      options:
-        description: "Extra options for running a release, e.g. -d for a dry run"
-        default: ''
-        required: false
+
+permissions:
+  contents: write
+  packages: write
+  pull-requests: write
 
 jobs:
   release: 
@@ -27,18 +30,15 @@ jobs:
       - name: Run checks
         run: yarn run test && yarn lint && yarn run build
 
-      - name: Get app installation token
-        uses: npalm/action-app-token@dd4bb16d91ced5659bc618705c96b822c5a42136 # v1.1.0
-        id: app-token
+      - uses: google-github-actions/release-please-action@v3
+        id: release
         with:
-          appId: ${{ secrets.APP_ID }}
-          appPrivateKeyBase64: ${{ secrets.APP_PRIVATE_KEY_BASE64 }}
-          appInstallationType: repo
-          appInstallationValue: ${{ github.repository }}
+          release-type: node
+          package-name: action-docs
+          changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false}]'
 
-      - name: Release
+      - name: Publish to NPM
+        run: yarn ublish
+        if: ${{ steps.release.outputs.release_created }}
         env:
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          yarn release ${{ github.event.inputs.options }} --repositoryUrl https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
