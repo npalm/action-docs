@@ -9,8 +9,8 @@ updates:
       interval: 'daily'
     # set descriptive commit message
     commit-message:
-      prefix-development: 'chore'
-      prefix: 'fix'
+      prefix-development: 'build'
+      prefix: 'chore'
       include: 'scope'
 
   # Maintain dependencies for GitHub Actions

@@ -1,6 +1,6 @@
 {
   "name": "action-docs",
-  "version": "0.3.0-beta.3",
+  "version": "1.2.0",
   "description": "Generate GitHub action docs based on action.yml",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -45,20 +45,12 @@
     "README.md"
   ],
   "devDependencies": {
-    "@semantic-release/changelog": "^6.0.0",
-    "@semantic-release/commit-analyzer": "^9.0.1",
-    "@semantic-release/exec": "^6.0.1",
-    "@semantic-release/git": "^10.0.0",
-    "@semantic-release/github": "^8.0.6",
-    "@semantic-release/npm": "^9.0.2",
-    "@semantic-release/release-notes-generator": "^10.0.2",
     "@types/chalk": "^2.2.0",
     "@types/figlet": "^1.5.5",
     "@types/jest": "^29.4.0",
     "@types/js-yaml": "^4.0.0",
     "@types/node": "^18.14.4",
     "@typescript-eslint/parser": "^5.54.0",
-    "conventional-changelog-conventionalcommits": "^5.0.0",
     "eslint": "^8.35.0",
     "eslint-plugin-github": "^4.6.1",
     "eslint-plugin-jest": "^27.2.1",
