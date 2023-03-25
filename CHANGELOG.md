@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.1](https://github.com/npalm/action-docs/compare/1.2.0...v1.2.1) (2023-03-25)
+
+
+### Miscellaneous
+
+* **deps-dev:** bump @types/node from 18.14.4 to 18.15.0 ([#382](https://github.com/npalm/action-docs/issues/382)) ([ed68962](https://github.com/npalm/action-docs/commit/ed6896233cbb328bfde3c1c1cf35a9775c9dd0aa))
+* **deps:** bump sonarsource/sonarcloud-github-action from 1.8 to 1.9 ([#380](https://github.com/npalm/action-docs/issues/380)) ([9e85f75](https://github.com/npalm/action-docs/commit/9e85f753624255e748cef8fe5a550de6392b6b4d))
+
 ## [1.2.0](https://github.com/npalm/action-docs/compare/1.1.3...1.2.0) (2023-03-02)
 
 
