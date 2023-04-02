@@ -16,6 +16,7 @@ interface ActionMarkdown {
   inputs: string;
   outputs: string;
   runs: string;
+  usage: string;
 }
 
 interface ActionYml {
@@ -80,6 +81,46 @@ function createMdTable(
   return result;
 }
 
+function createMdCodeBlock(
+  data: ActionInputsOutputs,
+  options: DefaultOptions
+): string {
+  let codeBlockArray = ["```markdown"];
+  codeBlockArray.push(`- uses: ***PROJECT***@***VERSION***`);
+  codeBlockArray.push("  with:");
+
+  const inputs = getInputOutput(data, "input");
+  for (const input of inputs.rows) {
+    const inputBlock = [`${input[0]}:`];
+    inputBlock.push(
+      ...input[1]
+        .split(/(\r\n|\n|\r)/gm)
+        .filter((l) => !["", "\r", "\n", "\r\n"].includes(l))
+        .map((l) => `# ${l}`)
+    );
+    inputBlock.push(`#`);
+    inputBlock.push(`# Required: ${input[2].replace(/`/g, "")}`);
+    if (input[3]) {
+      inputBlock.push(`# Default: ${input[3]}`);
+    }
+
+    codeBlockArray.push(...inputBlock.map((l) => `    ${l}`));
+    codeBlockArray.push("");
+  }
+  if (inputs.rows.length > 0) {
+    codeBlockArray = codeBlockArray.slice(0, -1);
+  }
+
+  codeBlockArray.push("```");
+
+  // Create final resulting code block
+  let result = "";
+  for (const line of codeBlockArray) {
+    result = `${result}${line}${getLineBreak(options.lineBreaks)}`;
+  }
+  return result;
+}
+
 function getToc(tocLevel: number): string {
   let result = "";
   for (let i = 0; i < tocLevel; i++) {
@@ -102,6 +143,7 @@ export async function generateActionMarkdownDocs(
     await updateReadme(options, docs.inputs, "inputs");
     await updateReadme(options, docs.outputs, "outputs");
     await updateReadme(options, docs.runs, "runs");
+    await updateReadme(options, docs.usage, "usage");
   }
 
   return `${docs.description + docs.inputs + docs.outputs + docs.runs}`;
@@ -113,6 +155,7 @@ function generateActionDocs(options: DefaultOptions): ActionMarkdown {
   }) as ActionYml;
 
   const inputMdTable = createMdTable(yml.inputs, options, "input");
+  const usageMdCodeBlock = createMdCodeBlock(yml.inputs, options);
   const outputMdTable = createMdTable(yml.outputs, options, "output");
 
   return {
@@ -125,6 +168,7 @@ function generateActionDocs(options: DefaultOptions): ActionMarkdown {
       `This action is a \`${yml.runs.using}\` action.`,
       "Runs"
     ),
+    usage: createMarkdownSection(options, usageMdCodeBlock, "Usage"),
   };
 }
 
@@ -133,19 +177,46 @@ async function updateReadme(
   text: string,
   section: string
 ): Promise<void> {
-  const to = new RegExp(
-    `<!-- action-docs-${section} -->(?:(?:\r\n|\r|\n.*)+<!-- action-docs-${section} -->)?`
-  );
+  if (section === "usage") {
+    const readmeFileText = String(readFileSync(options.readmeFile, "utf-8"));
+    const match = readmeFileText.match(
+      /^<!-- action-docs-usage project=".*" version=".*" -->/
+    ) as string[];
 
-  await replaceInFile.replaceInFile({
-    files: options.readmeFile,
-    from: to,
-    to: `<!-- action-docs-${section} -->${getLineBreak(
-      options.lineBreaks
-    )}${text.trim()}${getLineBreak(
-      options.lineBreaks
-    )}<!-- action-docs-${section} -->`,
-  });
+    if (match && match.length === 1) {
+      const segments = match[0].split('"');
+      const commentExpression = `<!-- action-docs-${section} project="${segments[1]}" version="${segments[3]}" -->`;
+
+      const to = new RegExp(
+        `${commentExpression}(?:(?:\r\n|\r|\n.*)+${commentExpression})?`
+      );
+
+      await replaceInFile.replaceInFile({
+        files: options.readmeFile,
+        from: to,
+        to: `${commentExpression}${getLineBreak(options.lineBreaks)}${text
+          .trim()
+          .replace("***PROJECT***", segments[1])
+          .replace("***VERSION***", segments[3])}${getLineBreak(
+          options.lineBreaks
+        )}${commentExpression}`,
+      });
+    }
+  } else {
+    const commentExpression = `<!-- action-docs-${section} -->`;
+
+    const to = new RegExp(
+      `${commentExpression}(?:(?:\r\n|\r|\n.*)+${commentExpression})?`
+    );
+
+    await replaceInFile.replaceInFile({
+      files: options.readmeFile,
+      from: to,
+      to: `${commentExpression}${getLineBreak(
+        options.lineBreaks
+      )}${text.trim()}${getLineBreak(options.lineBreaks)}${commentExpression}`,
+    });
+  }
 }
 
 function createMarkdownSection(

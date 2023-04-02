@@ -78,6 +78,16 @@ describe("Test update readme ", () => {
   });
 });
 
+describe("Test usage format", () => {
+  test("Multi-line descriptions.", async () => {
+    await testReadme({
+      actionFile: path.join(fixtureDir, "action.yml"),
+      originalReadme: path.join(fixtureDir, "usage_readme.input"),
+      fixtureReadme: path.join(fixtureDir, "usage_readme.output"),
+    });
+  });
+});
+
 interface ReadmeTestFixtures {
   actionFile: string;
   originalReadme: string;

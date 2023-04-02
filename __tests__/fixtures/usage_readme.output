@@ -1,0 +1,21 @@
+<!-- action-docs-usage project="npalm/action-docs" version="v1" -->
+## Usage
+
+```markdown
+- uses: npalm/action-docs@v1
+  with:
+    inputA:
+    # A description
+    # This is a multiline description
+    #
+    # Required: false
+    # Default: test
+
+    inputB:
+    # This is a
+    # multiline description
+    #
+    # Required: false
+    # Default: test
+```
+<!-- action-docs-usage project="npalm/action-docs" version="v1" -->
