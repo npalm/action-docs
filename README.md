@@ -22,6 +22,12 @@ A CLI to generate and update documentation for GitHub actions, based on the acti
 <!-- action-docs-runs -->
 ```
 
+Optionally you can also add the following section to generate a usage guide, replacing \<project\> and \<version\> with the name and version of your project you would like to appear in your usage guide.
+
+```
+<!-- action-docs-usage project="<project>" version="<version>" -->
+```
+
 ### Generate docs via CLI.
 
 ```bash
