@@ -85,7 +85,7 @@ function createMdCodeBlock(
   data: ActionInputsOutputs,
   options: DefaultOptions
 ): string {
-  let codeBlockArray = ["```markdown"];
+  let codeBlockArray = ["```yaml"];
   codeBlockArray.push(`- uses: ***PROJECT***@***VERSION***`);
   codeBlockArray.push("  with:");
 
@@ -180,7 +180,7 @@ async function updateReadme(
   if (section === "usage") {
     const readmeFileText = String(readFileSync(options.readmeFile, "utf-8"));
     const match = readmeFileText.match(
-      /^<!-- action-docs-usage project=".*" version=".*" -->/
+      /<!-- action-docs-usage project=".*" version=".*" -->?/
     ) as string[];
 
     if (match && match.length === 1) {

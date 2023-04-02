@@ -1,7 +1,7 @@
 <!-- action-docs-usage project="npalm/action-docs" version="v1" -->
 ## Usage
 
-```markdown
+```yaml
 - uses: npalm/action-docs@v1
   with:
     inputA:

@@ -82,8 +82,16 @@ describe("Test usage format", () => {
   test("Multi-line descriptions.", async () => {
     await testReadme({
       actionFile: path.join(fixtureDir, "action.yml"),
-      originalReadme: path.join(fixtureDir, "usage_readme.input"),
-      fixtureReadme: path.join(fixtureDir, "usage_readme.output"),
+      originalReadme: path.join(fixtureDir, "action_usage_readme.input"),
+      fixtureReadme: path.join(fixtureDir, "action_usage_readme.output"),
+    });
+  });
+
+  test("With and without defaults.", async () => {
+    await testReadme({
+      actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+      originalReadme: path.join(fixtureDir, "all_fields_usage_readme.input"),
+      fixtureReadme: path.join(fixtureDir, "all_fields_usage_readme.output"),
     });
   });
 });
