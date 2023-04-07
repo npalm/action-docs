@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.3.0](https://github.com/npalm/action-docs/compare/v1.3.0...v1.3.0) (2023-04-07)
+
+
+### Features
+
+* Allow creating of usage guide ([#401](https://github.com/npalm/action-docs/issues/401)) ([92d68be](https://github.com/npalm/action-docs/commit/92d68beb7d90f1191db7a623fb21102adbd473cf))
+
+
+### Miscellaneous
+
+* **ci:** fix release ([5b4130b](https://github.com/npalm/action-docs/commit/5b4130bbc2f77a91445d4f6ce9059bb2845f64bf))
+* **ci:** fix yarn publish ([ea14467](https://github.com/npalm/action-docs/commit/ea14467ce8b0d7eda1a90a75cce436e79e9e88a2))
+* **main:** release 1.3.0 ([#404](https://github.com/npalm/action-docs/issues/404)) ([78c00c9](https://github.com/npalm/action-docs/commit/78c00c986edc29c6156e16688a667aed83aa300d))
+
 ## [1.3.0](https://github.com/npalm/action-docs/compare/1.2.0...v1.3.0) (2023-04-07)
 
 
