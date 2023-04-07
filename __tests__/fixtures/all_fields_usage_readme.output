@@ -1,0 +1,35 @@
+<!-- action-docs-usage project="npalm/action-docs" version="v1" -->
+## Usage
+
+```yaml
+- uses: npalm/action-docs@v1
+  with:
+    inputA:
+    # A description A
+    #
+    # Required: false
+
+    inputB:
+    # A description B
+    #
+    # Required: true
+
+    inputC:
+    # A description C
+    #
+    # Required: true
+    # Default: C
+
+    inputD:
+    # A description D
+    #
+    # Required: false
+    # Default: D
+
+    inputE:
+    # A description E
+    #
+    # Required: false
+    # Default: false
+```
+<!-- action-docs-usage project="npalm/action-docs" version="v1" -->
