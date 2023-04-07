@@ -38,7 +38,7 @@ jobs:
           changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false},{"type":"build","section":"Miscellaneous","hidden":true}]'
 
       - name: Publish to NPM
-        run: yarn ublish
+        run: yarn publish
         if: ${{ steps.release.outputs.release_created }}
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
