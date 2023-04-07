@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/npalm/action-docs/compare/1.2.0...v1.3.0) (2023-04-07)
+
+
+### Features
+
+* Allow creating of usage guide ([#401](https://github.com/npalm/action-docs/issues/401)) ([92d68be](https://github.com/npalm/action-docs/commit/92d68beb7d90f1191db7a623fb21102adbd473cf))
+
 ## [1.2.0](https://github.com/npalm/action-docs/compare/1.1.3...1.2.0) (2023-03-02)
 
 
