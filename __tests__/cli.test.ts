@@ -10,7 +10,7 @@ describe("CLI tests", () => {
     await testReadme(
       path.join(fixtureDir, "all_fields_action.yml"),
       path.join(fixtureDir, "all_fields_readme.input"),
-      path.join(fixtureDir, "all_fields_readme.output")
+      path.join(fixtureDir, "all_fields_readme.output"),
     );
   });
 
@@ -19,19 +19,19 @@ describe("CLI tests", () => {
       path.join(fixtureDir, "all_fields_action.yml.crlf"),
       path.join(fixtureDir, "all_fields_readme.input.crlf"),
       path.join(fixtureDir, "all_fields_readme.output.crlf"),
-      "-l CRLF"
+      "-l CRLF",
     );
   });
 
   test("Console output with TOC 3 and no banner.", async () => {
     const result = await cli(
-      `-a __tests__/fixtures/all_fields_action.yml -t 3 --no-banner`
+      `-a __tests__/fixtures/all_fields_action.yml -t 3 --no-banner`,
     );
 
     const expected = <string>(
       readFileSync(
         path.join(fixtureDir, "all_fields_action_toc3_cli.output"),
-        "utf-8"
+        "utf-8",
       )
     );
 
@@ -50,7 +50,7 @@ interface CliRespone {
 function cli(args: string): Promise<CliRespone> {
   return new Promise((resolve) => {
     cp.exec(
-      `ts-node ${path.resolve("src/cli.ts")} ${args}`,
+      `node ${path.resolve("lib/cli.js")} ${args}`,
       (error, stdout, stderr) => {
         resolve({
           code: error && error.code ? error.code : 0,
@@ -58,7 +58,7 @@ function cli(args: string): Promise<CliRespone> {
           stdout,
           stderr,
         });
-      }
+      },
     );
   });
 }
@@ -68,13 +68,13 @@ async function testReadme(
   originalReadme: string,
   fixtureReadme: string,
   extraArgs = "",
-  exitCode = 0
+  exitCode = 0,
 ) {
   const expected = <string>readFileSync(fixtureReadme, "utf-8");
   const original = <string>readFileSync(originalReadme, "utf-8");
 
   const result = await cli(
-    `-u ${originalReadme} -a ${actionFile} ${extraArgs}`
+    `-u ${originalReadme} -a ${actionFile} ${extraArgs}`,
   );
   expect(result.code).toBe(exitCode);
 

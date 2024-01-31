@@ -2,4 +2,4 @@ export {
   generateActionMarkdownDocs,
   Options,
   defaultOptions,
-} from "./action-docs";
+} from "./action-docs.js";

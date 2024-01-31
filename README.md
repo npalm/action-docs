@@ -12,23 +12,23 @@ A CLI to generate and update documentation for GitHub actions, based on the acti
 
 ### Add the following comment blocks to your README.md
 
-```
-<!-- action-docs-description -->
+```md
+<!-- action-docs-description action="action.yml" -->
 
-<!-- action-docs-inputs -->
+<!-- action-docs-inputs action="action.yml" -->
 
-<!-- action-docs-outputs -->
+<!-- action-docs-outputs action="action.yml" -->
 
-<!-- action-docs-runs -->
+<!-- action-docs-runs action="action.yml" -->
 ```
 
 Optionally you can also add the following section to generate a usage guide, replacing \<project\> and \<version\> with the name and version of your project you would like to appear in your usage guide.
 
-```
-<!-- action-docs-usage project="<project>" version="<version>" -->
+```md
+<!-- action-docs-usage action="action.yml" project="<project>" version="<version>" -->
 ```
 
-### Generate docs via CLI.
+### Generate docs via CLI
 
 ```bash
 npm install -g action-docs
@@ -69,18 +69,22 @@ Options:
 
 Action-docs can update your README based on the `action.yml`. The following sections can be updated: description, inputs, outputs and runs. Add the following tags to your README and run `action-docs -u`.
 
-```
-<!-- action-docs-description -->
+```md
+<!-- action-docs-description action="action.yml" -->
 
-<!-- action-docs-inputs -->
+<!-- action-docs-inputs action="action.yml" -->
 
-<!-- action-docs-outputs -->
+<!-- action-docs-outputs action="action.yml" -->
 
-<!-- action-docs-runs -->
+<!-- action-docs-runs action="action.yml" -->
 ```
 
 For updating other Markdown files add the name of the file to the command `action-docs -u <file>`.
 
+If you need to use `another/action.yml`:
+
+1. write it in tags like `action="another/action.yml"`;
+1. specify in a command via the `-a` option like `action-docs -a another/action.yml`
 
 ### Examples
 
@@ -96,11 +100,10 @@ action-docs
 action-docs --update-readme
 ```
 
-
 #### Print action markdown for non default action file
 
 ```bash
-action-docs --action ./action.yaml
+action-docs --action another/action.yaml
 ```
 
 #### Update readme, custom action file and set TOC level 3, custom readme
@@ -108,9 +111,6 @@ action-docs --action ./action.yaml
 ```bash
 action-docs --action ./some-dir/action.yml --toc-level 3 --update-readme docs.md
 ```
-
-
-
 
 ## API
 
@@ -127,8 +127,7 @@ await generateActionMarkdownDocs({
 
 ## Contribution
 
-We welcome contributions, please checkout the [contribution guide](CONTRIBUTING.md). 
-
+We welcome contributions, please checkout the [contribution guide](CONTRIBUTING.md).
 
 ## License
 

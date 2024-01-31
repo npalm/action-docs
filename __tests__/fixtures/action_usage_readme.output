@@ -1,12 +1,16 @@
-<!-- action-docs-usage project="npalm/action-docs" version="v1" -->
+<!-- action-docs-usage action="__tests__/fixtures/action.yml" project="npalm/action-docs" version="v1" -->
 ## Usage
 
 ```yaml
 - uses: npalm/action-docs@v1
   with:
     inputA:
-    # A description
-    # This is a multiline description
+    # - Item 1
+    #     - foo, bar, baz
+    # - Item 2
+    #     - [github](https://github.com/)
+    #     - **blah**
+    # - Item 3
     #
     # Required: false
     # Default: test
@@ -18,4 +22,4 @@
     # Required: false
     # Default: test
 ```
-<!-- action-docs-usage project="npalm/action-docs" version="v1" -->
+<!-- action-docs-usage action="__tests__/fixtures/action.yml" project="npalm/action-docs" version="v1" -->

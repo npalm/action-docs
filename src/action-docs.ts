@@ -1,7 +1,10 @@
-import { LineBreakType, getLineBreak } from "./linebreak";
-import { load } from "js-yaml";
+import { LineBreakType, getLineBreak } from "./linebreak.js";
+import { parse } from "yaml";
 import { readFileSync } from "fs";
 import replaceInFile from "replace-in-file";
+import pkg from "showdown";
+const { Converter } = pkg;
+const converter = new Converter();
 
 export interface Options {
   tocLevel?: number;
@@ -52,7 +55,7 @@ type ActionInputsOutputs = Record<string, ActionInput | ActionOutput>;
 
 interface ActionInput {
   required?: boolean;
-  description: string;
+  description?: string;
   default?: string;
 }
 
@@ -63,27 +66,35 @@ interface ActionOutput {
 function createMdTable(
   data: ActionInputsOutputs,
   options: DefaultOptions,
-  type: "input" | "output"
+  type: "input" | "output",
 ): string {
   const tableData = getInputOutput(data, type);
-  const tableArray = tableData.headers.concat(tableData.rows);
 
-  let result = "";
+  const headers = tableData.headers;
+  const filler = Array(tableData.headers.length).fill("---");
 
-  for (const line of tableArray) {
-    result = `${result}|`;
-    for (const c of line) {
-      result = `${result} ${c.replace(/(\r\n|\n|\r)/gm, " ")} |`;
-    }
-    result = `${result}${getLineBreak(options.lineBreaks)}`;
-  }
+  const result = [headers, filler]
+    .concat(
+      tableData.rows.map((line) => {
+        return line.map((elem, i) => {
+          const pretty =
+            i === 0 || i === 2 || i === 3 ? `\`${line[i]}\`` : elem;
+          const html = i === 1 ? converter.makeHtml(pretty) : pretty;
+          const htmlNoNewlines = html.replace(/(\r\n|\n|\r)/gm, " ").trim();
+          return htmlNoNewlines;
+        });
+      }),
+    )
+    .filter((x) => x.length > 0)
+    .map((x) => `| ${x.join(" | ")} |${getLineBreak(options.lineBreaks)}`)
+    .join("");
 
   return result;
 }
 
 function createMdCodeBlock(
   data: ActionInputsOutputs,
-  options: DefaultOptions
+  options: DefaultOptions,
 ): string {
   let codeBlockArray = ["```yaml"];
   codeBlockArray.push(`- uses: ***PROJECT***@***VERSION***`);
@@ -96,7 +107,7 @@ function createMdCodeBlock(
       ...input[1]
         .split(/(\r\n|\n|\r)/gm)
         .filter((l) => !["", "\r", "\n", "\r\n"].includes(l))
-        .map((l) => `# ${l}`)
+        .map((l) => `# ${l}`),
     );
     inputBlock.push(`#`);
     inputBlock.push(`# Required: ${input[2].replace(/`/g, "")}`);
@@ -130,7 +141,7 @@ function getToc(tocLevel: number): string {
 }
 
 export async function generateActionMarkdownDocs(
-  inputOptions?: Options
+  inputOptions?: Options,
 ): Promise<string> {
   const options: DefaultOptions = {
     ...defaultOptions,
@@ -139,20 +150,23 @@ export async function generateActionMarkdownDocs(
 
   const docs = generateActionDocs(options);
   if (options.updateReadme) {
-    await updateReadme(options, docs.description, "description");
-    await updateReadme(options, docs.inputs, "inputs");
-    await updateReadme(options, docs.outputs, "outputs");
-    await updateReadme(options, docs.runs, "runs");
-    await updateReadme(options, docs.usage, "usage");
+    await updateReadme(
+      options,
+      docs.description,
+      "description",
+      options.actionFile,
+    );
+    await updateReadme(options, docs.inputs, "inputs", options.actionFile);
+    await updateReadme(options, docs.outputs, "outputs", options.actionFile);
+    await updateReadme(options, docs.runs, "runs", options.actionFile);
+    await updateReadme(options, docs.usage, "usage", options.actionFile);
   }
 
   return `${docs.description + docs.inputs + docs.outputs + docs.runs}`;
 }
 
 function generateActionDocs(options: DefaultOptions): ActionMarkdown {
-  const yml = load(readFileSync(options.actionFile, "utf-8"), {
-    json: true,
-  }) as ActionYml;
+  const yml = parse(readFileSync(options.actionFile, "utf-8")) as ActionYml;
 
   const inputMdTable = createMdTable(yml.inputs, options, "input");
   const usageMdCodeBlock = createMdCodeBlock(yml.inputs, options);
@@ -166,54 +180,58 @@ function generateActionDocs(options: DefaultOptions): ActionMarkdown {
       options,
       // eslint-disable-next-line i18n-text/no-en
       `This action is a \`${yml.runs.using}\` action.`,
-      "Runs"
+      "Runs",
     ),
     usage: createMarkdownSection(options, usageMdCodeBlock, "Usage"),
   };
 }
 
+function escapeRegExp(x: string): string {
+  return x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
+}
+
 async function updateReadme(
   options: DefaultOptions,
   text: string,
-  section: string
+  section: string,
+  actionFile: string,
 ): Promise<void> {
   if (section === "usage") {
     const readmeFileText = String(readFileSync(options.readmeFile, "utf-8"));
     const match = readmeFileText.match(
-      /<!-- action-docs-usage project=".*" version=".*" -->?/
+      new RegExp(
+        `<!-- action-docs-usage action="${escapeRegExp(actionFile)}" project="(.*)" version="(.*)" -->.?`,
+      ),
     ) as string[];
 
-    if (match && match.length === 1) {
-      const segments = match[0].split('"');
-      const commentExpression = `<!-- action-docs-${section} project="${segments[1]}" version="${segments[3]}" -->`;
-
-      const to = new RegExp(
-        `${commentExpression}(?:(?:\r\n|\r|\n.*)+${commentExpression})?`
+    if (match) {
+      const commentExpression = `<!-- action-docs-usage action="${actionFile}" project="${match[1]}" version="${match[2]}" -->`;
+      const regexp = new RegExp(
+        `${escapeRegExp(commentExpression)}(?:(?:\r\n|\r|\n.*)+${escapeRegExp(commentExpression)})?`,
       );
 
       await replaceInFile.replaceInFile({
         files: options.readmeFile,
-        from: to,
+        from: regexp,
         to: `${commentExpression}${getLineBreak(options.lineBreaks)}${text
           .trim()
-          .replace("***PROJECT***", segments[1])
-          .replace("***VERSION***", segments[3])}${getLineBreak(
-          options.lineBreaks
+          .replace("***PROJECT***", match[1])
+          .replace("***VERSION***", match[2])}${getLineBreak(
+          options.lineBreaks,
         )}${commentExpression}`,
       });
     }
   } else {
-    const commentExpression = `<!-- action-docs-${section} -->`;
-
-    const to = new RegExp(
-      `${commentExpression}(?:(?:\r\n|\r|\n.*)+${commentExpression})?`
+    const commentExpression = `<!-- action-docs-${section} action="${actionFile}" -->`;
+    const regexp = new RegExp(
+      `${escapeRegExp(commentExpression)}(?:(?:\r\n|\r|\n.*)+${escapeRegExp(commentExpression)})?`,
     );
 
     await replaceInFile.replaceInFile({
       files: options.readmeFile,
-      from: to,
+      from: regexp,
       to: `${commentExpression}${getLineBreak(
-        options.lineBreaks
+        options.lineBreaks,
       )}${text.trim()}${getLineBreak(options.lineBreaks)}${commentExpression}`,
     });
   }
@@ -222,49 +240,46 @@ async function updateReadme(
 function createMarkdownSection(
   options: DefaultOptions,
   data: string,
-  header: string
+  header: string,
 ): string {
   return data !== ""
     ? `${getToc(options.tocLevel)} ${header}${getLineBreak(
-        options.lineBreaks
+        options.lineBreaks,
       )}${getLineBreak(options.lineBreaks)}${data}${getLineBreak(
-        options.lineBreaks
+        options.lineBreaks,
       )}${getLineBreak(options.lineBreaks)}`
     : "";
 }
 
 function getInputOutput(
   data: ActionInputsOutputs,
-  type: "input" | "output"
-): { headers: string[][]; rows: string[][] } {
-  const headers: string[][] = [];
+  type: "input" | "output",
+): { headers: string[]; rows: string[][] } {
+  let headers: string[] = [];
   const rows: string[][] = [];
   if (data === undefined) {
     return { headers, rows };
   }
 
-  headers[0] =
+  headers =
     type === "input"
-      ? ["parameter", "description", "required", "default"]
-      : ["parameter", "description"];
-  headers[1] = Array(headers[0].length).fill("---");
+      ? ["name", "description", "required", "default"]
+      : ["name", "description"];
 
   for (let i = 0; i < Object.keys(data).length; i++) {
     const key = Object.keys(data)[i];
     const value = data[key] as ActionInput;
     rows[i] = [];
     rows[i].push(key);
-    rows[i].push(value.description);
+    rows[i].push(value.description ? value.description : "");
 
     if (type === "input") {
-      rows[i].push(
-        value.required ? `\`${String(value.required)}\`` : "`false`"
-      );
+      rows[i].push(value.required ? String(value.required) : "false");
 
-      if (value.default !== undefined) {
+      if (value.default !== undefined && value.default !== "") {
         rows[i].push(value.default.toString().replace(/\r\n|\r|\n/g, " "));
       } else {
-        rows[i].push("");
+        rows[i].push('""');
       }
     }
   }

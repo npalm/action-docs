@@ -1,7 +1,6 @@
 import { generateActionMarkdownDocs, Options } from "../src";
-import { readFileSync, writeFileSync, copyFileSync, rmSync, unlink } from "fs";
+import { readFileSync, writeFileSync, copyFileSync, unlink } from "fs";
 import * as path from "path";
-import { option } from "yargs";
 
 const fixtureDir = path.join("__tests__", "fixtures");
 
@@ -73,8 +72,34 @@ describe("Test update readme ", () => {
         originalReadme: path.join(fixtureDir, "all_fields_readme.input.crlf"),
         fixtureReadme: path.join(fixtureDir, "all_fields_readme.output.crlf"),
       },
-      { lineBreaks: "CRLF" }
+      { lineBreaks: "CRLF" },
     );
+  });
+
+  test("Readme (inputs) for action-docs-action", async () => {
+    await testReadme({
+      actionFile: path.join(fixtureDir, "action_docs_action_action.yml"),
+      originalReadme: path.join(fixtureDir, "action_docs_action_readme.input"),
+      fixtureReadme: path.join(fixtureDir, "action_docs_action_readme.output"),
+    });
+  });
+
+  test("Readme for two action.yml-s", async () => {
+    await testReadme(
+      {
+        actionFile: path.join(fixtureDir, "action_docs_action_action.yml"),
+        originalReadme: path.join(fixtureDir, "two_actions_readme.input"),
+        fixtureReadme: path.join(fixtureDir, "two_actions_readme.output"),
+      },
+      {},
+      false,
+    );
+
+    await testReadme({
+      actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+      originalReadme: path.join(fixtureDir, "two_actions_readme.input"),
+      fixtureReadme: path.join(fixtureDir, "two_actions_readme.output"),
+    });
   });
 });
 
@@ -104,7 +129,8 @@ interface ReadmeTestFixtures {
 
 async function testReadme(
   files: ReadmeTestFixtures,
-  overwriteOptions?: Options
+  overwriteOptions?: Options,
+  doExpect: boolean = true,
 ) {
   const expected = <string>readFileSync(files.fixtureReadme, "utf-8");
   const original = <string>readFileSync(files.originalReadme, "utf-8");
@@ -118,6 +144,8 @@ async function testReadme(
 
   const updated = <string>readFileSync(files.originalReadme, "utf-8");
 
-  writeFileSync(files.originalReadme, original);
-  expect(updated).toEqual(expected);
+  if (doExpect) {
+    writeFileSync(files.originalReadme, original);
+    expect(updated).toEqual(expected);
+  }
 }

@@ -4,17 +4,17 @@ Default test
 
 ## Inputs
 
-| parameter | description | required | default |
+| name | description | required | default |
 | --- | --- | --- | --- |
-| inputA | A description This is a multiline description  | `false` | test |
-| inputB | This is a multiline description  | `false` | test |
+| `inputA` | <ul> <li>Item 1<ul> <li>foo, bar, baz</li></ul></li> <li>Item 2<ul> <li><a href="https://github.com/">github</a></li> <li><strong>blah</strong></li></ul></li> <li>Item 3</li> </ul> | `false` | `test` |
+| `inputB` | <p>This is a multiline description</p> | `false` | `test` |
 
 
 ## Outputs
 
-| parameter | description |
+| name | description |
 | --- | --- |
-| outputA | A description |
+| `outputA` | <p>A description</p> |
 
 
 ## Runs
