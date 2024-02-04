@@ -1,32 +1,32 @@
-<!-- action-docs-description -->
+<!-- action-docs-description action="__tests__/fixtures/all_fields_action.yml.crlf" -->
 ## Description
 
 Default test
-<!-- action-docs-description -->
+<!-- action-docs-description action="__tests__/fixtures/all_fields_action.yml.crlf" -->
 
-<!-- action-docs-inputs -->
+<!-- action-docs-inputs action="__tests__/fixtures/all_fields_action.yml.crlf" -->
 ## Inputs
 
-| parameter | description | required | default |
+| name | description | required | default |
 | --- | --- | --- | --- |
-| inputA | A description A | `false` |  |
-| inputB | A description B | `true` |  |
-| inputC | A description C | `true` | C |
-| inputD | A description D | `false` | D |
-| inputE | A description E | `false` | false |
-<!-- action-docs-inputs -->
+| `inputA` | <p>A description A</p> | `false` | `""` |
+| `inputB` | <p>A description B</p> | `true` | `""` |
+| `inputC` | <p>A description C</p> | `true` | `C` |
+| `inputD` | <p>A description D</p> | `false` | `D` |
+| `inputE` | <p>A description E</p> | `false` | `false` |
+<!-- action-docs-inputs action="__tests__/fixtures/all_fields_action.yml.crlf" -->
 
-<!-- action-docs-outputs -->
+<!-- action-docs-outputs action="__tests__/fixtures/all_fields_action.yml.crlf" -->
 ## Outputs
 
-| parameter | description |
+| name | description |
 | --- | --- |
-| outputA | A description A |
-| outputB | A description B |
-<!-- action-docs-outputs -->
+| `outputA` | <p>A description A</p> |
+| `outputB` | <p>A description B</p> |
+<!-- action-docs-outputs action="__tests__/fixtures/all_fields_action.yml.crlf" -->
 
-<!-- action-docs-runs -->
+<!-- action-docs-runs action="__tests__/fixtures/all_fields_action.yml.crlf" -->
 ## Runs
 
 This action is a `node12` action.
-<!-- action-docs-runs -->
+<!-- action-docs-runs action="__tests__/fixtures/all_fields_action.yml.crlf" -->

@@ -1,4 +1,4 @@
-<!-- action-docs-usage project="npalm/action-docs" version="v1" -->
+<!-- action-docs-usage action="__tests__/fixtures/all_fields_action.yml" project="npalm/action-docs" version="v1" -->
 ## Usage
 
 ```yaml
@@ -8,11 +8,13 @@
     # A description A
     #
     # Required: false
+    # Default: ""
 
     inputB:
     # A description B
     #
     # Required: true
+    # Default: ""
 
     inputC:
     # A description C
@@ -32,4 +34,4 @@
     # Required: false
     # Default: false
 ```
-<!-- action-docs-usage project="npalm/action-docs" version="v1" -->
+<!-- action-docs-usage action="__tests__/fixtures/all_fields_action.yml" project="npalm/action-docs" version="v1" -->

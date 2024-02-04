@@ -2,23 +2,22 @@
 
 Default test
 
-# Inputs
+## Inputs
 
-| parameter | description | required | default |
+| name | description | required | default |
 | --- | --- | --- | --- |
-| inputA | A description A | `false` |  |
-| inputB | A description B | `true` |  |
-| inputC | A description C | `true` | C |
-| inputD | A description D | `false` | D |
-| inputE | A description E | `false` | false |
-
+| <p><code>inputA</code></p> | <p>A description A</p> | <p><code>false</code></p> | <p><code>""</code></p> |
+| <p><code>inputB</code></p> | <p>A description B</p> | <p><code>true</code></p> | <p><code>""</code></p> |
+| <p><code>inputC</code></p> | <p>A description C</p> | <p><code>true</code></p> | <p><code>C</code></p> |
+| <p><code>inputD</code></p> | <p>A description D</p> | <p><code>false</code></p> | <p><code>D</code></p> |
+| <p><code>inputE</code></p> | <p>A description E</p> | <p><code>false</code></p> | <p><code>false</code></p> |
 
 # Outputs
 
-| parameter | description |
+| name | description |
 | --- | --- |
-| outputA | A description A |
-| outputB | A description B |
+| `outputA` | <p>A description A</p> |
+| `outputB` | <p>A description B</p> |
 
 
 # Runs
