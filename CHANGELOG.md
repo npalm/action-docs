@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.0.0](https://github.com/npalm/action-docs/compare/v1.3.0...v2.0.0) (2024-02-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* support multiple actions in a single readme ([#505](https://github.com/npalm/action-docs/issues/505))
+
+### Features
+
+* support multiple actions in a single readme ([#505](https://github.com/npalm/action-docs/issues/505)) ([284bf3f](https://github.com/npalm/action-docs/commit/284bf3f977f4e1044368d57e7f16fad600b028b6))
+
+
+### Miscellaneous
+
+* dependencies and refactor ci ([#506](https://github.com/npalm/action-docs/issues/506)) ([44af6c0](https://github.com/npalm/action-docs/commit/44af6c0b2187140fc5e5c75c55c9168f789cc803))
+* **deps:** bump yargs from 17.7.1 to 17.7.2 ([4fe7873](https://github.com/npalm/action-docs/commit/4fe7873b04979cbfd0fbf55a19eb69a8159511d2))
+
 ## [1.3.0](https://github.com/npalm/action-docs/compare/v1.3.0...v1.3.0) (2023-04-07)
 
 
