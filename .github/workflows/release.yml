@@ -23,12 +23,14 @@ jobs:
       - uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3.8.1
         with:
           node-version: 20
+          always-auth: true 
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: yarn 
 
       - name: Run checks
-        run: yarn run test && yarn lint && yarn run build
+        run: yarn run test && yarn lint && yarn build
 
       - uses: google-github-actions/release-please-action@v3
         id: release
@@ -36,6 +38,7 @@ jobs:
           release-type: node
           package-name: action-docs
           changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false},{"type":"build","section":"Miscellaneous","hidden":true}]'
+
       - name: Publish to NPM
         run: yarn publish
         if: ${{ steps.release.outputs.release_created }}
