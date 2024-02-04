@@ -1,35 +1,33 @@
-name: 'build-test'
+name: "build"
 on:
-  push: 
+  push:
     branches:
       - main
   pull_request:
-      types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened]
 
 jobs:
-  build: 
+  build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: ["16", "18"]
+        node-version: ["20"]
     steps:
       - uses: actions/checkout@b56e6a3d768b11aef1d4c73977caf6413c0d74c8 # v3.2.0
         with:
           fetch-depth: 0
-          
+
       - uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3.8.1
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        run: yarn install --ignore-engines
+        run: yarn install
 
       - name: Check format and lint
-        if: matrix.node-version == 16
         run: yarn run format-check && yarn run lint
 
       - name: Run tests
         run: yarn test
 
       - name: Build and package
-        if: matrix.node-version == 16
         run: yarn run build
