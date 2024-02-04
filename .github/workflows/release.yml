@@ -38,6 +38,7 @@ jobs:
           release-type: node
           package-name: action-docs
           changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false},{"type":"build","section":"Miscellaneous","hidden":true}]'
+          last-release-sha: 71c5c39213ac3d20d98797dd47ad7674d01ff0a4
 
       - name: Publish to NPM
         run: yarn publish
