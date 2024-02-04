@@ -22,7 +22,7 @@ jobs:
 
       - uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Install dependencies
         run: yarn 
@@ -36,8 +36,6 @@ jobs:
           release-type: node
           package-name: action-docs
           changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false},{"type":"build","section":"Miscellaneous","hidden":true}]'
-          last-release-sha: 26343d22fecbbc6bc273ee0b7b80b9267c587d6a
-          release-as: v1.3.0
       - name: Publish to NPM
         run: yarn publish
         if: ${{ steps.release.outputs.release_created }}
