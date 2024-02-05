@@ -1,4 +1,4 @@
-name: 'Release'
+name: "Release"
 on:
   push:
     branches:
@@ -11,7 +11,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  release: 
+  release:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,23 +23,31 @@ jobs:
       - uses: actions/setup-node@b39b52d1213e96004bfcb1c61a8a6fa8ab84f3e8 # v4.0.1
         with:
           node-version: 20
-          always-auth: true 
-          registry-url: 'https://registry.npmjs.org'
+          always-auth: true
+          registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies
-        run: yarn 
+        run: yarn --frozen-lockfile
 
       - name: Run checks
         run: yarn run test && yarn lint && yarn build
 
+      - name: Get app installation token
+        uses: npalm/action-app-token@dd4bb16d91ced5659bc618705c96b822c5a42136 # v1.1.0
+        id: app-token
+        with:
+          appId: ${{ secrets.APP_ID }}
+          appPrivateKeyBase64: ${{ secrets.APP_PRIVATE_KEY_BASE64 }}
+          appInstallationType: repo
+          appInstallationValue: ${{ github.repository }}
+
       - uses: google-github-actions/release-please-action@v4
         id: release
         with:
+          token: ${{ steps.app-token.outputs.token }}
           release-type: node
           package-name: action-docs
           changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false},{"type":"build","section":"Miscellaneous","hidden":true}]'
-          last-release-sha: 71c5c39213ac3d20d98797dd47ad7674d01ff0a4
-          release-as: v2.0.0
 
       - name: Publish to NPM
         run: yarn publish
