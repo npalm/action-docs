@@ -1,5 +1,5 @@
 name: Dependabot auto approve
-on: pull_request
+on: pull_request_target
 
 permissions:
   pull-requests: write
@@ -16,18 +16,21 @@ jobs:
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Checkout
-        uses: actions/checkout@b56e6a3d768b11aef1d4c73977caf6413c0d74c8
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
       - name: Approve a PR
         run: gh pr review --approve "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Enable auto-merge Dependabot PRs for dev dependencies patch / minor
         if: ${{ contains(steps.metadata.outputs.dependency-type, ':development') && steps.metadata.outputs.update-type != 'version-update:semver-major' }}
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Enable auto-merge Dependabot PRs for production dependencies minor
         if: ${{ contains(steps.metadata.outputs.dependency-type, ':production') && steps.metadata.outputs.update-type == 'version-update:semver-patch' }}
         run: gh pr merge --auto --merge "$PR_URL"

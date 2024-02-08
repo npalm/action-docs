@@ -3,23 +3,22 @@ name: 'Code scanning'
 on:
   push:
     branches: [ main ]
-  pull_request:
+  pull_request_target:
     # The branches below must be a subset of the branches above
     branches: [ main ]
-
 
 jobs:
   CodeQL-Build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@b56e6a3d768b11aef1d4c73977caf6413c0d74c8
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@896079047b4bb059ba6f150a5d87d47dde99e6e5
+        uses: github/codeql-action/init@65c74964a9ed8c44ed9f19d4bbc5757a6a8e9ab9 # v2.16.1
 
       - name: Autobuild
-        uses: github/codeql-action/autobuild@896079047b4bb059ba6f150a5d87d47dde99e6e5
+        uses: github/codeql-action/autobuild@65c74964a9ed8c44ed9f19d4bbc5757a6a8e9ab9 # v2.16.1
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@896079047b4bb059ba6f150a5d87d47dde99e6e5
+        uses: github/codeql-action/analyze@65c74964a9ed8c44ed9f19d4bbc5757a6a8e9ab9 # v2.16.1
