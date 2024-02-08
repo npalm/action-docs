@@ -9,9 +9,13 @@ updates:
       interval: 'daily'
     # set descriptive commit message
     commit-message:
-      prefix-development: 'build'
-      prefix: 'chore'
+      prefix-development: 'chore(deps)'
+      prefix: 'fix(deps)'
       include: 'scope'
+    groups:
+      octokit:
+        patterns:
+          - "@octokit/*"
 
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"

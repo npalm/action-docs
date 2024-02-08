@@ -17,8 +17,7 @@
     "test": "yarn run test-default && yarn run test-cli",
     "test-default": "jest --testTimeout=10000 --testPathIgnorePatterns=__tests__/cli.test.ts --collect-coverage --coverage",
     "test-cli": "nyc jest --testTimeout=10000 --silent --testMatch=**/cli*test.ts && nyc report --reporter=lcov --reporter=html --report-dir=./coverage_nyc",
-    "all": "yarn run build && yarn run format && yarn run lint && yarn test",
-    "release": "semantic-release"
+    "all": "yarn run build && yarn run format && yarn run lint && yarn test"
   },
   "repository": {
     "type": "git",
