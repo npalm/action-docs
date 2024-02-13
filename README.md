@@ -71,6 +71,8 @@ Options:
 Action-docs can update your README based on the `action.yml`. The following sections can be updated: description, inputs, outputs and runs. Add the following tags to your README and run `action-docs -u`.
 
 ```md
+<!-- action-docs-header action="action.yml" -->
+
 <!-- action-docs-description action="action.yml" -->
 
 <!-- action-docs-inputs action="action.yml" -->

@@ -76,6 +76,19 @@ describe("Test update readme ", () => {
     });
   });
 
+  test("Filled readme (all fields) with header", async () => {
+    await testReadme(
+      {
+        actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+        originalReadme: path.join(fixtureDir, "all_fields_readme.input"),
+        fixtureReadme: path.join(fixtureDir, "all_fields_readme_header.output"),
+      },
+      {},
+      false,
+      true,
+    );
+  });
+
   test("Readme (all fields) with CRLF line breaks", async () => {
     await testReadme(
       {
@@ -142,6 +155,7 @@ async function testReadme(
   files: ReadmeTestFixtures,
   overwriteOptions?: Options,
   doExpect: boolean = true,
+  includeNameHeader: boolean = false,
 ) {
   const expected = <string>readFileSync(files.fixtureReadme, "utf-8");
   const original = <string>readFileSync(files.originalReadme, "utf-8");
@@ -149,6 +163,7 @@ async function testReadme(
   await generateActionMarkdownDocs({
     actionFile: files.actionFile,
     updateReadme: true,
+    includeNameHeader: includeNameHeader,
     readmeFile: files.originalReadme,
     ...overwriteOptions,
   });
