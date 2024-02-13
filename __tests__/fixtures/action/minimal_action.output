@@ -6,3 +6,11 @@ Default test
 
 This action is a `docker` action.
 
+## Usage
+
+```yaml
+- uses: ***PROJECT***@***VERSION***
+  with:
+```
+
+

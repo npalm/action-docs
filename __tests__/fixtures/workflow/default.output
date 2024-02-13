@@ -1,6 +1,6 @@
-# A Workflow
+## A Workflow
 
-## Inputs
+### Inputs
 
 | name | description | type | required | default |
 | --- | --- | --- | --- |
@@ -8,7 +8,7 @@
 | `inputB` | <p>This is a multiline description</p> | `number` | `true` |  |
 
 
-## Outputs
+### Outputs
 
 | name | description |
 | --- | --- |

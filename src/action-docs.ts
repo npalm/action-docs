@@ -12,19 +12,13 @@ export interface Options {
   updateReadme?: boolean;
   readmeFile?: string;
   lineBreaks?: LineBreakType;
-}
-
-interface ActionMarkdown {
-  description: string;
-  inputs: string;
-  outputs: string;
-  runs: string;
-  usage: string;
+  includeNameHeader?: boolean;
 }
 
 interface ActionYml {
   name: string;
   description: string;
+  on: Record<string, WorkflowTriggerEvent>;
   inputs: ActionInputsOutputs;
   outputs: ActionInputsOutputs;
   runs: RunType;
@@ -35,12 +29,21 @@ interface RunType {
   main: string;
 }
 
+interface WorkflowTriggerEvent {
+  types: string[];
+  branches: string[];
+  cron: string[];
+  inputs: Record<string, ActionInput>;
+  outputs: Record<string, ActionOutput>;
+}
+
 interface DefaultOptions {
   tocLevel: number;
   actionFile: string;
   updateReadme: boolean;
   readmeFile: string;
   lineBreaks: LineBreakType;
+  includeNameHeader: boolean;
 }
 
 export const defaultOptions: DefaultOptions = {
@@ -49,14 +52,22 @@ export const defaultOptions: DefaultOptions = {
   updateReadme: false,
   readmeFile: "README.md",
   lineBreaks: "LF",
+  includeNameHeader: false,
 };
 
 type ActionInputsOutputs = Record<string, ActionInput | ActionOutput>;
+
+enum InputType {
+  number,
+  string,
+  boolean,
+}
 
 interface ActionInput {
   required?: boolean;
   description?: string;
   default?: string;
+  type?: InputType;
 }
 
 interface ActionOutput {
@@ -148,42 +159,90 @@ export async function generateActionMarkdownDocs(
     ...inputOptions,
   };
 
-  const docs = generateActionDocs(options);
-  if (options.updateReadme) {
-    await updateReadme(
-      options,
-      docs.description,
-      "description",
-      options.actionFile,
-    );
-    await updateReadme(options, docs.inputs, "inputs", options.actionFile);
-    await updateReadme(options, docs.outputs, "outputs", options.actionFile);
-    await updateReadme(options, docs.runs, "runs", options.actionFile);
-    await updateReadme(options, docs.usage, "usage", options.actionFile);
+  const docs = generateDocs(options);
+  let outputString = "";
+
+  for (const key in docs) {
+    const value = docs[key];
+
+    if (options.updateReadme) {
+      await updateReadme(options, value, key, options.actionFile);
+    }
+
+    outputString += value;
   }
 
-  return `${docs.description + docs.inputs + docs.outputs + docs.runs}`;
+  return outputString;
 }
 
-function generateActionDocs(options: DefaultOptions): ActionMarkdown {
+function generateDocs(options: DefaultOptions): Record<string, string> {
   const yml = parse(readFileSync(options.actionFile, "utf-8")) as ActionYml;
 
-  const inputMdTable = createMdTable(yml.inputs, options, "input");
-  const usageMdCodeBlock = createMdCodeBlock(yml.inputs, options);
-  const outputMdTable = createMdTable(yml.outputs, options, "output");
+  if (yml.runs === undefined) {
+    return generateWorkflowDocs(yml, options);
+  } else {
+    return generateActionDocs(yml, options);
+  }
+}
 
+function generateActionDocs(
+  yml: ActionYml,
+  options: DefaultOptions,
+): Record<string, string> {
   return {
+    header: generateHeader(yml, options),
     description: createMarkdownSection(options, yml.description, "Description"),
-    inputs: createMarkdownSection(options, inputMdTable, "Inputs"),
-    outputs: createMarkdownSection(options, outputMdTable, "Outputs"),
+    inputs: generateInputs(yml.inputs, options),
+    outputs: generateOutputs(yml, options),
     runs: createMarkdownSection(
       options,
       // eslint-disable-next-line i18n-text/no-en
       `This action is a \`${yml.runs.using}\` action.`,
       "Runs",
     ),
-    usage: createMarkdownSection(options, usageMdCodeBlock, "Usage"),
+    usage: generateUsage(yml, options),
   };
+}
+
+function generateWorkflowDocs(
+  yml: ActionYml,
+  options: DefaultOptions,
+): Record<string, string> {
+  return {
+    header: generateHeader(yml, options),
+    inputs: generateInputs(yml.on.workflow_call.inputs, options),
+    outputs: generateOutputs(yml, options),
+    runs: "",
+    usage: generateUsage(yml, options),
+  };
+}
+
+function generateHeader(yml: ActionYml, options: DefaultOptions): string {
+  let header = "";
+  if (options.includeNameHeader) {
+    header = createMarkdownHeader(options, yml.name);
+    options.tocLevel++;
+  }
+
+  return header;
+}
+
+function generateInputs(
+  data: ActionInputsOutputs,
+  options: DefaultOptions,
+): string {
+  const inputMdTable = createMdTable(data, options, "input");
+  return createMarkdownSection(options, inputMdTable, "Inputs");
+}
+
+function generateOutputs(yml: ActionYml, options: DefaultOptions): string {
+  const outputMdTable = createMdTable(yml.outputs, options, "output");
+  return createMarkdownSection(options, outputMdTable, "Outputs");
+}
+
+function generateUsage(yml: ActionYml, options: DefaultOptions): string {
+  const usageMdCodeBlock = createMdCodeBlock(yml.inputs, options);
+  return createMarkdownSection(options, usageMdCodeBlock, "Usage");
 }
 
 function escapeRegExp(x: string): string {
@@ -242,13 +301,19 @@ function createMarkdownSection(
   data: string,
   header: string,
 ): string {
-  return data !== ""
-    ? `${getToc(options.tocLevel)} ${header}${getLineBreak(
-        options.lineBreaks,
-      )}${getLineBreak(options.lineBreaks)}${data}${getLineBreak(
-        options.lineBreaks,
-      )}${getLineBreak(options.lineBreaks)}`
-    : "";
+  const lineBreak = getLineBreak(options.lineBreaks);
+
+  return data === "" || data === undefined
+    ? ""
+    : `${createMarkdownHeader(options, header)}${data}` +
+        `${lineBreak}` +
+        `${lineBreak}`;
+}
+
+function createMarkdownHeader(options: DefaultOptions, header: string): string {
+  const lineBreak = getLineBreak(options.lineBreaks);
+
+  return `${getToc(options.tocLevel)} ${header}${lineBreak}${lineBreak}`;
 }
 
 function getInputOutput(

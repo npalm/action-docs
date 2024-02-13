@@ -25,3 +25,40 @@ Default test
 
 This action is a `node12` action.
 
+## Usage
+
+```yaml
+- uses: ***PROJECT***@***VERSION***
+  with:
+    inputA:
+    # A description A
+    #
+    # Required: false
+    # Default: ""
+
+    inputB:
+    # A description B
+    #
+    # Required: true
+    # Default: ""
+
+    inputC:
+    # A description C
+    #
+    # Required: true
+    # Default: C
+
+    inputD:
+    # A description D
+    #
+    # Required: false
+    # Default: D
+
+    inputE:
+    # A description E
+    #
+    # Required: false
+    # Default: false
+```
+
+

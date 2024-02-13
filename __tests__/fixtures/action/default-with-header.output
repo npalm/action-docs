@@ -1,8 +1,10 @@
-## Description
+## An Action
+
+### Description
 
 Default test
 
-## Inputs
+### Inputs
 
 | name | description | required | default |
 | --- | --- | --- | --- |
@@ -10,18 +12,18 @@ Default test
 | `inputB` | <p>This is a multiline description</p> | `false` | `test` |
 
 
-## Outputs
+### Outputs
 
 | name | description |
 | --- | --- |
 | `outputA` | <p>A description</p> |
 
 
-## Runs
+### Runs
 
 This action is a `node12` action.
 
-## Usage
+### Usage
 
 ```yaml
 - uses: ***PROJECT***@***VERSION***

@@ -17,14 +17,15 @@ afterAll(() => {
 
 describe("Test output", () => {
   test("With defaults.", async () => {
-    // const markdown = await generateActionMarkdownDocs({
-    //   actionFile: path.join(fixtureDir, "workflow.yml"),
-    // });
-    // const expected = <string>(
-    //   readFileSync(path.join(fixtureDir, "default.output"), "utf-8")
-    // );
+    const markdown = await generateActionMarkdownDocs({
+      actionFile: path.join(fixtureDir, "workflow.yml"),
+      includeNameHeader: true,
+    });
+    const expected = <string>(
+      readFileSync(path.join(fixtureDir, "default.output"), "utf-8")
+    );
 
-    // expect(markdown).toEqual(expected);
+    expect(markdown).toEqual(expected);
     expect("").toEqual("");
   });
 

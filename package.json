@@ -19,8 +19,8 @@
     "test-cli": "nyc jest --testTimeout=10000 --silent --testMatch=**/cli*test.ts && nyc report --reporter=lcov --reporter=html --report-dir=./coverage_nyc",
     "test-action": "npm test -- __tests__/action-docs-action.test.ts",
     "test-workflow": "npm test -- __tests__/action-docs-workflow.test.ts",
-    "dev-action": "node lib/cli.js -a __tests__/fixtures/action/action.yml",
-    "dev-workflow": "node lib/cli.js -a __tests__/fixtures/workflow/workflow.yml",
+    "dev-action": "yarn run build && node lib/cli.js -a __tests__/fixtures/action/action.yml",
+    "dev-workflow": "yarn run build && node lib/cli.js -a __tests__/fixtures/workflow/workflow.yml",
     "all": "yarn run build && yarn run format && yarn run lint && yarn test"
   },
   "repository": {

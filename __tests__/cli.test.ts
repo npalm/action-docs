@@ -3,7 +3,7 @@ import * as path from "path";
 
 import { readFileSync, writeFileSync } from "fs";
 
-const fixtureDir = path.join("__tests__", "fixtures");
+const fixtureDir = path.join("__tests__", "fixtures", "action");
 
 describe("CLI tests", () => {
   test("Update readme default", async () => {
@@ -25,7 +25,7 @@ describe("CLI tests", () => {
 
   test("Console output with TOC 3 and no banner.", async () => {
     const result = await cli(
-      `-a __tests__/fixtures/all_fields_action.yml -t 3 --no-banner`,
+      `-a ${path.join(fixtureDir, "all_fields_action.yml")} -t 3 --no-banner`,
     );
 
     const expected = <string>(
@@ -33,6 +33,19 @@ describe("CLI tests", () => {
         path.join(fixtureDir, "all_fields_action_toc3_cli.output"),
         "utf-8",
       )
+    );
+
+    expect(result.code).toBe(0);
+    expect(result.stdout).toEqual(`${expected}\n`);
+  });
+
+  test("Console output including name header and no banner.", async () => {
+    const result = await cli(
+      `-a ${path.join(fixtureDir, "action.yml")} -h true --no-banner`,
+    );
+
+    const expected = <string>(
+      readFileSync(path.join(fixtureDir, "default-with-header.output"), "utf-8")
     );
 
     expect(result.code).toBe(0);

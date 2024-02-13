@@ -55,14 +55,15 @@ The following options are available via the CLI
 
 ```
 Options:
-      --help           Show help                                       [boolean]
-      --version        Show version number                             [boolean]
-  -t, --toc-level      TOC level used for markdown         [number] [default: 2]
-  -a, --action         GitHub action file       [string] [default: "action.yml"]
-      --no-banner      Print no banner
-  -u, --update-readme  Update readme file.                              [string]
-  -l, --line-breaks    Used line breaks in the generated docs.
-                          [string] [choices: "CR", "LF", "CRLF"] [default: "LF"]
+      --help                  Show help                                       [boolean]
+      --version               Show version number                             [boolean]
+  -t, --toc-level             TOC level used for markdown         [number] [default: 2]
+  -a, --action                GitHub action file       [string] [default: "action.yml"]
+      --no-banner             Print no banner
+  -u, --update-readme         Update readme file.                              [string]
+  -l, --line-breaks           Used line breaks in the generated docs.
+                                 [string] [choices: "CR", "LF", "CRLF"] [default: "LF"]
+  -h, --include-name-header   Include a header with the action/workflow name.
 ```
 
 ### Update the README
@@ -70,6 +71,8 @@ Options:
 Action-docs can update your README based on the `action.yml`. The following sections can be updated: description, inputs, outputs and runs. Add the following tags to your README and run `action-docs -u`.
 
 ```md
+<!-- action-docs-header action="action.yml" -->
+
 <!-- action-docs-description action="action.yml" -->
 
 <!-- action-docs-inputs action="action.yml" -->
