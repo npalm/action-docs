@@ -2,7 +2,7 @@ import { generateActionMarkdownDocs, Options } from "../src";
 import { readFileSync, writeFileSync, copyFileSync, unlink } from "fs";
 import * as path from "path";
 
-const fixtureDir = path.join("__tests__", "fixtures");
+const fixtureDir = path.join("__tests__", "fixtures", "action");
 
 // By default an 'action.yml' is expected at the runtime location. Therefore we copy one during th test.
 beforeAll(() => {
