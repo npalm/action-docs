@@ -154,6 +154,7 @@ export async function generateActionMarkdownDocs(
 
   const docs = generateActionDocs(options);
   if (options.updateReadme) {
+    await updateReadme(options, docs.header, "header", options.actionFile);
     await updateReadme(
       options,
       docs.description,
