@@ -1,0 +1,40 @@
+name: 'A Workflow'
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_call:
+    inputs:
+      inputA:
+        description: |
+          - Item 1
+              - foo, bar, baz
+          - Item 2
+              - [github](https://github.com/)
+              - **blah**
+          - Item 3
+        type: string
+        default: 'This is a default'
+        required: false
+      InputB:
+        description: |
+          This is a
+          multiline description
+        type: number
+        required: true
+    outputs:
+      outputA:
+        description: 'This is output A'
+        value: ${{ jobs.job1.outputs.step_output1 }}
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    outputs:
+      step_output1: ${{ steps.step1.outputs.test }}
+    steps:
+      - name: 'Step 1'
+        id: step1
+        run: echo "test=some value" >> "$GITHUB_OUTPUT"
