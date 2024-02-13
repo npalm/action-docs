@@ -40,6 +40,11 @@ const args = await yargs(process.argv.slice(2))
       type: "string",
       alias: "l",
     },
+    "include-name-header": {
+      description: "Include a header with the action/workflow name",
+      type: "boolean",
+      alias: "h",
+    },
   })
   .help().argv;
 
@@ -50,8 +55,7 @@ args.banner === undefined &&
 
 const updateReadme = args["update-readme"] === undefined ? false : true;
 
-/* eslint-disable github/no-then */
-generateActionMarkdownDocs({
+const options = {
   actionFile: args.action,
   tocLevel: args["toc-level"],
   updateReadme,
@@ -60,7 +64,14 @@ generateActionMarkdownDocs({
       ? defaultOptions.readmeFile
       : args["update-readme"],
   lineBreaks: getLineBreakType(args["line-breaks"]),
-})
+  includeNameHeader:
+    args["include-name-header"] === undefined
+      ? defaultOptions.includeNameHeader
+      : args["include-name-header"],
+};
+
+/* eslint-disable github/no-then */
+generateActionMarkdownDocs(options)
   .then((r) => {
     if (!updateReadme) {
       console.info(r);
