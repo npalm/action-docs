@@ -25,6 +25,17 @@ describe("Test output", () => {
     expect(markdown).toEqual(expected);
   });
 
+  test("With name header included.", async () => {
+    const markdown = await generateActionMarkdownDocs({
+      includeNameHeader: true,
+    });
+    const expected = <string>(
+      readFileSync(path.join(fixtureDir, "default-with-header.output"), "utf-8")
+    );
+
+    expect(markdown).toEqual(expected);
+  });
+
   test("A minimal action definition.", async () => {
     const markdown = await generateActionMarkdownDocs({
       actionFile: path.join(fixtureDir, "minimal_action.yml"),
