@@ -25,7 +25,7 @@ describe("CLI tests", () => {
 
   test("Console output with TOC 3 and no banner.", async () => {
     const result = await cli(
-      `-a __tests__/fixtures/all_fields_action.yml -t 3 --no-banner`,
+      `-a ${path.join(fixtureDir, "all_fields_action.yml")} -t 3 --no-banner`,
     );
 
     const expected = <string>(
