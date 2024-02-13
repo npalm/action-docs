@@ -65,12 +65,12 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 
 2. Install dependencies `yarn install`
 
-3. See the `package.json` how to run the test.
+3. Run `yarn run` to see the scripts available e.g. `yarn run all` to build, lint and test
 
 4. Run the CLI locally 
 
    ```bash
-   yarn run dev src/cli.ts <options>
+   node lib/cli.js <options>
    ```
 
 ### Adding tests
