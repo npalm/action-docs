@@ -25,6 +25,17 @@ describe("Test output", () => {
     expect(markdown).toEqual(expected);
   });
 
+  test("With name header included.", async () => {
+    const markdown = await generateActionMarkdownDocs({
+      includeNameHeader: true,
+    });
+    const expected = <string>(
+      readFileSync(path.join(fixtureDir, "default-with-header.output"), "utf-8")
+    );
+
+    expect(markdown).toEqual(expected);
+  });
+
   test("A minimal action definition.", async () => {
     const markdown = await generateActionMarkdownDocs({
       actionFile: path.join(fixtureDir, "minimal_action.yml"),
@@ -63,6 +74,19 @@ describe("Test update readme ", () => {
       originalReadme: path.join(fixtureDir, "all_fields_readme_filled.input"),
       fixtureReadme: path.join(fixtureDir, "all_fields_readme_filled.output"),
     });
+  });
+
+  test("Filled readme (all fields) with header", async () => {
+    await testReadme(
+      {
+        actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+        originalReadme: path.join(fixtureDir, "all_fields_readme.input"),
+        fixtureReadme: path.join(fixtureDir, "all_fields_readme_header.output"),
+      },
+      {},
+      false,
+      true,
+    );
   });
 
   test("Readme (all fields) with CRLF line breaks", async () => {
@@ -131,6 +155,7 @@ async function testReadme(
   files: ReadmeTestFixtures,
   overwriteOptions?: Options,
   doExpect: boolean = true,
+  includeNameHeader: boolean = false,
 ) {
   const expected = <string>readFileSync(files.fixtureReadme, "utf-8");
   const original = <string>readFileSync(files.originalReadme, "utf-8");
@@ -138,6 +163,7 @@ async function testReadme(
   await generateActionMarkdownDocs({
     actionFile: files.actionFile,
     updateReadme: true,
+    includeNameHeader: includeNameHeader,
     readmeFile: files.originalReadme,
     ...overwriteOptions,
   });
