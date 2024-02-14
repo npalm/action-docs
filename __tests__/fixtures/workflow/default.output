@@ -15,3 +15,32 @@
 | `outputA` | <p>This is output A</p> |
 
 
+### Usage
+
+```yaml
+jobs:
+  job1:
+    uses: ***PROJECT***@***VERSION***
+    with:
+      inputA:
+      # - Item 1
+      #     - foo, bar, baz
+      # - Item 2
+      #     - [github](https://github.com/)
+      #     - **blah**
+      # - Item 3
+      #
+      # Type: string
+      # Required: false
+      # Default: This is a default
+
+      inputB:
+      # This is a
+      # multiline description
+      #
+      # Type: number
+      # Required: true
+      # Default: ""
+```
+
+

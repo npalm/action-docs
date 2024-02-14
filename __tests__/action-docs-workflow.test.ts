@@ -4,7 +4,7 @@ import * as path from "path";
 
 const fixtureDir = path.join("__tests__", "fixtures", "workflow");
 
-// By default a 'workflow.yml' is expected at the runtime location. Therefore we copy one during th test.
+// By default a 'workflow.yml' is expected at the runtime location. Therefore we copy one during the test.
 beforeAll(() => {
   copyFileSync(path.join(fixtureDir, "workflow.yml"), "workflow.yml");
 });
@@ -26,7 +26,6 @@ describe("Test output", () => {
     );
 
     expect(markdown).toEqual(expected);
-    expect("").toEqual("");
   });
 
   //   test("A minimal action definition.", async () => {

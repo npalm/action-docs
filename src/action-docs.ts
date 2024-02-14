@@ -117,27 +117,53 @@ function createMdTable(
 function createMdCodeBlock(
   data: ActionInputsOutputs,
   options: DefaultOptions,
+  isAction = true,
 ): string {
   let codeBlockArray = ["```yaml"];
-  codeBlockArray.push(`- uses: ***PROJECT***@***VERSION***`);
-  codeBlockArray.push("  with:");
 
-  const inputs = getInputOutput(data, InputOutputType.actionInput, false);
+  let indent = "";
+
+  if (isAction) {
+    codeBlockArray.push(`- uses: ***PROJECT***@***VERSION***`);
+    indent += "  ";
+  } else {
+    codeBlockArray.push(`jobs:`);
+    indent += "  ";
+    codeBlockArray.push(`${indent}job1:`);
+    indent += "  ";
+    codeBlockArray.push(`${indent}uses: ***PROJECT***@***VERSION***`);
+  }
+
+  codeBlockArray.push(`${indent}with:`);
+  indent += "  ";
+
+  const inputs = getInputOutput(
+    data,
+    isAction ? InputOutputType.actionInput : InputOutputType.workflowInput,
+    false,
+  );
   for (const row of inputs.rows) {
-    const inputBlock = [`${row[0]}:`];
-    inputBlock.push(
-      ...row[1]
-        .split(/(\r\n|\n|\r)/gm)
-        .filter((l) => !["", "\r", "\n", "\r\n"].includes(l))
-        .map((l) => `# ${l}`),
-    );
+    const inputName = row[0];
+    const inputDescCommented = row[1]
+      .split(/(\r\n|\n|\r)/gm)
+      .filter((l) => !["", "\r", "\n", "\r\n"].includes(l))
+      .map((l) => `# ${l}`);
+    const type = isAction ? undefined : row[2];
+    const isRequired = isAction ? row[2] : row[3];
+    const defaultVal = isAction ? row[3] : row[4];
+
+    const inputBlock = [`${inputName}:`];
+    inputBlock.push(...inputDescCommented);
     inputBlock.push(`#`);
-    inputBlock.push(`# Required: ${row[2]}`); //.replace(/`/g, "")
-    if (row[3]) {
-      inputBlock.push(`# Default: ${row[3]}`);
+    if (type) {
+      inputBlock.push(`# Type: ${type}`);
+    }
+    inputBlock.push(`# Required: ${isRequired}`);
+    if (defaultVal) {
+      inputBlock.push(`# Default: ${defaultVal}`);
     }
 
-    codeBlockArray.push(...inputBlock.map((l) => `    ${l}`));
+    codeBlockArray.push(...inputBlock.map((l) => `${indent}${l}`));
     codeBlockArray.push("");
   }
   if (inputs.rows.length > 0) {
@@ -211,7 +237,7 @@ function generateActionDocs(
       `This action is a \`${yml.runs.using}\` action.`,
       "Runs",
     ),
-    usage: generateUsage(yml, options),
+    usage: generateUsage(yml.inputs, options),
   };
 }
 
@@ -228,7 +254,7 @@ function generateWorkflowDocs(
     ),
     outputs: generateOutputs(yml.on.workflow_call.outputs, options),
     runs: "",
-    usage: "", // todo
+    usage: generateUsage(yml.on.workflow_call.inputs, options, false),
   };
 }
 
@@ -263,8 +289,12 @@ function generateOutputs(
   return createMarkdownSection(options, outputMdTable, "Outputs");
 }
 
-function generateUsage(yml: ActionYml, options: DefaultOptions): string {
-  const usageMdCodeBlock = createMdCodeBlock(yml.inputs, options);
+function generateUsage(
+  data: ActionInputsOutputs,
+  options: DefaultOptions,
+  isAction = true,
+): string {
+  const usageMdCodeBlock = createMdCodeBlock(data, options, isAction);
   return createMarkdownSection(options, usageMdCodeBlock, "Usage");
 }
 
@@ -318,7 +348,12 @@ async function updateReadme(
     await replaceInFile.replaceInFile({
       files: options.readmeFile,
       from: regexp,
-      to: `${commentExpression}${lineBreak}${text.trim()}${lineBreak}${commentExpression}`,
+      to:
+        commentExpression +
+        lineBreak +
+        text.trim() +
+        lineBreak +
+        commentExpression,
     });
   }
 }
