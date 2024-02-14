@@ -1,5 +1,5 @@
-
 <!-- BADGES/ -->
+
 ![example workflow](https://github.com/npalm/action-docs/actions/workflows/ci.yml/badge.svg) [![npm](https://img.shields.io/npm/v/action-docs.svg)](https://npmjs.org/package/action-docs) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=action-docs&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=action-docs) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=action-docs&metric=coverage)](https://sonarcloud.io/dashboard?id=action-docs) [![CodeScene Code Health](https://codescene.io/projects/49602/status-badges/code-health)](https://codescene.io/projects/49602)
 
 <!-- /BADGES -->
@@ -37,7 +37,7 @@ cd <your github action>
 # write docs to console
 action-docs
 
-# update reamde
+# update README
 action-docs --update-readme
 ```
 

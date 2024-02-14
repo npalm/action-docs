@@ -87,14 +87,14 @@
 
 * remove new lines from inputs ([#272](https://github.com/npalm/action-docs/issues/272)) ([dbdbd50](https://github.com/npalm/action-docs/commit/dbdbd50f1377f57bd6cd7878381e5260c6c8edeb))
 * Update test for trim [#271](https://github.com/npalm/action-docs/issues/271) ([#297](https://github.com/npalm/action-docs/issues/297)) ([6746b95](https://github.com/npalm/action-docs/commit/6746b951bc0851a277b0854ada8d13f67510b184))
-* Upgrade dependcies ([#296](https://github.com/npalm/action-docs/issues/296)) ([b2a0a32](https://github.com/npalm/action-docs/commit/b2a0a324b4adba7b2aa4b9fee1480c8c55b8e1db))
+* Upgrade dependencies ([#296](https://github.com/npalm/action-docs/issues/296)) ([b2a0a32](https://github.com/npalm/action-docs/commit/b2a0a324b4adba7b2aa4b9fee1480c8c55b8e1db))
 
 ### [1.0.4](https://github.com/npalm/action-docs/compare/1.0.3...1.0.4) (2022-05-24)
 
 
 ### Bug Fixes
 
-* falsey default values not included ([#219](https://github.com/npalm/action-docs/issues/219)) ([7dc133b](https://github.com/npalm/action-docs/commit/7dc133b903811795d1441b4828d7e11d4e71aea9))
+* default values not included ([#219](https://github.com/npalm/action-docs/issues/219)) ([7dc133b](https://github.com/npalm/action-docs/commit/7dc133b903811795d1441b4828d7e11d4e71aea9))
 
 ### [1.0.3](https://github.com/npalm/action-docs/compare/1.0.2...1.0.3) (2021-10-14)
 

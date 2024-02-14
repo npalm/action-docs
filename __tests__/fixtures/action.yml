@@ -1,6 +1,6 @@
-name: 'An Action'
-description: 'Default test'
-author: 'Niek Palm'
+name: "An Action"
+description: "Default test"
+author: "Niek Palm"
 inputs:
   inputA:
     required: false
@@ -21,8 +21,8 @@ inputs:
 
 outputs:
   outputA:
-    description: 'A description'
+    description: "A description"
 
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+  using: "node12"
+  main: "dist/index.js"
