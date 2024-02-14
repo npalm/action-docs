@@ -18,7 +18,7 @@ on:
         type: string
         default: 'This is a default'
         required: false
-      InputB:
+      inputB:
         description: |
           This is a
           multiline description

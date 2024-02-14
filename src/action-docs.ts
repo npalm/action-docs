@@ -33,8 +33,8 @@ interface WorkflowTriggerEvent {
   types: string[];
   branches: string[];
   cron: string[];
-  inputs: Record<string, ActionInput>;
-  outputs: Record<string, ActionOutput>;
+  inputs: ActionInputsOutputs;
+  outputs: ActionInputsOutputs;
 }
 
 interface DefaultOptions {
@@ -55,7 +55,7 @@ export const defaultOptions: DefaultOptions = {
   includeNameHeader: false,
 };
 
-type ActionInputsOutputs = Record<string, ActionInput | ActionOutput>;
+type ActionInputsOutputs = Record<string, InputOutput>;
 
 enum InputType {
   number,
@@ -63,21 +63,42 @@ enum InputType {
   boolean,
 }
 
-interface ActionInput {
+enum InputOutputType {
+  actionInput,
+  workflowInput,
+  actionOutput,
+}
+
+const inputOutputHeaders: Record<InputOutputType, string[]> = {
+  [InputOutputType.actionInput]: ["name", "description", "required", "default"],
+  [InputOutputType.workflowInput]: [
+    "name",
+    "description",
+    "type",
+    "required",
+    "default",
+  ],
+  [InputOutputType.actionOutput]: ["name", "description"],
+};
+
+const inputOutputDefaults: Record<string, string> = {
+  description: "",
+  type: "",
+  required: "false",
+  default: '""',
+};
+
+interface InputOutput {
   required?: boolean;
   description?: string;
   default?: string;
   type?: InputType;
 }
 
-interface ActionOutput {
-  description: string;
-}
-
 function createMdTable(
   data: ActionInputsOutputs,
   options: DefaultOptions,
-  type: "input" | "output",
+  type: InputOutputType,
 ): string {
   const tableData = getInputOutput(data, type);
 
@@ -85,17 +106,7 @@ function createMdTable(
   const filler = Array(tableData.headers.length).fill("---");
 
   const result = [headers, filler]
-    .concat(
-      tableData.rows.map((line) => {
-        return line.map((elem, i) => {
-          const pretty =
-            i === 0 || i === 2 || i === 3 ? `\`${line[i]}\`` : elem;
-          const html = i === 1 ? converter.makeHtml(pretty) : pretty;
-          const htmlNoNewlines = html.replace(/(\r\n|\n|\r)/gm, " ").trim();
-          return htmlNoNewlines;
-        });
-      }),
-    )
+    .concat(tableData.rows)
     .filter((x) => x.length > 0)
     .map((x) => `| ${x.join(" | ")} |${getLineBreak(options.lineBreaks)}`)
     .join("");
@@ -111,19 +122,19 @@ function createMdCodeBlock(
   codeBlockArray.push(`- uses: ***PROJECT***@***VERSION***`);
   codeBlockArray.push("  with:");
 
-  const inputs = getInputOutput(data, "input");
-  for (const input of inputs.rows) {
-    const inputBlock = [`${input[0]}:`];
+  const inputs = getInputOutput(data, InputOutputType.actionInput, false);
+  for (const row of inputs.rows) {
+    const inputBlock = [`${row[0]}:`];
     inputBlock.push(
-      ...input[1]
+      ...row[1]
         .split(/(\r\n|\n|\r)/gm)
         .filter((l) => !["", "\r", "\n", "\r\n"].includes(l))
         .map((l) => `# ${l}`),
     );
     inputBlock.push(`#`);
-    inputBlock.push(`# Required: ${input[2].replace(/`/g, "")}`);
-    if (input[3]) {
-      inputBlock.push(`# Default: ${input[3]}`);
+    inputBlock.push(`# Required: ${row[2]}`); //.replace(/`/g, "")
+    if (row[3]) {
+      inputBlock.push(`# Default: ${row[3]}`);
     }
 
     codeBlockArray.push(...inputBlock.map((l) => `    ${l}`));
@@ -192,8 +203,8 @@ function generateActionDocs(
   return {
     header: generateHeader(yml, options),
     description: createMarkdownSection(options, yml.description, "Description"),
-    inputs: generateInputs(yml.inputs, options),
-    outputs: generateOutputs(yml, options),
+    inputs: generateInputs(yml.inputs, options, InputOutputType.actionInput),
+    outputs: generateOutputs(yml.outputs, options),
     runs: createMarkdownSection(
       options,
       // eslint-disable-next-line i18n-text/no-en
@@ -210,10 +221,14 @@ function generateWorkflowDocs(
 ): Record<string, string> {
   return {
     header: generateHeader(yml, options),
-    inputs: generateInputs(yml.on.workflow_call.inputs, options),
-    outputs: generateOutputs(yml, options),
+    inputs: generateInputs(
+      yml.on.workflow_call.inputs,
+      options,
+      InputOutputType.workflowInput,
+    ),
+    outputs: generateOutputs(yml.on.workflow_call.outputs, options),
     runs: "",
-    usage: generateUsage(yml, options),
+    usage: "", // todo
   };
 }
 
@@ -230,13 +245,21 @@ function generateHeader(yml: ActionYml, options: DefaultOptions): string {
 function generateInputs(
   data: ActionInputsOutputs,
   options: DefaultOptions,
+  type: InputOutputType,
 ): string {
-  const inputMdTable = createMdTable(data, options, "input");
+  const inputMdTable = createMdTable(data, options, type);
   return createMarkdownSection(options, inputMdTable, "Inputs");
 }
 
-function generateOutputs(yml: ActionYml, options: DefaultOptions): string {
-  const outputMdTable = createMdTable(yml.outputs, options, "output");
+function generateOutputs(
+  data: ActionInputsOutputs,
+  options: DefaultOptions,
+): string {
+  const outputMdTable = createMdTable(
+    data,
+    options,
+    InputOutputType.actionOutput,
+  );
   return createMarkdownSection(options, outputMdTable, "Outputs");
 }
 
@@ -255,6 +278,7 @@ async function updateReadme(
   section: string,
   actionFile: string,
 ): Promise<void> {
+  const lineBreak = getLineBreak(options.lineBreaks);
   if (section === "usage") {
     const readmeFileText = String(readFileSync(options.readmeFile, "utf-8"));
     const match = readmeFileText.match(
@@ -269,15 +293,20 @@ async function updateReadme(
         `${escapeRegExp(commentExpression)}(?:(?:\r\n|\r|\n.*)+${escapeRegExp(commentExpression)})?`,
       );
 
+      const processedText = text
+        .trim()
+        .replace("***PROJECT***", match[1])
+        .replace("***VERSION***", match[2]);
+
       await replaceInFile.replaceInFile({
         files: options.readmeFile,
         from: regexp,
-        to: `${commentExpression}${getLineBreak(options.lineBreaks)}${text
-          .trim()
-          .replace("***PROJECT***", match[1])
-          .replace("***VERSION***", match[2])}${getLineBreak(
-          options.lineBreaks,
-        )}${commentExpression}`,
+        to:
+          commentExpression +
+          lineBreak +
+          processedText +
+          lineBreak +
+          commentExpression,
       });
     }
   } else {
@@ -289,9 +318,7 @@ async function updateReadme(
     await replaceInFile.replaceInFile({
       files: options.readmeFile,
       from: regexp,
-      to: `${commentExpression}${getLineBreak(
-        options.lineBreaks,
-      )}${text.trim()}${getLineBreak(options.lineBreaks)}${commentExpression}`,
+      to: `${commentExpression}${lineBreak}${text.trim()}${lineBreak}${commentExpression}`,
     });
   }
 }
@@ -316,36 +343,58 @@ function createMarkdownHeader(options: DefaultOptions, header: string): string {
   return `${getToc(options.tocLevel)} ${header}${lineBreak}${lineBreak}`;
 }
 
+function isHtmlColumn(columnName: string): boolean {
+  return columnName === "description";
+}
+
+function stripNewLines(value: string): string {
+  return value.replace(/\r\n|\r|\n/g, " ");
+}
+
 function getInputOutput(
   data: ActionInputsOutputs,
-  type: "input" | "output",
+  type: InputOutputType,
+  format = true,
 ): { headers: string[]; rows: string[][] } {
   let headers: string[] = [];
   const rows: string[][] = [];
+
   if (data === undefined) {
     return { headers, rows };
   }
 
-  headers =
-    type === "input"
-      ? ["name", "description", "required", "default"]
-      : ["name", "description"];
+  headers = inputOutputHeaders[type];
 
   for (let i = 0; i < Object.keys(data).length; i++) {
     const key = Object.keys(data)[i];
-    const value = data[key] as ActionInput;
+    const value = data[key] as Record<string, string>;
     rows[i] = [];
-    rows[i].push(key);
-    rows[i].push(value.description ? value.description : "");
 
-    if (type === "input") {
-      rows[i].push(value.required ? String(value.required) : "false");
+    for (const columnName of headers) {
+      let rowValue = "";
 
-      if (value.default !== undefined && value.default !== "") {
-        rows[i].push(value.default.toString().replace(/\r\n|\r|\n/g, " "));
+      if (columnName === "name") {
+        rowValue = key;
+      } else if (columnName === "default") {
+        rowValue =
+          value[columnName] !== undefined && value[columnName] !== ""
+            ? stripNewLines(String(value[columnName]))
+            : inputOutputDefaults[columnName];
       } else {
-        rows[i].push('""');
+        rowValue = value[columnName]
+          ? value[columnName]
+          : inputOutputDefaults[columnName];
       }
+
+      if (format) {
+        if (isHtmlColumn(columnName)) {
+          rowValue = stripNewLines(converter.makeHtml(rowValue)).trim();
+        } else {
+          rowValue = `\`${rowValue}\``;
+        }
+      }
+
+      rows[i].push(rowValue);
     }
   }
   return { headers, rows };
