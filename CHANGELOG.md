@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/npalm/action-docs/compare/v2.0.0...v2.0.1) (2024-02-14)
+
+
+### Bug Fixes
+
+* vulnerabilities ([#528](https://github.com/npalm/action-docs/issues/528)) ([670af1f](https://github.com/npalm/action-docs/commit/670af1f38cd52507920bfeae0efa8d88f62616a2))
+
 ## [2.0.0](https://github.com/npalm/action-docs/compare/v1.3.0...v2.0.0) (2024-02-04)
 
 
