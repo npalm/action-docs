@@ -40,14 +40,14 @@ describe("CLI tests", () => {
   });
 });
 
-interface CliRespone {
+interface CliResponse {
   code: number;
   error: cp.ExecException | null;
   stdout: string;
   stderr: string;
 }
 
-function cli(args: string): Promise<CliRespone> {
+function cli(args: string): Promise<CliResponse> {
   return new Promise((resolve) => {
     cp.exec(
       `node ${path.resolve("lib/cli.js")} ${args}`,
