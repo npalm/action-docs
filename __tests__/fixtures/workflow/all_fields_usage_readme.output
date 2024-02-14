@@ -1,37 +1,44 @@
-<!-- action-docs-usage action="__tests__/fixtures/all_fields_action.yml" project="npalm/action-docs" version="v1" -->
+<!-- action-docs-usage action="__tests__/fixtures/workflow/all_fields_action.yml" project="npalm/action-docs" version="v1" -->
 ## Usage
 
 ```yaml
-- uses: npalm/action-docs@v1
-  with:
-    inputA:
-    # A description A
-    #
-    # Required: false
-    # Default: ""
+jobs:
+  job1:
+    uses: npalm/action-docs@v1
+    with:
+      inputA:
+      # A description A
+      #
+      # Type: string
+      # Required: false
+      # Default: ""
 
-    inputB:
-    # A description B
-    #
-    # Required: true
-    # Default: ""
+      inputB:
+      # A description B
+      #
+      # Type: string
+      # Required: true
+      # Default: ""
 
-    inputC:
-    # A description C
-    #
-    # Required: true
-    # Default: C
+      inputC:
+      # A description C
+      #
+      # Type: string
+      # Required: true
+      # Default: C
 
-    inputD:
-    # A description D
-    #
-    # Required: false
-    # Default: D
+      inputD:
+      # A description D
+      #
+      # Type: string
+      # Required: false
+      # Default: D
 
-    inputE:
-    # A description E
-    #
-    # Required: false
-    # Default: false
+      inputE:
+      # A description E
+      #
+      # Type: string
+      # Required: false
+      # Default: false
 ```
-<!-- action-docs-usage action="__tests__/fixtures/all_fields_action.yml" project="npalm/action-docs" version="v1" -->
+<!-- action-docs-usage action="__tests__/fixtures/workflow/all_fields_action.yml" project="npalm/action-docs" version="v1" -->
