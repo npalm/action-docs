@@ -248,13 +248,13 @@ function generateWorkflowDocs(
   return {
     header: generateHeader(yml, options),
     inputs: generateInputs(
-      yml.on.workflow_call.inputs,
+      yml.on.workflow_call?.inputs,
       options,
       InputOutputType.workflowInput,
     ),
-    outputs: generateOutputs(yml.on.workflow_call.outputs, options),
+    outputs: generateOutputs(yml.on.workflow_call?.outputs, options),
     runs: "",
-    usage: generateUsage(yml.on.workflow_call.inputs, options, false),
+    usage: generateUsage(yml.on.workflow_call?.inputs, options, false),
   };
 }
 

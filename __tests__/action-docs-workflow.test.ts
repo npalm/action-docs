@@ -28,37 +28,39 @@ describe("Test output", () => {
     expect(markdown).toEqual(expected);
   });
 
-  //   test("A minimal action definition.", async () => {
-  //     const markdown = await generateActionMarkdownDocs({
-  //       actionFile: path.join(fixtureDir, "minimal_action.yml"),
-  //     });
-  //     const expected = <string>(
-  //       readFileSync(path.join(fixtureDir, "minimal_action.output"), "utf-8")
-  //     );
+  test("A minimal workflow definition.", async () => {
+    const markdown = await generateActionMarkdownDocs({
+      actionFile: path.join(fixtureDir, "minimal_workflow.yml"),
+      includeNameHeader: true,
+    });
+    const expected = <string>(
+      readFileSync(path.join(fixtureDir, "minimal_workflow.output"), "utf-8")
+    );
 
-  //     expect(markdown).toEqual(expected);
-  //   });
+    expect(markdown).toEqual(expected);
+  });
 
-  //   test("All fields action definition.", async () => {
-  //     const markdown = await generateActionMarkdownDocs({
-  //       actionFile: path.join(fixtureDir, "all_fields_action.yml"),
-  //     });
-  //     const expected = <string>(
-  //       readFileSync(path.join(fixtureDir, "all_fields_action.output"), "utf-8")
-  //     );
+  test("All fields workflow definition.", async () => {
+    const markdown = await generateActionMarkdownDocs({
+      actionFile: path.join(fixtureDir, "all_fields_workflow.yml"),
+      includeNameHeader: true,
+    });
+    const expected = <string>(
+      readFileSync(path.join(fixtureDir, "all_fields_workflow.output"), "utf-8")
+    );
 
-  //     expect(markdown).toEqual(expected);
-  //   });
-  // });
+    expect(markdown).toEqual(expected);
+  });
+});
 
-  // describe("Test update readme ", () => {
-  //   test("Empty readme (all fields)", async () => {
-  //     await testReadme({
-  //       actionFile: path.join(fixtureDir, "all_fields_action.yml"),
-  //       originalReadme: path.join(fixtureDir, "all_fields_readme.input"),
-  //       fixtureReadme: path.join(fixtureDir, "all_fields_readme.output"),
-  //     });
-  //   });
+describe("Test update readme ", () => {
+  test("Empty readme (all fields)", async () => {
+    await testReadme({
+      actionFile: path.join(fixtureDir, "all_fields_workflow.yml"),
+      originalReadme: path.join(fixtureDir, "all_fields_readme.input"),
+      fixtureReadme: path.join(fixtureDir, "all_fields_readme.output"),
+    });
+  });
 
   //   test("Filled readme (all fields)", async () => {
   //     await testReadme({
@@ -104,25 +106,25 @@ describe("Test output", () => {
   //       fixtureReadme: path.join(fixtureDir, "two_actions_readme.output"),
   //     });
   //   });
-  // });
-
-  // describe("Test usage format", () => {
-  //   test("Multi-line descriptions.", async () => {
-  //     await testReadme({
-  //       actionFile: path.join(fixtureDir, "workflow.yml"),
-  //       originalReadme: path.join(fixtureDir, "action_usage_readme.input"),
-  //       fixtureReadme: path.join(fixtureDir, "action_usage_readme.output"),
-  //     });
-  //   });
-
-  //   test("With and without defaults.", async () => {
-  //     await testReadme({
-  //       actionFile: path.join(fixtureDir, "all_fields_action.yml"),
-  //       originalReadme: path.join(fixtureDir, "all_fields_usage_readme.input"),
-  //       fixtureReadme: path.join(fixtureDir, "all_fields_usage_readme.output"),
-  //     });
-  //   });
 });
+
+// describe("Test usage format", () => {
+//   test("Multi-line descriptions.", async () => {
+//     await testReadme({
+//       actionFile: path.join(fixtureDir, "workflow.yml"),
+//       originalReadme: path.join(fixtureDir, "action_usage_readme.input"),
+//       fixtureReadme: path.join(fixtureDir, "action_usage_readme.output"),
+//     });
+//   });
+
+//   test("With and without defaults.", async () => {
+//     await testReadme({
+//       actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+//       originalReadme: path.join(fixtureDir, "all_fields_usage_readme.input"),
+//       fixtureReadme: path.join(fixtureDir, "all_fields_usage_readme.output"),
+//     });
+//   });
+// });
 
 interface ReadmeTestFixtures {
   actionFile: string;
@@ -142,6 +144,7 @@ async function testReadme(
     actionFile: files.actionFile,
     updateReadme: true,
     readmeFile: files.originalReadme,
+    includeNameHeader: true,
     ...overwriteOptions,
   });
 

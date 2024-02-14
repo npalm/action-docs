@@ -1,5 +1,0 @@
-name: 'An Action'
-description: 'Default test'
-runs:
-  using: 'docker'
-  image: 'Dockerfile'

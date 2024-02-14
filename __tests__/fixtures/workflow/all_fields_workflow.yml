@@ -1,0 +1,45 @@
+name: 'A Workflow'
+on:
+  workflow_call:
+    inputs:
+      inputA:
+        description: 'A description A'
+        type: string
+        required: false
+      inputB:
+        description: 'A description B'
+        type: string
+        required: true
+      inputC:
+        description: 'A description C'
+        type: string
+        required: true
+        default: C
+      inputD:
+        description: 'A description D'
+        type: string
+        required: false
+        default: D
+      inputE:
+        description: 'A description E'
+        type: string
+        required: false
+        default: false
+
+    outputs:
+      outputA:
+        description: 'A description A'
+        value: ${{ jobs.job1.outputs.step_output1 }}
+      outputB:
+        description: 'A description B'
+        value: ${{ jobs.job1.outputs.step_output1 }}
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    outputs:
+      step_output1: ${{ steps.step1.outputs.test }}
+    steps:
+      - name: 'Step 1'
+        id: step1
+        run: echo "test=some value" >> "$GITHUB_OUTPUT"
