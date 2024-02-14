@@ -1,0 +1,18 @@
+{
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/vscode-extension/**",
+    "**/.git/**",
+    "**/.pnpm-lock.json",
+    ".vscode",
+    "megalinter",
+    "package-lock.json",
+    "report",
+    ".*"
+  ],
+  "ignoreWords": ["niek", "npalm", "nvmrc", "markdownlintignore"],
+  "language": "en",
+  "noConfigSearch": true,
+  "words": ["linebreak", "megalinter", "oxsecurity", "REAMDE"],
+  "version": "0.2"
+}
