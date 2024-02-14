@@ -9,7 +9,8 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
+  pull-requests: read
+  security-events: write
 
 jobs:
   CodeQL-Build:
