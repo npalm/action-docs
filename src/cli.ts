@@ -48,7 +48,7 @@ args.banner === undefined &&
     chalk.blue(figlet.textSync("ACTION-DOCS", { horizontalLayout: "full" })),
   );
 
-const updateReadme = args["update-readme"] === undefined ? false : true;
+const updateReadme = args["update-readme"] !== undefined;
 
 /* eslint-disable github/no-then */
 generateActionMarkdownDocs({

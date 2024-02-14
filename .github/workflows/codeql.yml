@@ -1,15 +1,20 @@
-name: 'Code scanning'
+name: "Code scanning"
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request_target:
     # The branches below must be a subset of the branches above
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   CodeQL-Build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      pull-requests: read
+      actions: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1

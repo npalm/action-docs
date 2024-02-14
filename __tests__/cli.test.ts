@@ -25,7 +25,7 @@ describe("CLI tests", () => {
 
   test("Console output with TOC 3 and no banner.", async () => {
     const result = await cli(
-      `-a __tests__/fixtures/all_fields_action.yml -t 3 --no-banner`,
+      `-a ${path.join(fixtureDir, "all_fields_action.yml")} -t 3 --no-banner`,
     );
 
     const expected = <string>(
@@ -40,14 +40,14 @@ describe("CLI tests", () => {
   });
 });
 
-interface CliRespone {
+interface CliResponse {
   code: number;
   error: cp.ExecException | null;
   stdout: string;
   stderr: string;
 }
 
-function cli(args: string): Promise<CliRespone> {
+function cli(args: string): Promise<CliResponse> {
   return new Promise((resolve) => {
     cp.exec(
       `node ${path.resolve("lib/cli.js")} ${args}`,

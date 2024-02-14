@@ -17,6 +17,8 @@
     "test": "yarn run test-default && yarn run test-cli",
     "test-default": "jest --testTimeout=10000 --testPathIgnorePatterns=__tests__/cli.test.ts --collect-coverage --coverage",
     "test-cli": "nyc jest --testTimeout=10000 --silent --testMatch=**/cli*test.ts && nyc report --reporter=lcov --reporter=html --report-dir=./coverage_nyc",
+    "test-action": "nyc jest --testTimeout=10000 --silent --testMatch=**/action-docs.test.ts --coverage=false",
+    "dev-action": "node lib/cli.js -a __tests__/fixtures/action.yml",
     "all": "yarn run build && yarn run format && yarn run lint && yarn test"
   },
   "repository": {
