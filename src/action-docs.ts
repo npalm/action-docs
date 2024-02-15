@@ -12,9 +12,11 @@ export interface Options {
   updateReadme?: boolean;
   readmeFile?: string;
   lineBreaks?: LineBreakType;
+  includeNameHeader?: boolean;
 }
 
 interface ActionMarkdown {
+  header: string;
   description: string;
   inputs: string;
   outputs: string;
@@ -41,6 +43,7 @@ interface DefaultOptions {
   updateReadme: boolean;
   readmeFile: string;
   lineBreaks: LineBreakType;
+  includeNameHeader?: boolean;
 }
 
 export const defaultOptions: DefaultOptions = {
@@ -49,6 +52,7 @@ export const defaultOptions: DefaultOptions = {
   updateReadme: false,
   readmeFile: "README.md",
   lineBreaks: "LF",
+  includeNameHeader: false,
 };
 
 type ActionInputsOutputs = Record<string, ActionInput | ActionOutput>;
@@ -150,6 +154,7 @@ export async function generateActionMarkdownDocs(
 
   const docs = generateActionDocs(options);
   if (options.updateReadme) {
+    await updateReadme(options, docs.header, "header", options.actionFile);
     await updateReadme(
       options,
       docs.description,
@@ -162,7 +167,7 @@ export async function generateActionMarkdownDocs(
     await updateReadme(options, docs.usage, "usage", options.actionFile);
   }
 
-  return `${docs.description + docs.inputs + docs.outputs + docs.runs}`;
+  return `${docs.header + docs.description + docs.inputs + docs.outputs + docs.runs}`;
 }
 
 function generateActionDocs(options: DefaultOptions): ActionMarkdown {
@@ -172,7 +177,14 @@ function generateActionDocs(options: DefaultOptions): ActionMarkdown {
   const usageMdCodeBlock = createMdCodeBlock(yml.inputs, options);
   const outputMdTable = createMdTable(yml.outputs, options, "output");
 
+  let header = "";
+  if (options.includeNameHeader) {
+    header = createMarkdownHeader(options, yml.name);
+    options.tocLevel++;
+  }
+
   return {
+    header,
     description: createMarkdownSection(options, yml.description, "Description"),
     inputs: createMarkdownSection(options, inputMdTable, "Inputs"),
     outputs: createMarkdownSection(options, outputMdTable, "Outputs"),
@@ -242,13 +254,19 @@ function createMarkdownSection(
   data: string,
   header: string,
 ): string {
-  return data !== ""
-    ? `${getToc(options.tocLevel)} ${header}${getLineBreak(
-        options.lineBreaks,
-      )}${getLineBreak(options.lineBreaks)}${data}${getLineBreak(
-        options.lineBreaks,
-      )}${getLineBreak(options.lineBreaks)}`
-    : "";
+  const lineBreak = getLineBreak(options.lineBreaks);
+
+  return data === "" || data === undefined
+    ? ""
+    : `${createMarkdownHeader(options, header)}${data}` +
+        `${lineBreak}` +
+        `${lineBreak}`;
+}
+
+function createMarkdownHeader(options: DefaultOptions, header: string): string {
+  const lineBreak = getLineBreak(options.lineBreaks);
+
+  return `${getToc(options.tocLevel)} ${header}${lineBreak}${lineBreak}`;
 }
 
 function getInputOutput(

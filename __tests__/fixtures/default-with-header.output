@@ -1,0 +1,25 @@
+## An Action
+
+### Description
+
+Default test
+
+### Inputs
+
+| name | description | required | default |
+| --- | --- | --- | --- |
+| `inputA` | <ul> <li>Item 1<ul> <li>foo, bar, baz</li></ul></li> <li>Item 2<ul> <li><a href="https://github.com/">github</a></li> <li><strong>blah</strong></li></ul></li> <li>Item 3</li> </ul> | `false` | `test` |
+| `inputB` | <p>This is a multiline description</p> | `false` | `test` |
+
+
+### Outputs
+
+| name | description |
+| --- | --- |
+| `outputA` | <p>A description</p> |
+
+
+### Runs
+
+This action is a `node12` action.
+

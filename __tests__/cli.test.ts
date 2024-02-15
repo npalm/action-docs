@@ -38,6 +38,19 @@ describe("CLI tests", () => {
     expect(result.code).toBe(0);
     expect(result.stdout).toEqual(`${expected}\n`);
   });
+
+  test("Console output including name header and no banner.", async () => {
+    const result = await cli(
+      `-a ${path.join(fixtureDir, "action.yml")} -n true --no-banner`,
+    );
+
+    const expected = <string>(
+      readFileSync(path.join(fixtureDir, "default-with-header.output"), "utf-8")
+    );
+
+    expect(result.code).toBe(0);
+    expect(result.stdout).toEqual(`${expected}\n`);
+  });
 });
 
 interface CliResponse {
