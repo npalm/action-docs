@@ -70,7 +70,7 @@ Options:
 
 ### Update the README
 
-Action-docs can update your README based on the `action.yml`. The following sections can be updated: description, inputs, outputs and runs. Add the following tags to your README and run `action-docs -u`.
+Action-docs can update your README based on the `action.yml`. The following sections can be updated: name header, description, inputs, outputs, usage, and runs. Add the following tags to your README and run `action-docs -u`.
 
 ```md
 <!-- action-docs-header action="action.yml" -->
@@ -82,6 +82,14 @@ Action-docs can update your README based on the `action.yml`. The following sect
 <!-- action-docs-outputs action="action.yml" -->
 
 <!-- action-docs-runs action="action.yml" -->
+
+<!-- action-docs-usage action="action.yml" project="<project>" version="<version>" -->
+```
+
+Or to include all of the above, use:
+
+```md
+<!-- action-docs-all action="action.yml" project="<project>" version="<version>" -->
 ```
 
 For updating other Markdown files add the name of the file to the command `action-docs -u <file>`.

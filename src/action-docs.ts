@@ -209,6 +209,10 @@ export async function generateActionMarkdownDocs(
     outputString += value;
   }
 
+  if (options.updateReadme) {
+    await updateReadme(options, outputString, "all", options.actionFile);
+  }
+
   return outputString;
 }
 
@@ -309,16 +313,16 @@ async function updateReadme(
   actionFile: string,
 ): Promise<void> {
   const lineBreak = getLineBreak(options.lineBreaks);
-  if (section === "usage") {
+  if (section === "usage" || section === "all") {
     const readmeFileText = String(readFileSync(options.readmeFile, "utf-8"));
     const match = readmeFileText.match(
       new RegExp(
-        `<!-- action-docs-usage action="${escapeRegExp(actionFile)}" project="(.*)" version="(.*)" -->.?`,
+        `<!-- action-docs-${section} action="${escapeRegExp(actionFile)}" project="(.*)" version="(.*)" -->.?`,
       ),
     ) as string[];
 
     if (match) {
-      const commentExpression = `<!-- action-docs-usage action="${actionFile}" project="${match[1]}" version="${match[2]}" -->`;
+      const commentExpression = `<!-- action-docs-${section} action="${actionFile}" project="${match[1]}" version="${match[2]}" -->`;
       const regexp = new RegExp(
         `${escapeRegExp(commentExpression)}(?:(?:\r\n|\r|\n.*)+${escapeRegExp(commentExpression)})?`,
       );
