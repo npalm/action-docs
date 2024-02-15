@@ -41,7 +41,7 @@ describe("CLI tests", () => {
 
   test("Console output including name header and no banner.", async () => {
     const result = await cli(
-      `-a ${path.join(fixtureDir, "action.yml")} -nh true --no-banner`,
+      `-a ${path.join(fixtureDir, "action.yml")} -n true --no-banner`,
     );
 
     const expected = <string>(
