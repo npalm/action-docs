@@ -202,8 +202,6 @@ export async function generateActionMarkdownDocs(
   for (const key in docs) {
     const value = docs[key];
 
-    // console.log(`options.updateReadme: ${options.updateReadme}`);
-
     if (options.updateReadme) {
       await updateReadme(options, value, key, options.actionFile);
     }
@@ -311,7 +309,6 @@ async function updateReadme(
   actionFile: string,
 ): Promise<void> {
   const lineBreak = getLineBreak(options.lineBreaks);
-  // console.log(`updating readme section: ${section}`);
   if (section === "usage") {
     const readmeFileText = String(readFileSync(options.readmeFile, "utf-8"));
     const match = readmeFileText.match(

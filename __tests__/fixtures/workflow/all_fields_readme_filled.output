@@ -1,32 +1,24 @@
-<!-- action-docs-description action="__tests__/fixtures/all_fields_action.yml" -->
-## Description
+<!-- action-docs-header action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+## A Workflow
+<!-- action-docs-header action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
 
-Default test
-<!-- action-docs-description action="__tests__/fixtures/all_fields_action.yml" -->
+<!-- action-docs-inputs action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+### Inputs
 
-<!-- action-docs-inputs action="__tests__/fixtures/all_fields_action.yml" -->
-## Inputs
+| name | description | type | required | default |
+| --- | --- | --- | --- | --- |
+| `inputA` | <p>A description A</p> | `string` | `false` | `""` |
+| `inputB` | <p>A description B</p> | `string` | `true` | `""` |
+| `inputC` | <p>A description C</p> | `string` | `true` | `C` |
+| `inputD` | <p>A description D</p> | `string` | `false` | `D` |
+| `inputE` | <p>A description E</p> | `string` | `false` | `false` |
+<!-- action-docs-inputs action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
 
-| name | description | required | default |
-| --- | --- | --- | --- |
-| `inputA` | <p>A description A</p> | `false` | `""` |
-| `inputB` | <p>A description B</p> | `true` | `""` |
-| `inputC` | <p>A description C</p> | `true` | `C` |
-| `inputD` | <p>A description D</p> | `false` | `D` |
-| `inputE` | <p>A description E</p> | `false` | `false` |
-<!-- action-docs-inputs action="__tests__/fixtures/all_fields_action.yml" -->
-
-<!-- action-docs-outputs action="__tests__/fixtures/all_fields_action.yml" -->
-## Outputs
+<!-- action-docs-outputs action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+### Outputs
 
 | name | description |
 | --- | --- |
 | `outputA` | <p>A description A</p> |
 | `outputB` | <p>A description B</p> |
-<!-- action-docs-outputs action="__tests__/fixtures/all_fields_action.yml" -->
-
-<!-- action-docs-runs action="__tests__/fixtures/all_fields_action.yml" -->
-## Runs
-
-This action is a `node12` action.
-<!-- action-docs-runs action="__tests__/fixtures/all_fields_action.yml" -->
+<!-- action-docs-outputs action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->

@@ -1,42 +1,21 @@
-<!-- action-docs-description action="__tests__/fixtures/all_fields_action.yml" -->
+<!-- action-docs-header action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
 ## Description
 
-Default test
+Anything here
 
 
-<!-- action-docs-description action="__tests__/fixtures/all_fields_action.yml" -->
+<!-- action-docs-header action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
 
-<!-- action-docs-inputs action="__tests__/fixtures/all_fields_action.yml" -->
+<!-- action-docs-inputs action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
 ## Inputs
 
-| name | description | required | default |
-| --- | --- | --- | --- |
-| `inputA` | <p>A description A</p> | `false` | `""` |
-| `inputB` | <p>A description B</p> | `true` | `""` |
-| `inputC` | <p>A description C</p> | `true` | `C` |
-| `inputD` | <p>A description D</p> | `false` | `D` |
-| `inputE` | <p>A description E</p> | `false` | `false` |
+Anything here
 
+<!-- action-docs-inputs action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
 
-
-<!-- action-docs-inputs action="__tests__/fixtures/all_fields_action.yml" -->
-
-<!-- action-docs-outputs action="__tests__/fixtures/all_fields_action.yml" -->
+<!-- action-docs-outputs action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
 ## Outputs
 
-| name | description |
-| --- | --- |
-| `outputA` | <p>A description A</p> |
-| `outputB` | <p>A description B</p> |
+Anything here
 
-
-
-<!-- action-docs-outputs action="__tests__/fixtures/all_fields_action.yml" -->
-
-<!-- action-docs-runs action="__tests__/fixtures/all_fields_action.yml" -->
-## Run
-
-This action is a `docker` action.
-
-
-<!-- action-docs-runs action="__tests__/fixtures/all_fields_action.yml" -->
+<!-- action-docs-outputs action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
