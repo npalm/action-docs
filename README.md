@@ -15,13 +15,13 @@ A CLI to generate and update documentation for GitHub actions or workflows, base
 ```md
 <!-- action-docs-header action="action.yml" -->
 
-<!-- action-docs-description action="action.yml" -->
+<!-- action-docs-description action="action.yml" --> # applicable for actions only
 
 <!-- action-docs-inputs action="action.yml" -->
 
 <!-- action-docs-outputs action="action.yml" -->
 
-<!-- action-docs-runs action="action.yml" --> # only applicable for actions, not workflows
+<!-- action-docs-runs action="action.yml" --> # applicable for actions only
 ```
 
 Optionally you can also add the following section to generate a usage guide, replacing \<project\> and \<version\> with the name and version of your project you would like to appear in your usage guide.
