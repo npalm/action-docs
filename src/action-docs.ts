@@ -101,7 +101,7 @@ function createMdCodeBlock(
   options: DefaultOptions,
 ): string {
   let codeBlockArray = ["```yaml"];
-  codeBlockArray.push(`- uses: ***PROJECT***@***VERSION***`);
+  codeBlockArray.push("- uses: ***PROJECT***@***VERSION***");
   codeBlockArray.push("  with:");
 
   const inputs = getInputOutput(data, "input");
@@ -113,7 +113,7 @@ function createMdCodeBlock(
         .filter((l) => !["", "\r", "\n", "\r\n"].includes(l))
         .map((l) => `# ${l}`),
     );
-    inputBlock.push(`#`);
+    inputBlock.push("#");
     inputBlock.push(`# Required: ${input[2].replace(/`/g, "")}`);
     if (input[3]) {
       inputBlock.push(`# Default: ${input[3]}`);

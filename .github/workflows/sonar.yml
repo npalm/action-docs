@@ -1,14 +1,18 @@
-name: 'sonar'
+name: "sonar"
 on:
-  push: 
+  push:
     branches:
       - main
   # See https://docs.github.com/en/actions/reference/events-that-trigger-workflows#pull_request_target for security implications.
   pull_request_target:
-      types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
 
 jobs:
-  build: 
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
@@ -18,8 +22,8 @@ jobs:
       - name: Get info
         id: info
         run: |
-          echo "repo_name=$(echo $GITHUB_REPOSITORY| cut -d / -f 2)" >> $GITHUB_OUTPUT
-          echo "repo_owner=$(echo $GITHUB_REPOSITORY| cut -d / -f 1)" >> $GITHUB_OUTPUT
+          echo "repo_name=$(echo "$GITHUB_REPOSITORY"| cut -d / -f 2)" >> "$GITHUB_OUTPUT"
+          echo "repo_owner=$(echo "$GITHUB_REPOSITORY"| cut -d / -f 1)" >> "$GITHUB_OUTPUT"
 
       - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
         with:

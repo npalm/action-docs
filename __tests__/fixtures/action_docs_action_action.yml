@@ -1,6 +1,6 @@
-name: 'Action update docs action'
-description: 'Action updates the action documentation.'
-author: 'Niek Palm'
+name: "Action update docs action"
+description: "Action updates the action documentation."
+author: "Niek Palm"
 
 branding:
   icon: book-open
@@ -8,11 +8,11 @@ branding:
 
 inputs:
   readme:
-    description: 'Readme file to update.'
+    description: "Readme file to update."
     required: false
     default: README.md
-  actionFile: 
-    description: 'The action definition file.'
+  actionFile:
+    description: "The action definition file."
     required: false
     default: action.yml
   tocLevel:
@@ -25,5 +25,5 @@ inputs:
     default: LF
 
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: "node16"
+  main: "dist/index.js"

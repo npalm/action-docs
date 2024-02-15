@@ -97,3 +97,5 @@ Thumbs.db
 .npmrc
 lib
 .scannerwork/
+
+megalinter-reports/
