@@ -70,16 +70,16 @@ describe("Test update readme ", () => {
     });
   });
 
-  //   test("Readme (all fields) with CRLF line breaks", async () => {
-  //     await testReadme(
-  //       {
-  //         actionFile: path.join(fixtureDir, "all_fields_workflow.yml.crlf"),
-  //         originalReadme: path.join(fixtureDir, "all_fields_readme.input.crlf"),
-  //         fixtureReadme: path.join(fixtureDir, "all_fields_readme.output.crlf"),
-  //       },
-  //       { lineBreaks: "CRLF" },
-  //     );
-  //   });
+  test("Readme (all fields) with CRLF line breaks", async () => {
+    await testReadme(
+      {
+        actionFile: path.join(fixtureDir, "all_fields_workflow.yml"),
+        originalReadme: path.join(fixtureDir, "all_fields_readme.input.crlf"),
+        fixtureReadme: path.join(fixtureDir, "all_fields_readme.output.crlf"),
+      },
+      { lineBreaks: "CRLF" },
+    );
+  });
 
   //   test("Readme (inputs) for action_docs_workflow", async () => {
   //     await testReadme({
