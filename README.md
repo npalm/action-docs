@@ -65,7 +65,7 @@ Options:
   -u, --update-readme         Update readme file.                              [string]
   -l, --line-breaks           Used line breaks in the generated docs.
                                  [string] [choices: "CR", "LF", "CRLF"] [default: "LF"]
-  -h, --include-name-header   Include a header with the action/workflow name.
+  -n, --include-name-header   Include a header with the action/workflow name.
 ```
 
 ### Update the README

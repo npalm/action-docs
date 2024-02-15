@@ -43,7 +43,7 @@ const args = await yargs(process.argv.slice(2))
     "include-name-header": {
       description: "Include a header with the action/workflow name",
       type: "boolean",
-      alias: "h",
+      alias: "n",
     },
   })
   .help().argv;
