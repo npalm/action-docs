@@ -124,10 +124,10 @@ function createMdCodeBlock(
   let indent = "";
 
   if (isAction) {
-    codeBlockArray.push(`- uses: ***PROJECT***@***VERSION***`);
+    codeBlockArray.push("- uses: ***PROJECT***@***VERSION***");
     indent += "  ";
   } else {
-    codeBlockArray.push(`jobs:`);
+    codeBlockArray.push("jobs:");
     indent += "  ";
     codeBlockArray.push(`${indent}job1:`);
     indent += "  ";
@@ -154,7 +154,7 @@ function createMdCodeBlock(
 
     const inputBlock = [`${inputName}:`];
     inputBlock.push(...inputDescCommented);
-    inputBlock.push(`#`);
+    inputBlock.push("#");
     if (type) {
       inputBlock.push(`# Type: ${type}`);
     }

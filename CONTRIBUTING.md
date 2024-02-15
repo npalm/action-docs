@@ -25,7 +25,7 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 
 
 1. [Fork](http://help.github.com/fork-a-repo/) the repo and create your branch from the default branch.
-   
+
    ```bash
    # Clone your fork of the repo into the current directory
    git clone https://github.com/<your-username>/<repo-name>
@@ -48,7 +48,7 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 5. Make sure your code lints.
 6. Commit your changes, see [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/).
 7. Locally merge (or rebase) the upstream development branch into your topic branch.
-   
+
     ```bash
    git pull [--rebase] upstream <dev-branch>
    ```
@@ -59,15 +59,15 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 
 ## Development
 
-### Setup you local environment.
+### Setup you local environment
 
-1. Ensure you have the Node.js version we use, check [.npmrc](.npmrc). You can easily run multiple Node version with [nvm](https://github.com/nvm-sh/nvm).
+1. Ensure you have the Node.js version we use, check [.nvmrc](.nvmrc). You can easily run multiple Node version with [nvm](https://github.com/nvm-sh/nvm).
 
 2. Install dependencies `yarn install`
 
 3. Run `yarn run` to see the scripts available e.g. `yarn run all` to build, lint and test
 
-4. Run the CLI locally 
+4. Run the CLI locally
 
    ```bash
    node lib/cli.js <options>
