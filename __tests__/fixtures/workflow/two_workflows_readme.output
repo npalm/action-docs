@@ -1,5 +1,5 @@
 <!-- action-docs-inputs action="__tests__/fixtures/workflow/action_docs_workflow.yml" -->
-## Inputs
+### Inputs
 
 | name | description | required | default |
 | --- | --- | --- | --- |
@@ -9,11 +9,11 @@
 | `lineBreaks` | <p>Line breaks to be used in updated readme (LF|CR|CRLF).</p> | `false` | `LF` |
 <!-- action-docs-inputs action="__tests__/fixtures/workflow/action_docs_workflow.yml" -->
 
-<!-- action-docs-outputs action="__tests__/fixtures/workflow/all_fields_action.yml" -->
-## Outputs
+<!-- action-docs-outputs action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+### Outputs
 
 | name | description |
 | --- | --- |
 | `outputA` | <p>A description A</p> |
 | `outputB` | <p>A description B</p> |
-<!-- action-docs-outputs action="__tests__/fixtures/workflow/all_fields_action.yml" -->
+<!-- action-docs-outputs action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->

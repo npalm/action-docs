@@ -1,5 +1,5 @@
 <!-- action-docs-inputs action="__tests__/fixtures/workflow/action_docs_workflow.yml" -->
-## Inputs
+### Inputs
 
 | name | description | required | default |
 | --- | --- | --- | --- |

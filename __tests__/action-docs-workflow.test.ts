@@ -81,31 +81,37 @@ describe("Test update readme ", () => {
     );
   });
 
-  //   test("Readme (inputs) for action_docs_workflow", async () => {
-  //     await testReadme({
-  //       actionFile: path.join(fixtureDir, "action_docs_workflow.yml"),
-  //       originalReadme: path.join(fixtureDir, "action_docs_workflow_readme.input"),
-  //       fixtureReadme: path.join(fixtureDir, "action_docs_workflow_readme.output"),
-  //     });
-  //   });
+  test("Readme (inputs) for action_docs_workflow", async () => {
+    await testReadme({
+      actionFile: path.join(fixtureDir, "action_docs_workflow.yml"),
+      originalReadme: path.join(
+        fixtureDir,
+        "action_docs_workflow_readme.input",
+      ),
+      fixtureReadme: path.join(
+        fixtureDir,
+        "action_docs_workflow_readme.output",
+      ),
+    });
+  });
 
-  //   test("Readme for two workflow.yml-s", async () => {
-  //     await testReadme(
-  //       {
-  //         actionFile: path.join(fixtureDir, "action_docs_workflow.yml"),
-  //         originalReadme: path.join(fixtureDir, "two_workflows_readme.input"),
-  //         fixtureReadme: path.join(fixtureDir, "two_workflows_readme.output"),
-  //       },
-  //       {},
-  //       false,
-  //     );
+  test("Readme for two workflow.yml-s", async () => {
+    await testReadme(
+      {
+        actionFile: path.join(fixtureDir, "action_docs_workflow.yml"),
+        originalReadme: path.join(fixtureDir, "two_workflows_readme.input"),
+        fixtureReadme: path.join(fixtureDir, "two_workflows_readme.output"),
+      },
+      {},
+      false,
+    );
 
-  //     await testReadme({
-  //       actionFile: path.join(fixtureDir, "all_fields_workflow.yml"),
-  //       originalReadme: path.join(fixtureDir, "two_workflows_readme.input"),
-  //       fixtureReadme: path.join(fixtureDir, "two_workflows_readme.output"),
-  //     });
-  //   });
+    await testReadme({
+      actionFile: path.join(fixtureDir, "all_fields_workflow.yml"),
+      originalReadme: path.join(fixtureDir, "two_workflows_readme.input"),
+      fixtureReadme: path.join(fixtureDir, "two_workflows_readme.output"),
+    });
+  });
 });
 
 describe("Test usage format", () => {
