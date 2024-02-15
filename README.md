@@ -6,20 +6,22 @@
 
 # Action docs
 
-A CLI to generate and update documentation for GitHub actions, based on the action definition `.yml`. To update your README in a GitHub workflow you can use the [action-docs-action](https://github.com/npalm/action-docs-action).
+A CLI to generate and update documentation for GitHub actions or workflows, based on the definition `.yml`. To update your README in a GitHub workflow you can use the [action-docs-action](https://github.com/npalm/action-docs-action).
 
 ## TL;DR
 
 ### Add the following comment blocks to your README.md
 
 ```md
+<!-- action-docs-header action="action.yml" -->
+
 <!-- action-docs-description action="action.yml" -->
 
 <!-- action-docs-inputs action="action.yml" -->
 
 <!-- action-docs-outputs action="action.yml" -->
 
-<!-- action-docs-runs action="action.yml" -->
+<!-- action-docs-runs action="action.yml" --> # only applicable for actions, not workflows
 ```
 
 Optionally you can also add the following section to generate a usage guide, replacing \<project\> and \<version\> with the name and version of your project you would like to appear in your usage guide.
