@@ -1,14 +1,14 @@
-<!-- action-docs-header action="__tests__/fixtures/workflow/all_fields_action.yml" -->
+<!-- action-docs-header action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
 ## A Workflow
-<!-- action-docs-header action="__tests__/fixtures/workflow/all_fields_action.yml" -->
+<!-- action-docs-header action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
 
-<!-- action-docs-usage action="__tests__/fixtures/workflow/all_fields_action.yml" project="npalm/action-docs" version="v1" -->
+<!-- action-docs-usage action="__tests__/fixtures/workflow/all_fields_workflow.yml" project="npalm/action-docs" version="v1" -->
 ### Usage
 
 ```yaml
 jobs:
   job1:
-    uses: ***PROJECT***@***VERSION***
+    uses: npalm/action-docs@v1
     with:
       inputA:
       # A description A
@@ -45,9 +45,9 @@ jobs:
       # Required: false
       # Default: false
 ```
-<!-- action-docs-usage action="__tests__/fixtures/workflow/all_fields_action.yml" project="npalm/action-docs" version="v1" -->
+<!-- action-docs-usage action="__tests__/fixtures/workflow/all_fields_workflow.yml" project="npalm/action-docs" version="v1" -->
 
-<!-- action-docs-inputs action="__tests__/fixtures/workflow/all_fields_action.yml" -->
+<!-- action-docs-inputs action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
 ### Inputs
 
 | name | description | type | required | default |
@@ -57,14 +57,13 @@ jobs:
 | `inputC` | <p>A description C</p> | `string` | `true` | `C` |
 | `inputD` | <p>A description D</p> | `string` | `false` | `D` |
 | `inputE` | <p>A description E</p> | `string` | `false` | `false` |
-<!-- action-docs-inputs action="__tests__/fixtures/workflow/all_fields_action.yml" -->
+<!-- action-docs-inputs action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
 
-<!-- action-docs-outputs action="__tests__/fixtures/workflow/all_fields_action.yml" -->
+<!-- action-docs-outputs action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
 ### Outputs
 
 | name | description |
 | --- | --- |
 | `outputA` | <p>A description A</p> |
 | `outputB` | <p>A description B</p> |
-<!-- action-docs-outputs action="__tests__/fixtures/workflow/all_fields_action.yml" -->
-
+<!-- action-docs-outputs action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->

@@ -53,60 +53,60 @@ describe("Test output", () => {
   });
 });
 
-// describe("Test update readme ", () => {
-//   test("Empty readme (all fields)", async () => {
-//     await testReadme({
-//       actionFile: path.join(fixtureDir, "all_fields_workflow.yml"),
-//       originalReadme: path.join(fixtureDir, "all_fields_readme.input"),
-//       fixtureReadme: path.join(fixtureDir, "all_fields_readme.output"),
-//     });
-//   });
+describe("Test update readme ", () => {
+  test("Empty readme (all fields)", async () => {
+    await testReadme({
+      actionFile: path.join(fixtureDir, "all_fields_workflow.yml"),
+      originalReadme: path.join(fixtureDir, "all_fields_readme.input"),
+      fixtureReadme: path.join(fixtureDir, "all_fields_readme.output"),
+    });
+  });
 
-//   test("Filled readme (all fields)", async () => {
-//     await testReadme({
-//       actionFile: path.join(fixtureDir, "all_fields_action.yml"),
-//       originalReadme: path.join(fixtureDir, "all_fields_readme_filled.input"),
-//       fixtureReadme: path.join(fixtureDir, "all_fields_readme_filled.output"),
-//     });
-//   });
+  //   test("Filled readme (all fields)", async () => {
+  //     await testReadme({
+  //       actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+  //       originalReadme: path.join(fixtureDir, "all_fields_readme_filled.input"),
+  //       fixtureReadme: path.join(fixtureDir, "all_fields_readme_filled.output"),
+  //     });
+  //   });
 
-//   test("Readme (all fields) with CRLF line breaks", async () => {
-//     await testReadme(
-//       {
-//         actionFile: path.join(fixtureDir, "all_fields_action.yml.crlf"),
-//         originalReadme: path.join(fixtureDir, "all_fields_readme.input.crlf"),
-//         fixtureReadme: path.join(fixtureDir, "all_fields_readme.output.crlf"),
-//       },
-//       { lineBreaks: "CRLF" },
-//     );
-//   });
+  //   test("Readme (all fields) with CRLF line breaks", async () => {
+  //     await testReadme(
+  //       {
+  //         actionFile: path.join(fixtureDir, "all_fields_action.yml.crlf"),
+  //         originalReadme: path.join(fixtureDir, "all_fields_readme.input.crlf"),
+  //         fixtureReadme: path.join(fixtureDir, "all_fields_readme.output.crlf"),
+  //       },
+  //       { lineBreaks: "CRLF" },
+  //     );
+  //   });
 
-//   test("Readme (inputs) for action-docs-action", async () => {
-//     await testReadme({
-//       actionFile: path.join(fixtureDir, "action_docs_action_action.yml"),
-//       originalReadme: path.join(fixtureDir, "action_docs_action_readme.input"),
-//       fixtureReadme: path.join(fixtureDir, "action_docs_action_readme.output"),
-//     });
-//   });
+  //   test("Readme (inputs) for action-docs-action", async () => {
+  //     await testReadme({
+  //       actionFile: path.join(fixtureDir, "action_docs_action_action.yml"),
+  //       originalReadme: path.join(fixtureDir, "action_docs_action_readme.input"),
+  //       fixtureReadme: path.join(fixtureDir, "action_docs_action_readme.output"),
+  //     });
+  //   });
 
-//   test("Readme for two workflow.yml-s", async () => {
-//     await testReadme(
-//       {
-//         actionFile: path.join(fixtureDir, "action_docs_action_action.yml"),
-//         originalReadme: path.join(fixtureDir, "two_actions_readme.input"),
-//         fixtureReadme: path.join(fixtureDir, "two_actions_readme.output"),
-//       },
-//       {},
-//       false,
-//     );
+  //   test("Readme for two workflow.yml-s", async () => {
+  //     await testReadme(
+  //       {
+  //         actionFile: path.join(fixtureDir, "action_docs_action_action.yml"),
+  //         originalReadme: path.join(fixtureDir, "two_actions_readme.input"),
+  //         fixtureReadme: path.join(fixtureDir, "two_actions_readme.output"),
+  //       },
+  //       {},
+  //       false,
+  //     );
 
-//     await testReadme({
-//       actionFile: path.join(fixtureDir, "all_fields_action.yml"),
-//       originalReadme: path.join(fixtureDir, "two_actions_readme.input"),
-//       fixtureReadme: path.join(fixtureDir, "two_actions_readme.output"),
-//     });
-//   });
-// });
+  //     await testReadme({
+  //       actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+  //       originalReadme: path.join(fixtureDir, "two_actions_readme.input"),
+  //       fixtureReadme: path.join(fixtureDir, "two_actions_readme.output"),
+  //     });
+  //   });
+});
 
 describe("Test usage format", () => {
   test("Multi-line descriptions.", async () => {
