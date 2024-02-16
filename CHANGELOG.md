@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/npalm/action-docs/compare/v2.0.1...v2.1.0) (2024-02-15)
+
+
+### Features
+
+* support action name attribute ([#526](https://github.com/npalm/action-docs/issues/526)) ([0e99848](https://github.com/npalm/action-docs/commit/0e998480955270e4500b38e2f2aab426c955d258))
+
 ## [2.0.1](https://github.com/npalm/action-docs/compare/v2.0.0...v2.0.1) (2024-02-14)
 
 
