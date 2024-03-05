@@ -166,6 +166,21 @@ describe("Test usage format", () => {
   });
 });
 
+describe("Backwards compatibility", () => {
+  test("Deprecated action option still works correctly", async () => {
+    await testReadme(
+      {
+        actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+        originalReadme: path.join(fixtureDir, "action_deprecated.input"),
+        fixtureReadme: path.join(fixtureDir, "action_deprecated.output"),
+      },
+      {
+        includeNameHeader: true,
+      },
+    );
+  });
+});
+
 interface ReadmeTestFixtures {
   actionFile: string;
   originalReadme: string;
