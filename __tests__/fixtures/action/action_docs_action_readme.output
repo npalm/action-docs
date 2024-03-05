@@ -8,3 +8,5 @@
 | `tocLevel` | <p>TOC level used for the headers.</p> | `false` | `2` |
 | `lineBreaks` | <p>Line breaks to be used in updated readme (LF|CR|CRLF).</p> | `false` | `LF` |
 <!-- action-docs-inputs action="__tests__/fixtures/action/action_docs_action_action.yml" -->
+
+<!-- action-docs-outputs action="__tests__/fixtures/action/all_fields_action.yml" -->

@@ -5,7 +5,6 @@
 <!-- action-docs-description action="__tests__/fixtures/all_fields_action.yml" -->
 ## Description
 
-Default test
 <!-- action-docs-description action="__tests__/fixtures/all_fields_action.yml" -->
 
 <!-- action-docs-usage action="__tests__/fixtures/all_fields_action.yml" project="npalm/action-docs" version="v1" -->
@@ -51,26 +50,14 @@ Default test
 <!-- action-docs-inputs action="__tests__/fixtures/all_fields_action.yml" -->
 ## Inputs
 
-| name | description | required | default |
-| --- | --- | --- | --- |
-| `inputA` | <p>A description A</p> | `false` | `""` |
-| `inputB` | <p>A description B</p> | `true` | `""` |
-| `inputC` | <p>A description C</p> | `true` | `C` |
-| `inputD` | <p>A description D</p> | `false` | `D` |
-| `inputE` | <p>A description E</p> | `false` | `false` |
 <!-- action-docs-inputs action="__tests__/fixtures/all_fields_action.yml" -->
 
 <!-- action-docs-outputs action="__tests__/fixtures/all_fields_action.yml" -->
 ## Outputs
 
-| name | description |
-| --- | --- |
-| `outputA` | <p>A description A</p> |
-| `outputB` | <p>A description B</p> |
 <!-- action-docs-outputs action="__tests__/fixtures/all_fields_action.yml" -->
 
 <!-- action-docs-runs action="__tests__/fixtures/all_fields_action.yml" -->
 ## Runs
 
-This action is a `node12` action.
 <!-- action-docs-runs action="__tests__/fixtures/all_fields_action.yml" -->
