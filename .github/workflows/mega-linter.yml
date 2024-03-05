@@ -4,10 +4,11 @@ on:
   # Comment this line to trigger action only on pull-requests
   # (not recommended if you don't pay for GH Actions)
   push:
-
   pull_request:
     branches:
       - main
+    branches-ignore:
+      - release-please--branches--main--components--action-docs
 
 env:
   APPLY_FIXES: all
