@@ -7,8 +7,6 @@ on:
   pull_request:
     branches:
       - main
-    branches-ignore:
-      - release-please--branches--main--components--action-docs
 
 env:
   APPLY_FIXES: all
