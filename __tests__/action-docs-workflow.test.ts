@@ -146,18 +146,21 @@ async function testReadme(
   const expected = <string>readFileSync(files.fixtureReadme, "utf-8");
   const original = <string>readFileSync(files.originalReadme, "utf-8");
 
-  await generateActionMarkdownDocs({
-    actionFile: files.actionFile,
-    updateReadme: true,
-    readmeFile: files.originalReadme,
-    includeNameHeader: true,
-    ...overwriteOptions,
-  });
+  try {
+    await generateActionMarkdownDocs({
+      actionFile: files.actionFile,
+      updateReadme: true,
+      readmeFile: files.originalReadme,
+      includeNameHeader: true,
+      ...overwriteOptions,
+    });
 
-  const updated = <string>readFileSync(files.originalReadme, "utf-8");
+    const updated = <string>readFileSync(files.originalReadme, "utf-8");
 
-  if (doExpect) {
+    if (doExpect) {
+      expect(updated).toEqual(expected);
+    }
+  } finally {
     writeFileSync(files.originalReadme, original);
-    expect(updated).toEqual(expected);
   }
 }

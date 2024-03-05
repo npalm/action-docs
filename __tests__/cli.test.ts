@@ -11,6 +11,7 @@ describe("CLI tests", () => {
       path.join(fixtureDir, "all_fields_action.yml"),
       path.join(fixtureDir, "all_fields_readme.input"),
       path.join(fixtureDir, "all_fields_readme.output"),
+      "-n true",
     );
   });
 

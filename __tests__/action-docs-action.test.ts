@@ -61,11 +61,30 @@ describe("Test output", () => {
 
 describe("Test update readme ", () => {
   test("Empty readme (all fields)", async () => {
-    await testReadme({
-      actionFile: path.join(fixtureDir, "all_fields_action.yml"),
-      originalReadme: path.join(fixtureDir, "all_fields_readme.input"),
-      fixtureReadme: path.join(fixtureDir, "all_fields_readme.output"),
-    });
+    await testReadme(
+      {
+        actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+        originalReadme: path.join(fixtureDir, "all_fields_readme.input"),
+        fixtureReadme: path.join(fixtureDir, "all_fields_readme.output"),
+      },
+      {
+        includeNameHeader: true,
+      },
+    );
+  });
+  test("Empty readme (all fields) with header", async () => {
+    await testReadme(
+      {
+        actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+        originalReadme: path.join(fixtureDir, "all_fields_readme.input"),
+        fixtureReadme: path.join(fixtureDir, "all_fields_readme_header.output"),
+      },
+      {
+        includeNameHeader: true,
+      },
+      false,
+      true,
+    );
   });
 
   test("Filled readme (all fields)", async () => {
@@ -83,7 +102,9 @@ describe("Test update readme ", () => {
         originalReadme: path.join(fixtureDir, "all_fields_readme.input"),
         fixtureReadme: path.join(fixtureDir, "all_fields_readme_header.output"),
       },
-      {},
+      {
+        includeNameHeader: true,
+      },
       false,
       true,
     );
@@ -160,18 +181,21 @@ async function testReadme(
   const expected = <string>readFileSync(files.fixtureReadme, "utf-8");
   const original = <string>readFileSync(files.originalReadme, "utf-8");
 
-  await generateActionMarkdownDocs({
-    actionFile: files.actionFile,
-    updateReadme: true,
-    includeNameHeader: includeNameHeader,
-    readmeFile: files.originalReadme,
-    ...overwriteOptions,
-  });
+  try {
+    await generateActionMarkdownDocs({
+      actionFile: files.actionFile,
+      updateReadme: true,
+      includeNameHeader: includeNameHeader,
+      readmeFile: files.originalReadme,
+      ...overwriteOptions,
+    });
 
-  const updated = <string>readFileSync(files.originalReadme, "utf-8");
+    const updated = <string>readFileSync(files.originalReadme, "utf-8");
 
-  if (doExpect) {
+    if (doExpect) {
+      expect(updated).toEqual(expected);
+    }
+  } finally {
     writeFileSync(files.originalReadme, original);
-    expect(updated).toEqual(expected);
   }
 }

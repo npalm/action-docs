@@ -1,11 +1,15 @@
+<!-- action-docs-header action="__tests__/fixtures/action/all_fields_action.yml" -->
+## An Action
+<!-- action-docs-header action="__tests__/fixtures/action/all_fields_action.yml" -->
+
 <!-- action-docs-description action="__tests__/fixtures/action/all_fields_action.yml" -->
-## Description
+### Description
 
 Default test
 <!-- action-docs-description action="__tests__/fixtures/action/all_fields_action.yml" -->
 
 <!-- action-docs-usage action="__tests__/fixtures/action/all_fields_action.yml" project="npalm/action-docs" version="v1" -->
-## Usage
+### Usage
 
 ```yaml
 - uses: npalm/action-docs@v1
@@ -43,7 +47,7 @@ Default test
 <!-- action-docs-usage action="__tests__/fixtures/action/all_fields_action.yml" project="npalm/action-docs" version="v1" -->
 
 <!-- action-docs-inputs action="__tests__/fixtures/action/all_fields_action.yml" -->
-## Inputs
+### Inputs
 
 | name | description | required | default |
 | --- | --- | --- | --- |
@@ -55,7 +59,7 @@ Default test
 <!-- action-docs-inputs action="__tests__/fixtures/action/all_fields_action.yml" -->
 
 <!-- action-docs-outputs action="__tests__/fixtures/action/all_fields_action.yml" -->
-## Outputs
+### Outputs
 
 | name | description |
 | --- | --- |
@@ -64,7 +68,7 @@ Default test
 <!-- action-docs-outputs action="__tests__/fixtures/action/all_fields_action.yml" -->
 
 <!-- action-docs-runs action="__tests__/fixtures/action/all_fields_action.yml" -->
-## Runs
+### Runs
 
 This action is a `node12` action.
 <!-- action-docs-runs action="__tests__/fixtures/action/all_fields_action.yml" -->
