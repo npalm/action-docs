@@ -11,11 +11,13 @@ updates:
     commit-message:
       prefix-development: "chore(deps)"
       prefix: "fix(deps)"
-      include: "scope"
     groups:
       octokit:
         patterns:
           - "@octokit/*"
+          - "eslint*"
+          - "*jest*"
+          - "*figlet*"
 
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
