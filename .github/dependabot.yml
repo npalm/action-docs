@@ -16,8 +16,8 @@ updates:
         patterns:
           - "@octokit/*"
           - "eslint*"
-          " "*jest*"
-          " "*figlet*"
+          - "*jest*"
+          - "*figlet*"
 
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
