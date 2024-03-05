@@ -15,8 +15,14 @@ updates:
       octokit:
         patterns:
           - "@octokit/*"
+      eslint:
+        patterns:
           - "eslint*"
+      jest:
+        patterns:
           - "*jest*"
+      figlet:
+        patterns:
           - "*figlet*"
 
   # Maintain dependencies for GitHub Actions
