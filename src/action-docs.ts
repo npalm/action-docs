@@ -309,24 +309,49 @@ async function updateReadme(
   actionFile: string,
 ): Promise<void> {
   const lineBreak = getLineBreak(options.lineBreaks);
-  if (section === "usage") {
-    const readmeFileText = String(readFileSync(options.readmeFile, "utf-8"));
-    const match = readmeFileText.match(
-      new RegExp(
-        `<!-- action-docs-usage source="${escapeRegExp(actionFile)}" project="(.*)" version="(.*)" -->.?`,
-      ),
-    ) as string[];
 
-    if (match) {
-      const commentExpression = `<!-- action-docs-usage source="${actionFile}" project="${match[1]}" version="${match[2]}" -->`;
+  const readmeFileText = String(readFileSync(options.readmeFile, "utf-8"));
+  const sourceOrActionMatches = readmeFileText.match(
+    new RegExp(`<!-- action-docs-${section} (source|action)`),
+  ) as string[];
+
+  if (sourceOrActionMatches) {
+    const sourceOrAction = sourceOrActionMatches[1];
+
+    if (section === "usage") {
+      const match = readmeFileText.match(
+        new RegExp(
+          `<!-- action-docs-usage ${sourceOrAction}="${escapeRegExp(actionFile)}" project="(.*)" version="(.*)" -->.?`,
+        ),
+      ) as string[];
+
+      if (match) {
+        const commentExpression = `<!-- action-docs-usage ${sourceOrAction}="${actionFile}" project="${match[1]}" version="${match[2]}" -->`;
+        const regexp = new RegExp(
+          `${escapeRegExp(commentExpression)}(?:(?:\r\n|\r|\n.*)+${escapeRegExp(commentExpression)})?`,
+        );
+
+        const processedText = text
+          .trim()
+          .replace("***PROJECT***", match[1])
+          .replace("***VERSION***", match[2]);
+
+        await replaceInFile.replaceInFile({
+          files: options.readmeFile,
+          from: regexp,
+          to:
+            commentExpression +
+            lineBreak +
+            processedText +
+            lineBreak +
+            commentExpression,
+        });
+      }
+    } else {
+      const commentExpression = `<!-- action-docs-${section} ${sourceOrAction}="${actionFile}" -->`;
       const regexp = new RegExp(
         `${escapeRegExp(commentExpression)}(?:(?:\r\n|\r|\n.*)+${escapeRegExp(commentExpression)})?`,
       );
-
-      const processedText = text
-        .trim()
-        .replace("***PROJECT***", match[1])
-        .replace("***VERSION***", match[2]);
 
       await replaceInFile.replaceInFile({
         files: options.readmeFile,
@@ -334,27 +359,11 @@ async function updateReadme(
         to:
           commentExpression +
           lineBreak +
-          processedText +
+          text.trim() +
           lineBreak +
           commentExpression,
       });
     }
-  } else {
-    const commentExpression = `<!-- action-docs-${section} source="${actionFile}" -->`;
-    const regexp = new RegExp(
-      `${escapeRegExp(commentExpression)}(?:(?:\r\n|\r|\n.*)+${escapeRegExp(commentExpression)})?`,
-    );
-
-    await replaceInFile.replaceInFile({
-      files: options.readmeFile,
-      from: regexp,
-      to:
-        commentExpression +
-        lineBreak +
-        text.trim() +
-        lineBreak +
-        commentExpression,
-    });
   }
 }
 
