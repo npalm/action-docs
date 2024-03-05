@@ -1,4 +1,4 @@
-<!-- action-docs-inputs action="__tests__/fixtures/workflow/action_docs_workflow.yml" -->
+<!-- action-docs-inputs source="__tests__/fixtures/workflow/action_docs_workflow.yml" -->
 ### Inputs
 
 | name | description | required | default |
@@ -7,13 +7,13 @@
 | `actionFile` | <p>The action definition file.</p> | `false` | `action.yml` |
 | `tocLevel` | <p>TOC level used for the headers.</p> | `false` | `2` |
 | `lineBreaks` | <p>Line breaks to be used in updated readme (LF|CR|CRLF).</p> | `false` | `LF` |
-<!-- action-docs-inputs action="__tests__/fixtures/workflow/action_docs_workflow.yml" -->
+<!-- action-docs-inputs source="__tests__/fixtures/workflow/action_docs_workflow.yml" -->
 
-<!-- action-docs-outputs action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+<!-- action-docs-outputs source="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
 ### Outputs
 
 | name | description |
 | --- | --- |
 | `outputA` | <p>A description A</p> |
 | `outputB` | <p>A description B</p> |
-<!-- action-docs-outputs action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+<!-- action-docs-outputs source="__tests__/fixtures/workflow/all_fields_workflow.yml" -->

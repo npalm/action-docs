@@ -1,7 +1,7 @@
-<!-- action-docs-header action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+<!-- action-docs-header source="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
 
-<!-- action-docs-usage action="__tests__/fixtures/workflow/all_fields_workflow.yml" project="npalm/action-docs" version="v1" -->
+<!-- action-docs-usage source="__tests__/fixtures/workflow/all_fields_workflow.yml" project="npalm/action-docs" version="v1" -->
 
-<!-- action-docs-inputs action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+<!-- action-docs-inputs source="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
 
-<!-- action-docs-outputs action="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+<!-- action-docs-outputs source="__tests__/fixtures/workflow/all_fields_workflow.yml" -->

@@ -1,4 +1,4 @@
-<!-- action-docs-usage action="__tests__/fixtures/workflow/all_fields_workflow.yml" project="npalm/action-docs" version="v1" -->
+<!-- action-docs-usage source="__tests__/fixtures/workflow/all_fields_workflow.yml" project="npalm/action-docs" version="v1" -->
 ### Usage
 
 ```yaml
@@ -41,4 +41,4 @@ jobs:
       # Required: false
       # Default: false
 ```
-<!-- action-docs-usage action="__tests__/fixtures/workflow/all_fields_workflow.yml" project="npalm/action-docs" version="v1" -->
+<!-- action-docs-usage source="__tests__/fixtures/workflow/all_fields_workflow.yml" project="npalm/action-docs" version="v1" -->

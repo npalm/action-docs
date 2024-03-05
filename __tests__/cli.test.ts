@@ -26,7 +26,7 @@ describe("CLI tests", () => {
 
   test("Console output with TOC 3 and no banner.", async () => {
     const result = await cli(
-      `-a ${path.join(fixtureDir, "all_fields_action.yml")} -t 3 --no-banner`,
+      `-s ${path.join(fixtureDir, "all_fields_action.yml")} -t 3 --no-banner`,
     );
 
     const expected = <string>(
@@ -42,7 +42,7 @@ describe("CLI tests", () => {
 
   test("Console output including name header and no banner.", async () => {
     const result = await cli(
-      `-a ${path.join(fixtureDir, "action.yml")} -n true --no-banner`,
+      `-s ${path.join(fixtureDir, "action.yml")} -n true --no-banner`,
     );
 
     const expected = <string>(
@@ -88,7 +88,7 @@ async function testReadme(
   const original = <string>readFileSync(originalReadme, "utf-8");
 
   const result = await cli(
-    `-u ${originalReadme} -a ${actionFile} ${extraArgs}`,
+    `-u ${originalReadme} -s ${actionFile} ${extraArgs}`,
   );
   expect(result.code).toBe(exitCode);
 
