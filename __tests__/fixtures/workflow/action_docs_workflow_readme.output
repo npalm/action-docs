@@ -1,10 +1,10 @@
 <!-- action-docs-inputs action="__tests__/fixtures/workflow/action_docs_workflow.yml" -->
 ### Inputs
 
-| name | description | required | default |
-| --- | --- | --- | --- |
-| `readme` | <p>Readme file to update.</p> | `false` | `README.md` |
-| `actionFile` | <p>The action definition file.</p> | `false` | `action.yml` |
-| `tocLevel` | <p>TOC level used for the headers.</p> | `false` | `2` |
-| `lineBreaks` | <p>Line breaks to be used in updated readme (LF|CR|CRLF).</p> | `false` | `LF` |
+| name | description | type | required | default |
+| --- | --- | --- | --- | --- |
+| `readme` | <p>Readme file to update.</p> | `string` | `false` | `README.md` |
+| `actionFile` | <p>The action definition file.</p> | `string` | `false` | `action.yml` |
+| `tocLevel` | <p>TOC level used for the headers.</p> | `string` | `false` | `2` |
+| `lineBreaks` | <p>Line breaks to be used in updated readme (LF|CR|CRLF).</p> | `string` | `false` | `LF` |
 <!-- action-docs-inputs action="__tests__/fixtures/workflow/action_docs_workflow.yml" -->
