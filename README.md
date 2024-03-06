@@ -126,7 +126,7 @@ action-docs --source ./some-dir/action.yml --toc-level 3 --update-readme docs.md
 import { generateActionMarkdownDocs } from 'action-docs'
 
 await generateActionMarkdownDocs({
-  actionFile: 'action.yml'
+  sourceFile: 'action.yml'
   tocLevel: 2
   updateReadme: true
   readmeFile: 'README.md'

@@ -8,7 +8,7 @@ on:
         type: string
         required: false
         default: README.md
-      actionFile:
+      sourceFile:
         description: "The action definition file."
         type: string
         required: false

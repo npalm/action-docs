@@ -18,7 +18,7 @@ afterAll(() => {
 describe("Test output", () => {
   test("With defaults.", async () => {
     const markdown = await generateActionMarkdownDocs({
-      actionFile: path.join(fixtureDir, "workflow.yml"),
+      sourceFile: path.join(fixtureDir, "workflow.yml"),
       includeNameHeader: true,
     });
     const expected = <string>(
@@ -30,7 +30,7 @@ describe("Test output", () => {
 
   test("A minimal workflow definition.", async () => {
     const markdown = await generateActionMarkdownDocs({
-      actionFile: path.join(fixtureDir, "minimal_workflow.yml"),
+      sourceFile: path.join(fixtureDir, "minimal_workflow.yml"),
       includeNameHeader: true,
     });
     const expected = <string>(
@@ -42,7 +42,7 @@ describe("Test output", () => {
 
   test("All fields workflow definition.", async () => {
     const markdown = await generateActionMarkdownDocs({
-      actionFile: path.join(fixtureDir, "all_fields_workflow.yml"),
+      sourceFile: path.join(fixtureDir, "all_fields_workflow.yml"),
       includeNameHeader: true,
     });
     const expected = <string>(
@@ -56,7 +56,7 @@ describe("Test output", () => {
 describe("Test update readme ", () => {
   test("Empty readme (all fields)", async () => {
     await testReadme({
-      actionFile: path.join(fixtureDir, "all_fields_workflow.yml"),
+      sourceFile: path.join(fixtureDir, "all_fields_workflow.yml"),
       originalReadme: path.join(fixtureDir, "all_fields_readme.input"),
       fixtureReadme: path.join(fixtureDir, "all_fields_readme.output"),
     });
@@ -64,7 +64,7 @@ describe("Test update readme ", () => {
 
   test("Filled readme (all fields)", async () => {
     await testReadme({
-      actionFile: path.join(fixtureDir, "all_fields_workflow.yml"),
+      sourceFile: path.join(fixtureDir, "all_fields_workflow.yml"),
       originalReadme: path.join(fixtureDir, "all_fields_readme_filled.input"),
       fixtureReadme: path.join(fixtureDir, "all_fields_readme_filled.output"),
     });
@@ -73,7 +73,7 @@ describe("Test update readme ", () => {
   test("Readme (all fields) with CRLF line breaks", async () => {
     await testReadme(
       {
-        actionFile: path.join(fixtureDir, "all_fields_workflow.yml"),
+        sourceFile: path.join(fixtureDir, "all_fields_workflow.yml"),
         originalReadme: path.join(fixtureDir, "all_fields_readme.input.crlf"),
         fixtureReadme: path.join(fixtureDir, "all_fields_readme.output.crlf"),
       },
@@ -83,7 +83,7 @@ describe("Test update readme ", () => {
 
   test("Readme (inputs) for action_docs_workflow", async () => {
     await testReadme({
-      actionFile: path.join(fixtureDir, "action_docs_workflow.yml"),
+      sourceFile: path.join(fixtureDir, "action_docs_workflow.yml"),
       originalReadme: path.join(
         fixtureDir,
         "action_docs_workflow_readme.input",
@@ -98,7 +98,7 @@ describe("Test update readme ", () => {
   test("Readme for two workflow.yml-s", async () => {
     await testReadme(
       {
-        actionFile: path.join(fixtureDir, "action_docs_workflow.yml"),
+        sourceFile: path.join(fixtureDir, "action_docs_workflow.yml"),
         originalReadme: path.join(fixtureDir, "two_workflows_readme.input"),
         fixtureReadme: path.join(fixtureDir, "two_workflows_readme.output"),
       },
@@ -107,7 +107,7 @@ describe("Test update readme ", () => {
     );
 
     await testReadme({
-      actionFile: path.join(fixtureDir, "all_fields_workflow.yml"),
+      sourceFile: path.join(fixtureDir, "all_fields_workflow.yml"),
       originalReadme: path.join(fixtureDir, "two_workflows_readme.input"),
       fixtureReadme: path.join(fixtureDir, "two_workflows_readme.output"),
     });
@@ -117,7 +117,7 @@ describe("Test update readme ", () => {
 describe("Test usage format", () => {
   test("Multi-line descriptions.", async () => {
     await testReadme({
-      actionFile: path.join(fixtureDir, "workflow.yml"),
+      sourceFile: path.join(fixtureDir, "workflow.yml"),
       originalReadme: path.join(fixtureDir, "workflow_usage_readme.input"),
       fixtureReadme: path.join(fixtureDir, "workflow_usage_readme.output"),
     });
@@ -125,7 +125,7 @@ describe("Test usage format", () => {
 
   test("With and without defaults.", async () => {
     await testReadme({
-      actionFile: path.join(fixtureDir, "all_fields_workflow.yml"),
+      sourceFile: path.join(fixtureDir, "all_fields_workflow.yml"),
       originalReadme: path.join(fixtureDir, "all_fields_usage_readme.input"),
       fixtureReadme: path.join(fixtureDir, "all_fields_usage_readme.output"),
     });
@@ -133,7 +133,7 @@ describe("Test usage format", () => {
 });
 
 interface ReadmeTestFixtures {
-  actionFile: string;
+  sourceFile: string;
   originalReadme: string;
   fixtureReadme: string;
 }
@@ -148,7 +148,7 @@ async function testReadme(
 
   try {
     await generateActionMarkdownDocs({
-      actionFile: files.actionFile,
+      sourceFile: files.sourceFile,
       updateReadme: true,
       readmeFile: files.originalReadme,
       includeNameHeader: true,

@@ -78,7 +78,7 @@ function cli(args: string): Promise<CliResponse> {
 }
 
 async function testReadme(
-  actionFile: string,
+  sourceFile: string,
   originalReadme: string,
   fixtureReadme: string,
   extraArgs = "",
@@ -88,7 +88,7 @@ async function testReadme(
   const original = <string>readFileSync(originalReadme, "utf-8");
 
   const result = await cli(
-    `-u ${originalReadme} -s ${actionFile} ${extraArgs}`,
+    `-u ${originalReadme} -s ${sourceFile} ${extraArgs}`,
   );
   expect(result.code).toBe(exitCode);
 

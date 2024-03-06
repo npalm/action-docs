@@ -18,7 +18,7 @@ const args = await yargs(process.argv.slice(2))
     action: {
       description: "GitHub action file",
       type: "string",
-      default: defaultOptions.actionFile,
+      default: defaultOptions.sourceFile,
       demandOption: false,
       alias: "a",
       deprecated: 'use "source" instead',
@@ -26,7 +26,7 @@ const args = await yargs(process.argv.slice(2))
     source: {
       description: "GitHub source file",
       type: "string",
-      default: defaultOptions.actionFile,
+      default: defaultOptions.sourceFile,
       demandOption: false,
       alias: "s",
     },
@@ -64,7 +64,7 @@ args.banner === undefined &&
 const updateReadme = args["update-readme"] !== undefined;
 
 const options = {
-  actionFile: args.source ?? args.action,
+  sourceFile: args.source ?? args.action,
   tocLevel: args["toc-level"],
   updateReadme,
   readmeFile:

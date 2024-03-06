@@ -8,14 +8,14 @@ const converter = new Converter();
 
 export interface Options {
   tocLevel?: number;
-  actionFile?: string;
+  sourceFile?: string;
   updateReadme?: boolean;
   readmeFile?: string;
   lineBreaks?: LineBreakType;
   includeNameHeader?: boolean;
 }
 
-interface ActionYml {
+interface YmlStructure {
   name: string;
   description: string;
   on: Record<string, WorkflowTriggerEvent>;
@@ -39,7 +39,7 @@ interface WorkflowTriggerEvent {
 
 interface DefaultOptions {
   tocLevel: number;
-  actionFile: string;
+  sourceFile: string;
   updateReadme: boolean;
   readmeFile: string;
   lineBreaks: LineBreakType;
@@ -48,7 +48,7 @@ interface DefaultOptions {
 
 export const defaultOptions: DefaultOptions = {
   tocLevel: 2,
-  actionFile: "action.yml",
+  sourceFile: "action.yml",
   updateReadme: false,
   readmeFile: "README.md",
   lineBreaks: "LF",
@@ -203,7 +203,7 @@ export async function generateActionMarkdownDocs(
     const value = docs[key];
 
     if (options.updateReadme) {
-      await updateReadme(options, value, key, options.actionFile);
+      await updateReadme(options, value, key, options.sourceFile);
     }
 
     outputString += value;
@@ -213,7 +213,7 @@ export async function generateActionMarkdownDocs(
 }
 
 function generateDocs(options: DefaultOptions): Record<string, string> {
-  const yml = parse(readFileSync(options.actionFile, "utf-8")) as ActionYml;
+  const yml = parse(readFileSync(options.sourceFile, "utf-8")) as YmlStructure;
 
   if (yml.runs === undefined) {
     return generateWorkflowDocs(yml, options);
@@ -223,7 +223,7 @@ function generateDocs(options: DefaultOptions): Record<string, string> {
 }
 
 function generateActionDocs(
-  yml: ActionYml,
+  yml: YmlStructure,
   options: DefaultOptions,
 ): Record<string, string> {
   return {
@@ -242,7 +242,7 @@ function generateActionDocs(
 }
 
 function generateWorkflowDocs(
-  yml: ActionYml,
+  yml: YmlStructure,
   options: DefaultOptions,
 ): Record<string, string> {
   return {
@@ -258,7 +258,7 @@ function generateWorkflowDocs(
   };
 }
 
-function generateHeader(yml: ActionYml, options: DefaultOptions): string {
+function generateHeader(yml: YmlStructure, options: DefaultOptions): string {
   let header = "";
   if (options.includeNameHeader) {
     header = createMarkdownHeader(options, yml.name);
@@ -306,7 +306,7 @@ async function updateReadme(
   options: DefaultOptions,
   text: string,
   section: string,
-  actionFile: string,
+  sourceFile: string,
 ): Promise<void> {
   const lineBreak = getLineBreak(options.lineBreaks);
 
@@ -321,12 +321,12 @@ async function updateReadme(
     if (section === "usage") {
       const match = readmeFileText.match(
         new RegExp(
-          `<!-- action-docs-usage ${sourceOrAction}="${escapeRegExp(actionFile)}" project="(.*)" version="(.*)" -->.?`,
+          `<!-- action-docs-usage ${sourceOrAction}="${escapeRegExp(sourceFile)}" project="(.*)" version="(.*)" -->.?`,
         ),
       ) as string[];
 
       if (match) {
-        const commentExpression = `<!-- action-docs-usage ${sourceOrAction}="${actionFile}" project="${match[1]}" version="${match[2]}" -->`;
+        const commentExpression = `<!-- action-docs-usage ${sourceOrAction}="${sourceFile}" project="${match[1]}" version="${match[2]}" -->`;
         const regexp = new RegExp(
           `${escapeRegExp(commentExpression)}(?:(?:\r\n|\r|\n.*)+${escapeRegExp(commentExpression)})?`,
         );
@@ -348,7 +348,7 @@ async function updateReadme(
         });
       }
     } else {
-      const commentExpression = `<!-- action-docs-${section} ${sourceOrAction}="${actionFile}" -->`;
+      const commentExpression = `<!-- action-docs-${section} ${sourceOrAction}="${sourceFile}" -->`;
       const regexp = new RegExp(
         `${escapeRegExp(commentExpression)}(?:(?:\r\n|\r|\n.*)+${escapeRegExp(commentExpression)})?`,
       );

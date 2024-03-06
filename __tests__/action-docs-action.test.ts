@@ -38,7 +38,7 @@ describe("Test output", () => {
 
   test("A minimal action definition.", async () => {
     const markdown = await generateActionMarkdownDocs({
-      actionFile: path.join(fixtureDir, "minimal_action.yml"),
+      sourceFile: path.join(fixtureDir, "minimal_action.yml"),
     });
     const expected = <string>(
       readFileSync(path.join(fixtureDir, "minimal_action.output"), "utf-8")
@@ -49,7 +49,7 @@ describe("Test output", () => {
 
   test("All fields action definition.", async () => {
     const markdown = await generateActionMarkdownDocs({
-      actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+      sourceFile: path.join(fixtureDir, "all_fields_action.yml"),
     });
     const expected = <string>(
       readFileSync(path.join(fixtureDir, "all_fields_action.output"), "utf-8")
@@ -63,7 +63,7 @@ describe("Test update readme ", () => {
   test("Empty readme (all fields)", async () => {
     await testReadme(
       {
-        actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+        sourceFile: path.join(fixtureDir, "all_fields_action.yml"),
         originalReadme: path.join(fixtureDir, "all_fields_readme.input"),
         fixtureReadme: path.join(fixtureDir, "all_fields_readme.output"),
       },
@@ -75,7 +75,7 @@ describe("Test update readme ", () => {
   test("Empty readme (all fields) with header", async () => {
     await testReadme(
       {
-        actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+        sourceFile: path.join(fixtureDir, "all_fields_action.yml"),
         originalReadme: path.join(fixtureDir, "all_fields_readme.input"),
         fixtureReadme: path.join(fixtureDir, "all_fields_readme_header.output"),
       },
@@ -89,7 +89,7 @@ describe("Test update readme ", () => {
 
   test("Filled readme (all fields)", async () => {
     await testReadme({
-      actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+      sourceFile: path.join(fixtureDir, "all_fields_action.yml"),
       originalReadme: path.join(fixtureDir, "all_fields_readme_filled.input"),
       fixtureReadme: path.join(fixtureDir, "all_fields_readme_filled.output"),
     });
@@ -98,7 +98,7 @@ describe("Test update readme ", () => {
   test("Filled readme (all fields) with header", async () => {
     await testReadme(
       {
-        actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+        sourceFile: path.join(fixtureDir, "all_fields_action.yml"),
         originalReadme: path.join(fixtureDir, "all_fields_readme.input"),
         fixtureReadme: path.join(fixtureDir, "all_fields_readme_header.output"),
       },
@@ -113,7 +113,7 @@ describe("Test update readme ", () => {
   test("Readme (all fields) with CRLF line breaks", async () => {
     await testReadme(
       {
-        actionFile: path.join(fixtureDir, "all_fields_action.yml.crlf"),
+        sourceFile: path.join(fixtureDir, "all_fields_action.yml.crlf"),
         originalReadme: path.join(fixtureDir, "all_fields_readme.input.crlf"),
         fixtureReadme: path.join(fixtureDir, "all_fields_readme.output.crlf"),
       },
@@ -123,7 +123,7 @@ describe("Test update readme ", () => {
 
   test("Readme (inputs) for action-docs-action", async () => {
     await testReadme({
-      actionFile: path.join(fixtureDir, "action_docs_action_action.yml"),
+      sourceFile: path.join(fixtureDir, "action_docs_action_action.yml"),
       originalReadme: path.join(fixtureDir, "action_docs_action_readme.input"),
       fixtureReadme: path.join(fixtureDir, "action_docs_action_readme.output"),
     });
@@ -132,7 +132,7 @@ describe("Test update readme ", () => {
   test("Readme for two action.yml-s", async () => {
     await testReadme(
       {
-        actionFile: path.join(fixtureDir, "action_docs_action_action.yml"),
+        sourceFile: path.join(fixtureDir, "action_docs_action_action.yml"),
         originalReadme: path.join(fixtureDir, "two_actions_readme.input"),
         fixtureReadme: path.join(fixtureDir, "two_actions_readme.output"),
       },
@@ -141,7 +141,7 @@ describe("Test update readme ", () => {
     );
 
     await testReadme({
-      actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+      sourceFile: path.join(fixtureDir, "all_fields_action.yml"),
       originalReadme: path.join(fixtureDir, "two_actions_readme.input"),
       fixtureReadme: path.join(fixtureDir, "two_actions_readme.output"),
     });
@@ -151,7 +151,7 @@ describe("Test update readme ", () => {
 describe("Test usage format", () => {
   test("Multi-line descriptions.", async () => {
     await testReadme({
-      actionFile: path.join(fixtureDir, "action.yml"),
+      sourceFile: path.join(fixtureDir, "action.yml"),
       originalReadme: path.join(fixtureDir, "action_usage_readme.input"),
       fixtureReadme: path.join(fixtureDir, "action_usage_readme.output"),
     });
@@ -159,7 +159,7 @@ describe("Test usage format", () => {
 
   test("With and without defaults.", async () => {
     await testReadme({
-      actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+      sourceFile: path.join(fixtureDir, "all_fields_action.yml"),
       originalReadme: path.join(fixtureDir, "all_fields_usage_readme.input"),
       fixtureReadme: path.join(fixtureDir, "all_fields_usage_readme.output"),
     });
@@ -170,7 +170,7 @@ describe("Backwards compatibility", () => {
   test("Deprecated action option still works correctly", async () => {
     await testReadme(
       {
-        actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+        sourceFile: path.join(fixtureDir, "all_fields_action.yml"),
         originalReadme: path.join(fixtureDir, "action_deprecated.input"),
         fixtureReadme: path.join(fixtureDir, "action_deprecated.output"),
       },
@@ -182,7 +182,7 @@ describe("Backwards compatibility", () => {
 });
 
 interface ReadmeTestFixtures {
-  actionFile: string;
+  sourceFile: string;
   originalReadme: string;
   fixtureReadme: string;
 }
@@ -198,7 +198,7 @@ async function testReadme(
 
   try {
     await generateActionMarkdownDocs({
-      actionFile: files.actionFile,
+      sourceFile: files.sourceFile,
       updateReadme: true,
       includeNameHeader: includeNameHeader,
       readmeFile: files.originalReadme,
