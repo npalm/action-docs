@@ -92,7 +92,7 @@ For updating other Markdown files add the name of the file to the command `actio
 If you need to use `another/action.yml`:
 
 1. write it in tags like `source="another/action.yml"`;
-1. specify in a command via the `-s` option like `action-docs -s another/action.yml`
+2. specify in a command via the `-s` option like `action-docs -s another/action.yml`
 
 ### Examples
 
