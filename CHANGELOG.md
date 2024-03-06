@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.2.0](https://github.com/npalm/action-docs/compare/v2.1.0...v2.2.0) (2024-03-06)
+
+
+### Features
+
+* support document generation for workflows ([#523](https://github.com/npalm/action-docs/issues/523)) ([f043f7f](https://github.com/npalm/action-docs/commit/f043f7f0e017821cad293ebd71293127c462663b))
+
+
+### Bug Fixes
+
+* **deps:** bump yaml from 2.3.4 to 2.4.0 ([#543](https://github.com/npalm/action-docs/issues/543)) ([0c76a5e](https://github.com/npalm/action-docs/commit/0c76a5e8468fc82d71f3a70b2b277b5d366877e3))
+
 ## [2.1.0](https://github.com/npalm/action-docs/compare/v2.0.1...v2.1.0) (2024-02-15)
 
 
