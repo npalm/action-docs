@@ -1,0 +1,42 @@
+<!-- action-docs-description source="__tests__/fixtures/action/all_fields_action.yml" -->
+## Description
+
+Default test
+
+
+<!-- action-docs-description source="__tests__/fixtures/action/all_fields_action.yml" -->
+
+<!-- action-docs-inputs source="__tests__/fixtures/action/all_fields_action.yml" -->
+## Inputs
+
+| name | description | required | default |
+| --- | --- | --- | --- |
+| `inputA` | <p>A description A</p> | `false` | `""` |
+| `inputB` | <p>A description B</p> | `true` | `""` |
+| `inputC` | <p>A description C</p> | `true` | `C` |
+| `inputD` | <p>A description D</p> | `false` | `D` |
+| `inputE` | <p>A description E</p> | `false` | `false` |
+
+
+
+<!-- action-docs-inputs source="__tests__/fixtures/action/all_fields_action.yml" -->
+
+<!-- action-docs-outputs source="__tests__/fixtures/action/all_fields_action.yml" -->
+## Outputs
+
+| name | description |
+| --- | --- |
+| `outputA` | <p>A description A</p> |
+| `outputB` | <p>A description B</p> |
+
+
+
+<!-- action-docs-outputs source="__tests__/fixtures/action/all_fields_action.yml" -->
+
+<!-- action-docs-runs source="__tests__/fixtures/action/all_fields_action.yml" -->
+## Run
+
+This action is a `docker` action.
+
+
+<!-- action-docs-runs source="__tests__/fixtures/action/all_fields_action.yml" -->

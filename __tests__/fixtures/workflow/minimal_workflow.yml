@@ -1,0 +1,13 @@
+name: 'A Workflow'
+on:
+  workflow_call:
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    outputs:
+      step_output1: ${{ steps.step1.outputs.test }}
+    steps:
+      - name: 'Step 1'
+        id: step1
+        run: echo "test=some value" >> "$GITHUB_OUTPUT"

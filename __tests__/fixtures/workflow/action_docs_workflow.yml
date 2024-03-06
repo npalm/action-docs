@@ -1,0 +1,31 @@
+name: "Action update docs workflow"
+
+on:
+  workflow_call:
+    inputs:
+      readme:
+        description: "Readme file to update."
+        type: string
+        required: false
+        default: README.md
+      sourceFile:
+        description: "The action definition file."
+        type: string
+        required: false
+        default: action.yml
+      tocLevel:
+        description: "TOC level used for the headers."
+        type: string
+        required: false
+        default: 2
+      lineBreaks:
+        description: "Line breaks to be used in updated readme (LF|CR|CRLF)."
+        type: string
+        required: false
+        default: LF
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "dummy step"

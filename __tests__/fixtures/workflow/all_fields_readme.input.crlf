@@ -1,0 +1,5 @@
+<!-- action-docs-header source="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+
+<!-- action-docs-inputs source="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+
+<!-- action-docs-outputs source="__tests__/fixtures/workflow/all_fields_workflow.yml" -->

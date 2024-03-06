@@ -1,0 +1,24 @@
+<!-- action-docs-header source="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+## A Workflow
+<!-- action-docs-header source="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+
+<!-- action-docs-inputs source="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+### Inputs
+
+| name | description | type | required | default |
+| --- | --- | --- | --- | --- |
+| `inputA` | <p>A description A</p> | `string` | `false` | `""` |
+| `inputB` | <p>A description B</p> | `string` | `true` | `""` |
+| `inputC` | <p>A description C</p> | `string` | `true` | `C` |
+| `inputD` | <p>A description D</p> | `string` | `false` | `D` |
+| `inputE` | <p>A description E</p> | `string` | `false` | `false` |
+<!-- action-docs-inputs source="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+
+<!-- action-docs-outputs source="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+### Outputs
+
+| name | description |
+| --- | --- |
+| `outputA` | <p>A description A</p> |
+| `outputB` | <p>A description B</p> |
+<!-- action-docs-outputs source="__tests__/fixtures/workflow/all_fields_workflow.yml" -->

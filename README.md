@@ -6,26 +6,28 @@
 
 # Action docs
 
-A CLI to generate and update documentation for GitHub actions, based on the action definition `.yml`. To update your README in a GitHub workflow you can use the [action-docs-action](https://github.com/npalm/action-docs-action).
+A CLI to generate and update documentation for GitHub actions or workflows, based on the definition `.yml`. To update your README in a GitHub workflow you can use the [action-docs-action](https://github.com/npalm/action-docs-action).
 
 ## TL;DR
 
 ### Add the following comment blocks to your README.md
 
 ```md
-<!-- action-docs-description action="action.yml" -->
+<!-- action-docs-header source="action.yml" -->
 
-<!-- action-docs-inputs action="action.yml" -->
+<!-- action-docs-description source="action.yml" --> # applicable for actions only
 
-<!-- action-docs-outputs action="action.yml" -->
+<!-- action-docs-inputs source="action.yml" -->
 
-<!-- action-docs-runs action="action.yml" -->
+<!-- action-docs-outputs source="action.yml" -->
+
+<!-- action-docs-runs source="action.yml" --> # applicable for actions only
 ```
 
 Optionally you can also add the following section to generate a usage guide, replacing \<project\> and \<version\> with the name and version of your project you would like to appear in your usage guide.
 
 ```md
-<!-- action-docs-usage action="action.yml" project="<project>" version="<version>" -->
+<!-- action-docs-usage source="action.yml" project="<project>" version="<version>" -->
 ```
 
 ### Generate docs via CLI
@@ -55,15 +57,18 @@ The following options are available via the CLI
 
 ```
 Options:
-      --help                  Show help                                       [boolean]
-      --version               Show version number                             [boolean]
-  -t, --toc-level             TOC level used for markdown         [number] [default: 2]
-  -a, --action                GitHub action file       [string] [default: "action.yml"]
-      --no-banner             Print no banner
-  -u, --update-readme         Update readme file.                              [string]
-  -l, --line-breaks           Used line breaks in the generated docs.
-                                 [string] [choices: "CR", "LF", "CRLF"] [default: "LF"]
-  -n, --include-name-header   Include a header with the action/workflow name.
+      --version              Show version number                       [boolean]
+  -t, --toc-level            TOC level used for markdown   [number] [default: 2]
+  -a, --action               GitHub action file
+             [deprecated: use "source" instead] [string] [default: "action.yml"]
+  -s, --source               GitHub source file [string] [default: "action.yml"]
+      --no-banner            Print no banner
+  -u, --update-readme        Update readme file.                        [string]
+  -l, --line-breaks          Used line breaks in the generated docs.
+                          [string] [choices: "CR", "LF", "CRLF"] [default: "LF"]
+  -n, --include-name-header  Include a header with the action/workflow name
+                                                                       [boolean]
+      --help                 Show help                                 [boolean]
 ```
 
 ### Update the README
@@ -71,23 +76,23 @@ Options:
 Action-docs can update your README based on the `action.yml`. The following sections can be updated: description, inputs, outputs and runs. Add the following tags to your README and run `action-docs -u`.
 
 ```md
-<!-- action-docs-header action="action.yml" -->
+<!-- action-docs-header source="action.yml" -->
 
-<!-- action-docs-description action="action.yml" -->
+<!-- action-docs-description source="action.yml" -->
 
-<!-- action-docs-inputs action="action.yml" -->
+<!-- action-docs-inputs source="action.yml" -->
 
-<!-- action-docs-outputs action="action.yml" -->
+<!-- action-docs-outputs source="action.yml" -->
 
-<!-- action-docs-runs action="action.yml" -->
+<!-- action-docs-runs source="action.yml" -->
 ```
 
 For updating other Markdown files add the name of the file to the command `action-docs -u <file>`.
 
 If you need to use `another/action.yml`:
 
-1. write it in tags like `action="another/action.yml"`;
-1. specify in a command via the `-a` option like `action-docs -a another/action.yml`
+1. write it in tags like `source="another/action.yml"`;
+2. specify in a command via the `-s` option like `action-docs -s another/action.yml`
 
 ### Examples
 
@@ -106,13 +111,13 @@ action-docs --update-readme
 #### Print action markdown for non default action file
 
 ```bash
-action-docs --action another/action.yaml
+action-docs --source another/action.yaml
 ```
 
 #### Update readme, custom action file and set TOC level 3, custom readme
 
 ```bash
-action-docs --action ./some-dir/action.yml --toc-level 3 --update-readme docs.md
+action-docs --source ./some-dir/action.yml --toc-level 3 --update-readme docs.md
 ```
 
 ## API
@@ -121,7 +126,7 @@ action-docs --action ./some-dir/action.yml --toc-level 3 --update-readme docs.md
 import { generateActionMarkdownDocs } from 'action-docs'
 
 await generateActionMarkdownDocs({
-  actionFile: 'action.yml'
+  sourceFile: 'action.yml'
   tocLevel: 2
   updateReadme: true
   readmeFile: 'README.md'

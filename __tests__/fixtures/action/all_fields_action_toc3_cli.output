@@ -1,0 +1,64 @@
+### Description
+
+Default test
+
+### Inputs
+
+| name | description | required | default |
+| --- | --- | --- | --- |
+| `inputA` | <p>A description A</p> | `false` | `""` |
+| `inputB` | <p>A description B</p> | `true` | `""` |
+| `inputC` | <p>A description C</p> | `true` | `C` |
+| `inputD` | <p>A description D</p> | `false` | `D` |
+| `inputE` | <p>A description E</p> | `false` | `false` |
+
+
+### Outputs
+
+| name | description |
+| --- | --- |
+| `outputA` | <p>A description A</p> |
+| `outputB` | <p>A description B</p> |
+
+
+### Runs
+
+This action is a `node12` action.
+
+### Usage
+
+```yaml
+- uses: ***PROJECT***@***VERSION***
+  with:
+    inputA:
+    # A description A
+    #
+    # Required: false
+    # Default: ""
+
+    inputB:
+    # A description B
+    #
+    # Required: true
+    # Default: ""
+
+    inputC:
+    # A description C
+    #
+    # Required: true
+    # Default: C
+
+    inputD:
+    # A description D
+    #
+    # Required: false
+    # Default: D
+
+    inputE:
+    # A description E
+    #
+    # Required: false
+    # Default: false
+```
+
+

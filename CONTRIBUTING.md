@@ -80,7 +80,7 @@ Please provide tests for your contribution.
 To generate a new fixture for Markdown output run
 
 ```bash
-./lib/cli.js --no-banner -a __tests__/fixtures/<action>.yml | \ 
+./lib/cli.js --no-banner -s __tests__/fixtures/<action>.yml | \ 
   tail -r | tail -n +2 | tail -r > <action_md>.output
 ```
 
@@ -88,7 +88,7 @@ For creating a README.md fixture, first create the readme input file for the tes
 
 
 ```bash
-./lib/cli.js --no-banner -a __tests__/fixtures/<action>.yml -u __tests_/fixtures/<readme>.output
+./lib/cli.js --no-banner -s __tests__/fixtures/<action>.yml -u __tests_/fixtures/<readme>.output
 ```
 
 ### Use a Consistent Coding Style

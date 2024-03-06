@@ -1,0 +1,12 @@
+<!-- action-docs-inputs source="__tests__/fixtures/action/action_docs_action_action.yml" -->
+## Inputs
+
+| name | description | required | default |
+| --- | --- | --- | --- |
+| `readme` | <p>Readme file to update.</p> | `false` | `README.md` |
+| `sourceFile` | <p>The action definition file.</p> | `false` | `action.yml` |
+| `tocLevel` | <p>TOC level used for the headers.</p> | `false` | `2` |
+| `lineBreaks` | <p>Line breaks to be used in updated readme (LF|CR|CRLF).</p> | `false` | `LF` |
+<!-- action-docs-inputs source="__tests__/fixtures/action/action_docs_action_action.yml" -->
+
+<!-- action-docs-outputs source="__tests__/fixtures/action/all_fields_action.yml" -->
