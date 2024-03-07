@@ -1,0 +1,26 @@
+# Description
+
+Default test
+
+## Inputs
+
+| name | description | required | default |
+| --- | --- | --- | --- |
+| <p><code>inputA</code></p> | <p>A description A</p> | <p><code>false</code></p> | <p><code>""</code></p> |
+| <p><code>inputB</code></p> | <p>A description B</p> | <p><code>true</code></p> | <p><code>""</code></p> |
+| <p><code>inputC</code></p> | <p>A description C</p> | <p><code>true</code></p> | <p><code>C</code></p> |
+| <p><code>inputD</code></p> | <p>A description D</p> | <p><code>false</code></p> | <p><code>D</code></p> |
+| <p><code>inputE</code></p> | <p>A description E</p> | <p><code>false</code></p> | <p><code>false</code></p> |
+
+# Outputs
+
+| name | description |
+| --- | --- |
+| `outputA` | <p>A description A</p> |
+| `outputB` | <p>A description B</p> |
+
+
+# Runs
+
+This action is a `node12` action.
+

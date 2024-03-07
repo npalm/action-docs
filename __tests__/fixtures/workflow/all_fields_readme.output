@@ -1,0 +1,69 @@
+<!-- action-docs-header source="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+## A Workflow
+<!-- action-docs-header source="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+
+<!-- action-docs-usage source="__tests__/fixtures/workflow/all_fields_workflow.yml" project="npalm/action-docs" version="v1" -->
+### Usage
+
+```yaml
+jobs:
+  job1:
+    uses: npalm/action-docs@v1
+    with:
+      inputA:
+      # A description A
+      #
+      # Type: string
+      # Required: false
+      # Default: ""
+
+      inputB:
+      # A description B
+      #
+      # Type: string
+      # Required: true
+      # Default: ""
+
+      inputC:
+      # A description C
+      #
+      # Type: string
+      # Required: true
+      # Default: C
+
+      inputD:
+      # A description D
+      #
+      # Type: string
+      # Required: false
+      # Default: D
+
+      inputE:
+      # A description E
+      #
+      # Type: string
+      # Required: false
+      # Default: false
+```
+<!-- action-docs-usage source="__tests__/fixtures/workflow/all_fields_workflow.yml" project="npalm/action-docs" version="v1" -->
+
+<!-- action-docs-inputs source="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+### Inputs
+
+| name | description | type | required | default |
+| --- | --- | --- | --- | --- |
+| `inputA` | <p>A description A</p> | `string` | `false` | `""` |
+| `inputB` | <p>A description B</p> | `string` | `true` | `""` |
+| `inputC` | <p>A description C</p> | `string` | `true` | `C` |
+| `inputD` | <p>A description D</p> | `string` | `false` | `D` |
+| `inputE` | <p>A description E</p> | `string` | `false` | `false` |
+<!-- action-docs-inputs source="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+
+<!-- action-docs-outputs source="__tests__/fixtures/workflow/all_fields_workflow.yml" -->
+### Outputs
+
+| name | description |
+| --- | --- |
+| `outputA` | <p>A description A</p> |
+| `outputB` | <p>A description B</p> |
+<!-- action-docs-outputs source="__tests__/fixtures/workflow/all_fields_workflow.yml" -->

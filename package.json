@@ -1,6 +1,6 @@
 {
   "name": "action-docs",
-  "version": "2.0.1",
+  "version": "2.2.0",
   "description": "Generate GitHub action docs based on action.yml",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -17,8 +17,11 @@
     "test": "yarn run test-default && yarn run test-cli",
     "test-default": "jest --testTimeout=10000 --testPathIgnorePatterns=__tests__/cli.test.ts --collect-coverage --coverage",
     "test-cli": "nyc jest --testTimeout=10000 --silent --testMatch=**/cli*test.ts && nyc report --reporter=lcov --reporter=html --report-dir=./coverage_nyc",
-    "test-action": "nyc jest --testTimeout=10000 --silent --testMatch=**/action-docs.test.ts --coverage=false",
-    "dev-action": "node lib/cli.js -a __tests__/fixtures/action.yml",
+    "test-action": "nyc jest --testTimeout=10000 --silent --testMatch=**/action-docs-action.test.ts --coverage=false",
+    "test-workflow": "nyc jest --testTimeout=10000 --silent --testMatch=**/action-docs-workflow.test.ts --coverage=false",
+    "dev-action": "yarn run build && node lib/cli.js -s __tests__/fixtures/action/action.yml",
+    "dev-workflow": "yarn run build && node lib/cli.js -s __tests__/fixtures/workflow/workflow.yml",
+    "help": "yarn run build && node lib/cli.js --help",
     "all": "yarn run build && yarn run format && yarn run lint && yarn test"
   },
   "repository": {
@@ -36,7 +39,6 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^5.3.0",
-    "eslint-import-resolver-typescript": "^3.6.1",
     "figlet": "^1.7.0",
     "replace-in-file": "^7.1.0",
     "showdown": "^2.1.0",
@@ -55,6 +57,7 @@
     "@types/showdown": "^2.0.6",
     "@typescript-eslint/parser": "^7.0.1",
     "eslint": "^8.56.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-github": "^4.10.0",
     "eslint-plugin-jest": "^27.6.0",
     "eslint-plugin-prettier": "^5.1.0",

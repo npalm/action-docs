@@ -3,7 +3,7 @@ import * as path from "path";
 
 import { readFileSync, writeFileSync } from "fs";
 
-const fixtureDir = path.join("__tests__", "fixtures");
+const fixtureDir = path.join("__tests__", "fixtures", "action");
 
 describe("CLI tests", () => {
   test("Update readme default", async () => {
@@ -11,6 +11,7 @@ describe("CLI tests", () => {
       path.join(fixtureDir, "all_fields_action.yml"),
       path.join(fixtureDir, "all_fields_readme.input"),
       path.join(fixtureDir, "all_fields_readme.output"),
+      "-n true",
     );
   });
 
@@ -25,7 +26,7 @@ describe("CLI tests", () => {
 
   test("Console output with TOC 3 and no banner.", async () => {
     const result = await cli(
-      `-a ${path.join(fixtureDir, "all_fields_action.yml")} -t 3 --no-banner`,
+      `-s ${path.join(fixtureDir, "all_fields_action.yml")} -t 3 --no-banner`,
     );
 
     const expected = <string>(
@@ -41,7 +42,7 @@ describe("CLI tests", () => {
 
   test("Console output including name header and no banner.", async () => {
     const result = await cli(
-      `-a ${path.join(fixtureDir, "action.yml")} -n true --no-banner`,
+      `-s ${path.join(fixtureDir, "action.yml")} -n true --no-banner`,
     );
 
     const expected = <string>(
@@ -77,7 +78,7 @@ function cli(args: string): Promise<CliResponse> {
 }
 
 async function testReadme(
-  actionFile: string,
+  sourceFile: string,
   originalReadme: string,
   fixtureReadme: string,
   extraArgs = "",
@@ -87,7 +88,7 @@ async function testReadme(
   const original = <string>readFileSync(originalReadme, "utf-8");
 
   const result = await cli(
-    `-u ${originalReadme} -a ${actionFile} ${extraArgs}`,
+    `-u ${originalReadme} -s ${sourceFile} ${extraArgs}`,
   );
   expect(result.code).toBe(exitCode);
 
