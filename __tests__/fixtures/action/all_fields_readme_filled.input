@@ -3,6 +3,7 @@
 
 Default test
 
+
 <!-- action-docs-description source="__tests__/fixtures/action/all_fields_action.yml" -->
 
 <!-- action-docs-inputs source="__tests__/fixtures/action/all_fields_action.yml" -->
@@ -15,6 +16,7 @@ Default test
 | `inputC` | <p>A description C</p> | `true` | `C` |
 | `inputD` | <p>A description D</p> | `false` | `D` |
 | `inputE` | <p>A description E</p> | `false` | `false` |
+
 
 
 <!-- action-docs-inputs source="__tests__/fixtures/action/all_fields_action.yml" -->
