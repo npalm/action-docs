@@ -1,7 +1,7 @@
-<!-- action-docs-description action="__tests__/fixtures/action/all_fields_action.yml.crlf" -->
+<!-- action-docs-description source="__tests__/fixtures/action/all_fields_action.yml.crlf" -->
 
-<!-- action-docs-inputs action="__tests__/fixtures/action/all_fields_action.yml.crlf" -->
+<!-- action-docs-inputs source="__tests__/fixtures/action/all_fields_action.yml.crlf" -->
 
-<!-- action-docs-outputs action="__tests__/fixtures/action/all_fields_action.yml.crlf" -->
+<!-- action-docs-outputs source="__tests__/fixtures/action/all_fields_action.yml.crlf" -->
 
-<!-- action-docs-runs action="__tests__/fixtures/action/all_fields_action.yml.crlf" -->
+<!-- action-docs-runs source="__tests__/fixtures/action/all_fields_action.yml.crlf" -->

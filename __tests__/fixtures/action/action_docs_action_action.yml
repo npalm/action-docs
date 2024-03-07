@@ -11,7 +11,7 @@ inputs:
     description: "Readme file to update."
     required: false
     default: README.md
-  actionFile:
+  sourceFile:
     description: "The action definition file."
     required: false
     default: action.yml

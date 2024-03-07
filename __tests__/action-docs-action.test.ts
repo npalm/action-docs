@@ -38,7 +38,7 @@ describe("Test output", () => {
 
   test("A minimal action definition.", async () => {
     const markdown = await generateActionMarkdownDocs({
-      actionFile: path.join(fixtureDir, "minimal_action.yml"),
+      sourceFile: path.join(fixtureDir, "minimal_action.yml"),
     });
     const expected = <string>(
       readFileSync(path.join(fixtureDir, "minimal_action.output"), "utf-8")
@@ -49,7 +49,7 @@ describe("Test output", () => {
 
   test("All fields action definition.", async () => {
     const markdown = await generateActionMarkdownDocs({
-      actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+      sourceFile: path.join(fixtureDir, "all_fields_action.yml"),
     });
     const expected = <string>(
       readFileSync(path.join(fixtureDir, "all_fields_action.output"), "utf-8")
@@ -61,11 +61,30 @@ describe("Test output", () => {
 
 describe("Test update readme ", () => {
   test("Empty readme (all fields)", async () => {
-    await testReadme({
-      actionFile: path.join(fixtureDir, "all_fields_action.yml"),
-      originalReadme: path.join(fixtureDir, "all_fields_readme.input"),
-      fixtureReadme: path.join(fixtureDir, "all_fields_readme.output"),
-    });
+    await testReadme(
+      {
+        sourceFile: path.join(fixtureDir, "all_fields_action.yml"),
+        originalReadme: path.join(fixtureDir, "all_fields_readme.input"),
+        fixtureReadme: path.join(fixtureDir, "all_fields_readme.output"),
+      },
+      {
+        includeNameHeader: true,
+      },
+    );
+  });
+  test("Empty readme (all fields) with header", async () => {
+    await testReadme(
+      {
+        sourceFile: path.join(fixtureDir, "all_fields_action.yml"),
+        originalReadme: path.join(fixtureDir, "all_fields_readme.input"),
+        fixtureReadme: path.join(fixtureDir, "all_fields_readme_header.output"),
+      },
+      {
+        includeNameHeader: true,
+      },
+      false,
+      true,
+    );
   });
 
   test("All fields one annotation", async () => {
@@ -78,7 +97,7 @@ describe("Test update readme ", () => {
 
   test("Filled readme (all fields)", async () => {
     await testReadme({
-      actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+      sourceFile: path.join(fixtureDir, "all_fields_action.yml"),
       originalReadme: path.join(fixtureDir, "all_fields_readme_filled.input"),
       fixtureReadme: path.join(fixtureDir, "all_fields_readme_filled.output"),
     });
@@ -87,11 +106,13 @@ describe("Test update readme ", () => {
   test("Filled readme (all fields) with header", async () => {
     await testReadme(
       {
-        actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+        sourceFile: path.join(fixtureDir, "all_fields_action.yml"),
         originalReadme: path.join(fixtureDir, "all_fields_readme.input"),
         fixtureReadme: path.join(fixtureDir, "all_fields_readme_header.output"),
       },
-      {},
+      {
+        includeNameHeader: true,
+      },
       false,
       true,
     );
@@ -100,7 +121,7 @@ describe("Test update readme ", () => {
   test("Readme (all fields) with CRLF line breaks", async () => {
     await testReadme(
       {
-        actionFile: path.join(fixtureDir, "all_fields_action.yml.crlf"),
+        sourceFile: path.join(fixtureDir, "all_fields_action.yml.crlf"),
         originalReadme: path.join(fixtureDir, "all_fields_readme.input.crlf"),
         fixtureReadme: path.join(fixtureDir, "all_fields_readme.output.crlf"),
       },
@@ -110,7 +131,7 @@ describe("Test update readme ", () => {
 
   test("Readme (inputs) for action-docs-action", async () => {
     await testReadme({
-      actionFile: path.join(fixtureDir, "action_docs_action_action.yml"),
+      sourceFile: path.join(fixtureDir, "action_docs_action_action.yml"),
       originalReadme: path.join(fixtureDir, "action_docs_action_readme.input"),
       fixtureReadme: path.join(fixtureDir, "action_docs_action_readme.output"),
     });
@@ -119,7 +140,7 @@ describe("Test update readme ", () => {
   test("Readme for two action.yml-s", async () => {
     await testReadme(
       {
-        actionFile: path.join(fixtureDir, "action_docs_action_action.yml"),
+        sourceFile: path.join(fixtureDir, "action_docs_action_action.yml"),
         originalReadme: path.join(fixtureDir, "two_actions_readme.input"),
         fixtureReadme: path.join(fixtureDir, "two_actions_readme.output"),
       },
@@ -128,7 +149,7 @@ describe("Test update readme ", () => {
     );
 
     await testReadme({
-      actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+      sourceFile: path.join(fixtureDir, "all_fields_action.yml"),
       originalReadme: path.join(fixtureDir, "two_actions_readme.input"),
       fixtureReadme: path.join(fixtureDir, "two_actions_readme.output"),
     });
@@ -138,7 +159,7 @@ describe("Test update readme ", () => {
 describe("Test usage format", () => {
   test("Multi-line descriptions.", async () => {
     await testReadme({
-      actionFile: path.join(fixtureDir, "action.yml"),
+      sourceFile: path.join(fixtureDir, "action.yml"),
       originalReadme: path.join(fixtureDir, "action_usage_readme.input"),
       fixtureReadme: path.join(fixtureDir, "action_usage_readme.output"),
     });
@@ -146,15 +167,30 @@ describe("Test usage format", () => {
 
   test("With and without defaults.", async () => {
     await testReadme({
-      actionFile: path.join(fixtureDir, "all_fields_action.yml"),
+      sourceFile: path.join(fixtureDir, "all_fields_action.yml"),
       originalReadme: path.join(fixtureDir, "all_fields_usage_readme.input"),
       fixtureReadme: path.join(fixtureDir, "all_fields_usage_readme.output"),
     });
   });
 });
 
+describe("Backwards compatibility", () => {
+  test("Deprecated action option still works correctly", async () => {
+    await testReadme(
+      {
+        sourceFile: path.join(fixtureDir, "all_fields_action.yml"),
+        originalReadme: path.join(fixtureDir, "action_deprecated.input"),
+        fixtureReadme: path.join(fixtureDir, "action_deprecated.output"),
+      },
+      {
+        includeNameHeader: true,
+      },
+    );
+  });
+});
+
 interface ReadmeTestFixtures {
-  actionFile: string;
+  sourceFile: string;
   originalReadme: string;
   fixtureReadme: string;
 }
@@ -168,18 +204,21 @@ async function testReadme(
   const expected = <string>readFileSync(files.fixtureReadme, "utf-8");
   const original = <string>readFileSync(files.originalReadme, "utf-8");
 
-  await generateActionMarkdownDocs({
-    actionFile: files.actionFile,
-    updateReadme: true,
-    includeNameHeader: includeNameHeader,
-    readmeFile: files.originalReadme,
-    ...overwriteOptions,
-  });
+  try {
+    await generateActionMarkdownDocs({
+      sourceFile: files.sourceFile,
+      updateReadme: true,
+      includeNameHeader: includeNameHeader,
+      readmeFile: files.originalReadme,
+      ...overwriteOptions,
+    });
 
-  const updated = <string>readFileSync(files.originalReadme, "utf-8");
+    const updated = <string>readFileSync(files.originalReadme, "utf-8");
 
-  if (doExpect) {
+    if (doExpect) {
+      expect(updated).toEqual(expected);
+    }
+  } finally {
     writeFileSync(files.originalReadme, original);
-    expect(updated).toEqual(expected);
   }
 }

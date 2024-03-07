@@ -1,4 +1,4 @@
-<!-- action-docs-usage action="__tests__/fixtures/action/action.yml" project="npalm/action-docs" version="v1" -->
+<!-- action-docs-usage source="__tests__/fixtures/action/action.yml" project="npalm/action-docs" version="v1" -->
 ## Usage
 
 ```yaml
@@ -22,4 +22,4 @@
     # Required: false
     # Default: test
 ```
-<!-- action-docs-usage action="__tests__/fixtures/action/action.yml" project="npalm/action-docs" version="v1" -->
+<!-- action-docs-usage source="__tests__/fixtures/action/action.yml" project="npalm/action-docs" version="v1" -->

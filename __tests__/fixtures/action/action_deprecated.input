@@ -1,0 +1,11 @@
+<!-- action-docs-header action="__tests__/fixtures/action/all_fields_action.yml" -->
+
+<!-- action-docs-description action="__tests__/fixtures/action/all_fields_action.yml" -->
+
+<!-- action-docs-usage action="__tests__/fixtures/action/all_fields_action.yml" project="npalm/action-docs" version="v1" -->
+
+<!-- action-docs-inputs action="__tests__/fixtures/action/all_fields_action.yml" -->
+
+<!-- action-docs-outputs action="__tests__/fixtures/action/all_fields_action.yml" -->
+
+<!-- action-docs-runs action="__tests__/fixtures/action/all_fields_action.yml" -->
