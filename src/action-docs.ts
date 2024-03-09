@@ -209,6 +209,10 @@ export async function generateActionMarkdownDocs(
     outputString += value;
   }
 
+  if (options.updateReadme) {
+    await updateReadme(options, outputString, "all", options.sourceFile);
+  }
+
   return outputString;
 }
 
@@ -317,53 +321,45 @@ async function updateReadme(
 
   if (sourceOrActionMatches) {
     const sourceOrAction = sourceOrActionMatches[1];
+    const matchProjectVersion = readmeFileText.match(
+      new RegExp(
+        `<!-- action-docs-${section} ${sourceOrAction}="${escapeRegExp(sourceFile)}" project="(.*)" version="(.*)" -->.?`,
+      ),
+    ) as string[];
 
-    if (section === "usage") {
-      const match = readmeFileText.match(
-        new RegExp(
-          `<!-- action-docs-usage ${sourceOrAction}="${escapeRegExp(sourceFile)}" project="(.*)" version="(.*)" -->.?`,
-        ),
-      ) as string[];
+    let commentExpression = `<!-- action-docs-${section} ${sourceOrAction}="${sourceFile}" PROJECT_VERSION-->`;
+    commentExpression = commentExpression.replace(
+      "PROJECT_VERSION",
+      matchProjectVersion
+        ? `project="${matchProjectVersion[1]}" version="${matchProjectVersion[2]}" `
+        : "",
+    );
 
-      if (match) {
-        const commentExpression = `<!-- action-docs-usage ${sourceOrAction}="${sourceFile}" project="${match[1]}" version="${match[2]}" -->`;
-        const regexp = new RegExp(
-          `${escapeRegExp(commentExpression)}(?:(?:\r\n|\r|\n.*)+${escapeRegExp(commentExpression)})?`,
-        );
+    const regexp = new RegExp(
+      `${escapeRegExp(commentExpression)}(?:(?:\r\n|\r|\n.*)+${escapeRegExp(commentExpression)})?`,
+    );
 
-        const processedText = text
-          .trim()
-          .replace("***PROJECT***", match[1])
-          .replace("***VERSION***", match[2]);
-
-        await replaceInFile.replaceInFile({
-          files: options.readmeFile,
-          from: regexp,
-          to:
-            commentExpression +
-            lineBreak +
-            processedText +
-            lineBreak +
-            commentExpression,
-        });
-      }
-    } else {
-      const commentExpression = `<!-- action-docs-${section} ${sourceOrAction}="${sourceFile}" -->`;
-      const regexp = new RegExp(
-        `${escapeRegExp(commentExpression)}(?:(?:\r\n|\r|\n.*)+${escapeRegExp(commentExpression)})?`,
+    const processedText = text
+      .trim()
+      .replace(
+        "***PROJECT***",
+        matchProjectVersion ? matchProjectVersion[1] : "",
+      )
+      .replace(
+        "***VERSION***",
+        matchProjectVersion ? matchProjectVersion[2] : "",
       );
 
-      await replaceInFile.replaceInFile({
-        files: options.readmeFile,
-        from: regexp,
-        to:
-          commentExpression +
-          lineBreak +
-          text.trim() +
-          lineBreak +
-          commentExpression,
-      });
-    }
+    await replaceInFile.replaceInFile({
+      files: options.readmeFile,
+      from: regexp,
+      to:
+        commentExpression +
+        lineBreak +
+        processedText +
+        lineBreak +
+        commentExpression,
+    });
   }
 }
 
