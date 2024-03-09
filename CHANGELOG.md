@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.3.0](https://github.com/npalm/action-docs/compare/v2.2.0...v2.3.0) (2024-03-09)
+
+
+### Features
+
+* add 'all' option to add all the documentation to the readme in one go ([#537](https://github.com/npalm/action-docs/issues/537)) ([dc70838](https://github.com/npalm/action-docs/commit/dc708388c4bf58c9c15c4135702a4a9f0eabc897))
+
+
+### Bug Fixes
+
+* -a option was ingored ([#561](https://github.com/npalm/action-docs/issues/561)) ([8dbd40e](https://github.com/npalm/action-docs/commit/8dbd40eb476605d90f9a0d94848015097c02198f))
+* **deps:** bump yaml from 2.4.0 to 2.4.1 ([#557](https://github.com/npalm/action-docs/issues/557)) ([8c2dc15](https://github.com/npalm/action-docs/commit/8c2dc15d9f90772c93c66133ef5d4948705b3e56))
+
 ## [2.2.0](https://github.com/npalm/action-docs/compare/v2.1.0...v2.2.0) (2024-03-06)
 
 
