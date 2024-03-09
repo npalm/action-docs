@@ -63,8 +63,11 @@ args.banner === undefined &&
 
 const updateReadme = args["update-readme"] !== undefined;
 
+const sourceFile =
+  args.source === defaultOptions.sourceFile ? args.action : args.source;
+
 const options = {
-  sourceFile: args.source ?? args.action,
+  sourceFile: sourceFile,
   tocLevel: args["toc-level"],
   updateReadme,
   readmeFile:
