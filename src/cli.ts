@@ -67,7 +67,7 @@ const sourceFile =
   args.source === defaultOptions.sourceFile ? args.action : args.source;
 
 const options = {
-  sourceFile: sourceFile,
+  sourceFile,
   tocLevel: args["toc-level"],
   updateReadme,
   readmeFile:
