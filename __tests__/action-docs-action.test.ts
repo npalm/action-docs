@@ -154,6 +154,14 @@ describe("Test update readme ", () => {
       fixtureReadme: path.join(fixtureDir, "two_actions_readme.output"),
     });
   });
+
+  test("Readme for deprecated inputs", async () => {
+    await testReadme({
+      sourceFile: path.join(fixtureDir, "deprecated_input_action.yml"),
+      originalReadme: path.join(fixtureDir, "deprecated_input_action.input"),
+      fixtureReadme: path.join(fixtureDir, "deprecated_input_action.output"),
+    });
+  });
 });
 
 describe("Test usage format", () => {
