@@ -1,0 +1,8 @@
+<!-- action-docs-inputs action="__tests__/fixtures/action/deprecated_input_action.yml" -->
+## Inputs
+
+| name | description | required | default |
+| --- | --- | --- | --- |
+| `inputA` | <p>This is an input<br/><em>Deprecated: This input has been deprecated</em></p> | `false` | `""` |
+| `inputB` | <p>This is an input<br/><em>Deprecated</em></p> | `false` | `""` |
+<!-- action-docs-inputs action="__tests__/fixtures/action/deprecated_input_action.yml" -->

@@ -1,0 +1,17 @@
+name: "An Action"
+description: "Test of deprecated inputs"
+author: "Niek Palm"
+inputs:
+  inputA:
+    required: false
+    description: This is an input
+    deprecationMessage: This input has been deprecated
+  inputB:
+    required: false
+    description: This is an input
+    deprecationMessage: ''
+
+runs:
+  using: "node12"
+  main: "dist/index.js"
+  
