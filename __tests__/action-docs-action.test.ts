@@ -87,6 +87,14 @@ describe("Test update readme ", () => {
     );
   });
 
+  test("All fields one annotation", async () => {
+    await testReadme({
+      sourceFile: path.join(fixtureDir, "all_fields_action.yml"),
+      originalReadme: path.join(fixtureDir, "all_fields_one_annotation.input"),
+      fixtureReadme: path.join(fixtureDir, "all_fields_one_annotation.output"),
+    });
+  });
+
   test("Filled readme (all fields)", async () => {
     await testReadme({
       sourceFile: path.join(fixtureDir, "all_fields_action.yml"),
