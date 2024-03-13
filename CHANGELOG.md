@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.0](https://github.com/npalm/action-docs/compare/v2.3.0...v2.4.0) (2024-03-13)
+
+
+### Features
+
+* Add support for inputs deprecationMessage ([#566](https://github.com/npalm/action-docs/issues/566)) ([e283563](https://github.com/npalm/action-docs/commit/e283563580e9f0cc0e71cd4205ef587e50845ef9))
+
 ## [2.3.0](https://github.com/npalm/action-docs/compare/v2.2.0...v2.3.0) (2024-03-09)
 
 
