@@ -7,7 +7,8 @@ const config = {
     "^(\\.\\.?\\/.+)\\.jsx?$": "$1",
   },
   extensionsToTreatAsEsm: [".ts"],
-
+  coverageReporters: ["lcov", "text", "html"],
+  collectCoverageFrom: ["src/**/*.{ts,js,jsx}", "!src/**/*cli*.ts"],
   testEnvironment: "node",
   collectCoverage: true,
   clearMocks: true,
@@ -16,8 +17,8 @@ const config = {
   coverageThreshold: {
     global: {
       statements: 100,
-      branches: 97.14,
-      functions: 95.23,
+      branches: 98.14,
+      functions: 96.66,
       lines: 100,
     },
   },
