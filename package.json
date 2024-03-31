@@ -14,7 +14,7 @@
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
     "lint": "eslint src/**/*.ts",
-    "test": "yarn run test-default && yarn run test-cli",
+    "test": "jest --testTimeout=10000 --collect-coverage --coverage",
     "test-default": "jest --testTimeout=10000 --testPathIgnorePatterns=__tests__/cli.test.ts --collect-coverage --coverage",
     "test-cli": "nyc jest --testTimeout=10000 --silent --testMatch=**/cli*test.ts && nyc report --reporter=lcov --reporter=html --report-dir=./coverage_nyc",
     "test-action": "nyc jest --testTimeout=10000 --silent --testMatch=**/action-docs-action.test.ts --coverage=false",
