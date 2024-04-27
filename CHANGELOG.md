@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.1](https://github.com/npalm/action-docs/compare/v2.4.0...v2.4.1) (2024-04-27)
+
+
+### Bug Fixes
+
+* update tsconfig to node20 recommendations ([#579](https://github.com/npalm/action-docs/issues/579)) ([2866dcf](https://github.com/npalm/action-docs/commit/2866dcffa1a5fa41aa61633868632261dfc90a69))
+
 ## [2.4.0](https://github.com/npalm/action-docs/compare/v2.3.0...v2.4.0) (2024-03-13)
 
 
