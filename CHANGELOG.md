@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.2](https://github.com/npalm/action-docs/compare/v2.4.1...v2.4.2) (2024-05-23)
+
+
+### Bug Fixes
+
+* **deps:** bump yaml from 2.4.1 to 2.4.2 ([#601](https://github.com/npalm/action-docs/issues/601)) ([abe0bff](https://github.com/npalm/action-docs/commit/abe0bff7b1f82754fbccd0ab636c9600a2c5a3d8))
+
 ## [2.4.1](https://github.com/npalm/action-docs/compare/v2.4.0...v2.4.1) (2024-04-27)
 
 
