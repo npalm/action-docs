@@ -6,7 +6,6 @@
 jobs:
   job1:
     uses: ***PROJECT***@***VERSION***
-    with:
 ```
 
 
