@@ -40,7 +40,7 @@
   "dependencies": {
     "chalk": "^5.3.0",
     "figlet": "^1.7.0",
-    "replace-in-file": "^7.1.0",
+    "replace-in-file": "^8.0.1",
     "showdown": "^2.1.0",
     "yaml": "^2.3.4",
     "yargs": "^17.7.2"
