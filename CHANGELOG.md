@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.4.2](https://github.com/npalm/action-docs/compare/v2.4.1...v2.4.2) (2024-07-03)
+
+
+### Bug Fixes
+
+* **deps:** bump braces from 3.0.2 to 3.0.3 in the npm_and_yarn group ([#634](https://github.com/npalm/action-docs/issues/634)) ([d250deb](https://github.com/npalm/action-docs/commit/d250debd2fd5bb7ea5a36fe21f08c6b48fe8389b))
+* **deps:** bump yaml from 2.4.1 to 2.4.2 ([#601](https://github.com/npalm/action-docs/issues/601)) ([abe0bff](https://github.com/npalm/action-docs/commit/abe0bff7b1f82754fbccd0ab636c9600a2c5a3d8))
+* Ignore empty inputs in workflows and actions ([#620](https://github.com/npalm/action-docs/issues/620)) ([b0b7b4e](https://github.com/npalm/action-docs/commit/b0b7b4e73acbefc900e06f9cbb7854e4ea5dc68d))
+
 ## [2.4.1](https://github.com/npalm/action-docs/compare/v2.4.0...v2.4.1) (2024-04-27)
 
 
