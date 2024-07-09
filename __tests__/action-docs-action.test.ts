@@ -60,6 +60,19 @@ describe("Test output", () => {
 });
 
 describe("Test update readme ", () => {
+  test("With defaults.", async () => {
+    await testReadme(
+      {
+        sourceFile: "action.yml", // Default value
+        originalReadme: path.join(fixtureDir, "default_readme.input"),
+        fixtureReadme: path.join(fixtureDir, "default_readme.output"),
+      },
+      {
+        includeNameHeader: true,
+      },
+    );
+  });
+
   test("Empty readme (all fields)", async () => {
     await testReadme(
       {

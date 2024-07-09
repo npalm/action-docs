@@ -1,30 +1,41 @@
-## Description
+<!-- action-docs-header source="action.yml" -->
+## An Action
+<!-- action-docs-header source="action.yml" -->
+
+<!-- action-docs-description source="action.yml" -->
+### Description
 
 Default test
+<!-- action-docs-description source="action.yml" -->
 
-## Inputs
+<!-- action-docs-inputs source="action.yml" -->
+### Inputs
 
 | name | description | required | default |
 | --- | --- | --- | --- |
 | `inputA` | <ul> <li>Item 1<ul> <li>foo, bar, baz</li></ul></li> <li>Item 2<ul> <li><a href="https://github.com/">github</a></li> <li><strong>blah</strong></li></ul></li> <li>Item 3</li> </ul> | `false` | `test` |
 | `inputB` | <p>This is a multiline description</p> | `false` | `test` |
+<!-- action-docs-inputs source="action.yml" -->
 
-
-## Outputs
+<!-- action-docs-outputs source="action.yml" -->
+### Outputs
 
 | name | description |
 | --- | --- |
 | `outputA` | <p>A description</p> |
+<!-- action-docs-outputs source="action.yml" -->
 
-
-## Runs
+<!-- action-docs-runs source="action.yml" -->
+### Runs
 
 This action is a `node12` action.
+<!-- action-docs-runs source="action.yml" -->
 
-## Usage
+<!-- action-docs-usage source="action.yml" project="npalm/action-docs" version="v1" -->
+### Usage
 
 ```yaml
-- uses: ***PROJECT******SOURCE_FILE***@***VERSION***
+- uses: npalm/action-docs@v1
   with:
     inputA:
     # - Item 1
@@ -44,5 +55,4 @@ This action is a `node12` action.
     # Required: false
     # Default: test
 ```
-
-
+<!-- action-docs-usage source="action.yml" project="npalm/action-docs" version="v1" -->
