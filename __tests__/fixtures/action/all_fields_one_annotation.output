@@ -29,7 +29,7 @@ This action is a `node12` action.
 ## Usage
 
 ```yaml
-- uses: npalm/action-docs@v1
+- uses: npalm/action-docs/__tests__/fixtures/action/all_fields_action.yml@v1
   with:
     inputA:
     # A description A

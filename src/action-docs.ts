@@ -125,14 +125,14 @@ function createMdCodeBlock(
   let indent = "";
 
   if (isAction) {
-    codeBlockArray.push("- uses: ***PROJECT***@***VERSION***");
+    codeBlockArray.push("- uses: ***PROJECT******SOURCE_FILE***@***VERSION***");
     indent += "  ";
   } else {
     codeBlockArray.push("jobs:");
     indent += "  ";
     codeBlockArray.push(`${indent}job1:`);
     indent += "  ";
-    codeBlockArray.push(`${indent}uses: ***PROJECT***@***VERSION***`);
+    codeBlockArray.push(`${indent}uses: ***PROJECT******SOURCE_FILE***@***VERSION***`);
   }
 
   const inputs = getInputOutput(
@@ -352,6 +352,9 @@ async function updateReadme(
       .replace(
         "***VERSION***",
         matchProjectVersion ? matchProjectVersion[2] : "",
+      ).replace(
+        "***SOURCE_FILE***",
+        sourceFile !== defaultOptions.sourceFile ? `/${sourceFile}` : "",
       );
 
     await replaceInFile.replaceInFile({
@@ -377,8 +380,8 @@ function createMarkdownSection(
   return data === "" || data === undefined
     ? ""
     : `${createMarkdownHeader(options, header)}${data}` +
-        `${lineBreak}` +
-        `${lineBreak}`;
+    `${lineBreak}` +
+    `${lineBreak}`;
 }
 
 function createMarkdownHeader(options: DefaultOptions, header: string): string {
