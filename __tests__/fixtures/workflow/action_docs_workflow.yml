@@ -24,6 +24,11 @@ on:
         required: false
         default: LF
 
+    secrets:
+      notVerySecret:
+        description: "A secret"
+        required: true
+
 jobs:
   job1:
     runs-on: ubuntu-latest

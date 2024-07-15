@@ -24,6 +24,12 @@ on:
           multiline description
         type: number
         required: true
+
+    secrets:
+      notVerySecret:
+        description: "A secret"
+        required: true
+
     outputs:
       outputA:
         description: 'This is output A'

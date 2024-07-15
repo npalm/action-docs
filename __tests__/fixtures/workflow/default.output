@@ -8,6 +8,13 @@
 | `inputB` | <p>This is a multiline description</p> | `number` | `true` | `""` |
 
 
+### Secrets
+
+| name | description | required |
+| --- | --- | --- |
+| `notVerySecret` | <p>A secret</p> | `true` |
+
+
 ### Outputs
 
 | name | description |
