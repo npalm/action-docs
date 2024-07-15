@@ -34,6 +34,7 @@ interface WorkflowTriggerEvent {
   branches: string[];
   cron: string[];
   inputs: ActionInputsOutputs;
+  secrets: ActionInputsOutputs;
   outputs: ActionInputsOutputs;
 }
 
@@ -67,6 +68,7 @@ enum InputOutputType {
   actionInput,
   workflowInput,
   actionOutput,
+  workflowSecret,
 }
 
 const inputOutputHeaders: Record<InputOutputType, string[]> = {
@@ -79,6 +81,7 @@ const inputOutputHeaders: Record<InputOutputType, string[]> = {
     "default",
   ],
   [InputOutputType.actionOutput]: ["name", "description"],
+  [InputOutputType.workflowSecret]: ["name", "description", "required"],
 };
 
 const inputOutputDefaults: Record<string, string> = {
@@ -260,6 +263,7 @@ function generateWorkflowDocs(
       options,
       InputOutputType.workflowInput,
     ),
+    secrets: generateSecrets(yml.on.workflow_call?.secrets, options),
     outputs: generateOutputs(yml.on.workflow_call?.outputs, options),
     runs: "",
     usage: generateUsage(yml.on.workflow_call?.inputs, options, false),
@@ -283,6 +287,18 @@ function generateInputs(
 ): string {
   const inputMdTable = createMdTable(data, options, type);
   return createMarkdownSection(options, inputMdTable, "Inputs");
+}
+
+function generateSecrets(
+  data: ActionInputsOutputs,
+  options: DefaultOptions,
+): string {
+  const secretMdTable = createMdTable(
+    data,
+    options,
+    InputOutputType.workflowSecret,
+  );
+  return createMarkdownSection(options, secretMdTable, "Secrets");
 }
 
 function generateOutputs(
