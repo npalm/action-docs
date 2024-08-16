@@ -4547,10 +4547,10 @@ yallist@^4.0.0:
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-4.0.0.tgz#9bb92790d9c0effec63be73519e11a35019a3a72"
   integrity sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==
 
-yaml-types@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/yaml-types/-/yaml-types-0.3.0.tgz#b077f34496e12dc709d97f2c3bad3fff11089680"
-  integrity sha512-i9RxAO/LZBiE0NJUy9pbN5jFz5EasYDImzRkj8Y81kkInTi1laia3P3K/wlMKzOxFQutZip8TejvQP/DwgbU7A==
+yaml-types@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/yaml-types/-/yaml-types-0.4.0.tgz#e0cab9fb563cbf6f5fc0a40dd3b8cc7bfa06365e"
+  integrity sha512-XfbA30NUg4/LWUiplMbiufUiwYhgB9jvBhTWel7XQqjV+GaB79c2tROu/8/Tu7jO0HvDvnKWtBk5ksWRrhQ/0g==
 
 yaml@^2.3.4:
   version "2.5.0"
