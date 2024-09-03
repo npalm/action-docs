@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.4.3](https://github.com/npalm/action-docs/compare/v2.4.2...v2.4.3) (2024-09-03)
+
+
+### Bug Fixes
+
+* **deps:** bump micromatch from 4.0.5 to 4.0.8 in the npm_and_yarn group ([#689](https://github.com/npalm/action-docs/issues/689)) ([f3f9983](https://github.com/npalm/action-docs/commit/f3f9983a041d6e2b33584644cf3c0b47996afc27))
+* **deps:** bump yaml from 2.4.2 to 2.5.0 ([#665](https://github.com/npalm/action-docs/issues/665)) ([de67387](https://github.com/npalm/action-docs/commit/de67387cc6a8fdb651e39bb1b8011406c55bac9a))
+
 ## [2.4.2](https://github.com/npalm/action-docs/compare/v2.4.1...v2.4.2) (2024-07-03)
 
 
