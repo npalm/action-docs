@@ -441,7 +441,9 @@ function getInputOutput(
 
       if (format) {
         if (isHtmlColumn(columnName)) {
-          rowValue = stripNewLines(converter.makeHtml(rowValue)).trim();
+          rowValue = rowValue
+            ? stripNewLines(converter.makeHtml(rowValue)).trim()
+            : "";
         } else {
           rowValue = `\`${rowValue}\``;
         }
