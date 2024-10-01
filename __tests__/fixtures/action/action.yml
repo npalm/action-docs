@@ -22,6 +22,7 @@ inputs:
 outputs:
   outputA:
     description: "A description"
+  outputB:
 
 runs:
   using: "node12"

@@ -17,6 +17,7 @@ Default test
 | name | description |
 | --- | --- |
 | `outputA` | <p>A description</p> |
+| `outputB` |  |
 
 
 ### Runs

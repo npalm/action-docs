@@ -419,6 +419,10 @@ function getInputOutput(
 
       if (columnName === "name") {
         rowValue = key;
+      } else if (!value) {
+        rowValue = "";
+        rows[i].push(rowValue);
+        continue;
       } else if (columnName === "description") {
         rowValue = value[columnName];
         if (value["deprecationMessage"] !== undefined) {
