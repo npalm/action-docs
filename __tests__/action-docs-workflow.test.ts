@@ -28,6 +28,18 @@ describe("Test output", () => {
     expect(markdown).toEqual(expected);
   });
 
+  test("With secrets.", async () => {
+    const markdown = await generateActionMarkdownDocs({
+      sourceFile: path.join(fixtureDir, "secrets_workflow.yml"),
+      includeNameHeader: true,
+    });
+    const expected = <string>(
+      readFileSync(path.join(fixtureDir, "secrets_workflow.output"), "utf-8")
+    );
+
+    expect(markdown).toEqual(expected);
+  });
+
   test("A minimal workflow definition.", async () => {
     const markdown = await generateActionMarkdownDocs({
       sourceFile: path.join(fixtureDir, "minimal_workflow.yml"),
