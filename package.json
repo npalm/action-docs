@@ -33,7 +33,8 @@
     "node",
     "github",
     "cli",
-    "docs"
+    "docs",
+    "devops"
   ],
   "author": "Niek Palm",
   "license": "MIT",
