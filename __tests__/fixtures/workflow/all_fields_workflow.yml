@@ -26,6 +26,11 @@ on:
         required: false
         default: false
 
+    secrets:
+      notVerySecret:
+        description: "A secret"
+        required: true
+
     outputs:
       outputA:
         description: 'A description A'

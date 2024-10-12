@@ -12,6 +12,13 @@
 | `inputE` | <p>A description E</p> | `string` | `false` | `false` |
 
 
+### Secrets
+
+| name | description | required |
+| --- | --- | --- |
+| `notVerySecret` | <p>A secret</p> | `true` |
+
+
 ### Outputs
 
 | name | description |
