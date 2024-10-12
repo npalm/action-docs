@@ -1,0 +1,7 @@
+  ,-----.    _,-._
+ /       \  / \_/ \
+| action | >-(_)-<  Generate docs
+ \       /  \_/ \_/  for your actions.
+  `-----'     `-'
+
+Welcome to action-docs
