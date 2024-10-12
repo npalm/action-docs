@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.5.0](https://github.com/npalm/action-docs/compare/v2.4.3...v2.5.0) (2024-10-12)
+
+
+### Features
+
+* add support for secrets on workflow_call ([#658](https://github.com/npalm/action-docs/issues/658)) ([f427c9a](https://github.com/npalm/action-docs/commit/f427c9ae4a461111334a2d7a6b0c05cafcff56ee))
+
+
+### Bug Fixes
+
+* **deps:** bump yaml from 2.5.0 to 2.5.1 ([#692](https://github.com/npalm/action-docs/issues/692)) ([92755ae](https://github.com/npalm/action-docs/commit/92755aeeec47a015b2dcbdfba12155b65985cfb6))
+* upgrade replace-in-file and figlet depenencies ([e585c0f](https://github.com/npalm/action-docs/commit/e585c0fd9a1409e417c6bee2f62ff6d869ffa388))
+
 ## [2.4.3](https://github.com/npalm/action-docs/compare/v2.4.2...v2.4.3) (2024-09-03)
 
 
