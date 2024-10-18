@@ -10,7 +10,13 @@
     "report",
     ".*"
   ],
-  "ignoreWords": ["niek", "npalm", "nvmrc", "markdownlintignore"],
+  "ignoreWords": [
+    "niek",
+    "npalm",
+    "nvmrc",
+    "markdownlintignore",
+    "devcontainer"
+  ],
   "language": "en",
   "noConfigSearch": true,
   "words": ["linebreak", "megalinter", "oxsecurity", "REAMDE"],
