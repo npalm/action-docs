@@ -67,7 +67,7 @@ jobs:
       - uses: mislav/bump-homebrew-formula-action@b3327118b2153c82da63fd9cbf58942146ee99f0 # v3
         with:
           # A PR will be sent to github.com/Homebrew/homebrew-core to update this formula
-          formula-name: atmos
+          formula-name: action-docs
           formula-path: Formula/a/action-docs.rb
         env:
           COMMITTER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
