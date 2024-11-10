@@ -42,4 +42,4 @@ EDITORCONFIG_EDITORCONFIG_CHECKER_FILTER_REGEX_EXCLUDE: (__tests__/fixtures/*.cr
 
 SPELL_CSPELL_FILTER_REGEX_EXCLUDE:
   - (CHANGELOG.md)
-  - (.github/workflows/release.yml)
+  - (\.github/workflows/release\.yml)
