@@ -18,8 +18,7 @@ jobs:
       - name: brew
         run: |
             brew developer on
-            brew tap homebrew/core --force 
             brew bump-formula-pr -n --no-audit \
-            --url=https://registry.npmjs.org/action-docs/-/action-docs-2.5.0.tgz \
-            --sha256=109170e521e4096b571932a6c0af640db48d1d82c3023488c70f0c909787792e \
+            --url=https://registry.npmjs.org/action-docs/-/action-docs-2.5.1.tgz \
+            --sha256=jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA \
             action-docs
