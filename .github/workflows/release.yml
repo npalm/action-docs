@@ -73,6 +73,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: release
     steps:
+      - uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
       - uses: npalm/bump-homebrew-formula-action@c03eb3e9122887190a202b7dc42edba8031ed0f9
         with:
           # A PR will be sent to github.com/Homebrew/homebrew-core to update this formula
