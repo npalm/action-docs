@@ -39,3 +39,8 @@ SPELL_LYCHEE_FILTER_REGEX_EXCLUDE: (CHANGELOG.md)
 MARKDOWN_MARKDOWN_LINK_CHECK_FILTER_REGEX_EXCLUDE: (CHANGELOG.md)
 
 EDITORCONFIG_EDITORCONFIG_CHECKER_FILTER_REGEX_EXCLUDE: (__tests__/fixtures/*.crlf)
+
+
+SPELL_MD_CUSTOM_DICTIONARY:
+  - "https://registry.npmjs.org/action-docs/-/action-docs-$"
+  - "https://github.com/npalm/action-docs/releases/tag/$"
