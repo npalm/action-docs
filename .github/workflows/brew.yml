@@ -17,6 +17,8 @@ jobs:
         uses: Homebrew/actions/setup-homebrew@master
       - name: brew
         run: |
+            brew developer on
+            brew tap homebrew/core
             brew bump-formula-pr -n --no-audit \
             --url=https://registry.npmjs.org/action-docs/-/action-docs-2.5.0.tgz \
             --sha256=109170e521e4096b571932a6c0af640db48d1d82c3023488c70f0c909787792e \
