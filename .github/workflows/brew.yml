@@ -1,0 +1,19 @@
+name: "experiment"
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: brew
+        run: |
+            brew bump-formula-pr -n --no-audit \
+            --url=https://registry.npmjs.org/action-docs/-/action-docs-2.5.0.tgz \
+            --sha256=109170e521e4096b571932a6c0af640db48d1d82c3023488c70f0c909787792e \
+            action-docs
