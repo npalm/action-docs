@@ -38,7 +38,7 @@ jobs:
 
       # Use an app to authenticate to trigger workflows on the repository
       - name: Get app installation token
-        uses: actions/create-github-app-token@https://github.com/actions/create-github-app-token/commit/5d869da34e18e7287c1daad50e0b8ea0f506ce69 # v1.11.0
+        uses: actions/create-github-app-token@h5d869da34e18e7287c1daad50e0b8ea0f506ce69 # v1.11.0
         id: app-token
         with:
           app-id: ${{ vars.APP_ID }}
