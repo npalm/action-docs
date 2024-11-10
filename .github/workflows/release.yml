@@ -61,7 +61,7 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
         run: |
           yarn pack
-          echo "sha256=$(shasum -a 256 action-docs-*.tgz | cut -d ' ' -f 1)" >> $GITHUB_ENV
+          echo "sha256=$(shasum -a 256 "action-docs-*.tgz" | cut -d ' ' -f 1)" >> $GITHUB_ENV
           yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
