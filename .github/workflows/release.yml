@@ -16,7 +16,7 @@ jobs:
 
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
-      relase_version: ${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
+      release_version: ${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
       release_tag: ${{ steps.release.outputs.tag_name }} 
       release_sha256: ${{ steps.npm_publish.outputs.sha256 }}
 
@@ -85,7 +85,6 @@ jobs:
           download-sha256: ${{ needs.release.outputs.release_sha256 }}
           commit-message: |
             Bump action-docs to v${{ needs.release.outputs.release_version }}
-             
-            see: https://github.com/npalm/action-docs/releases/tag/${{ needs.release.outputs.release_tag }}
+            For more information see: https://github.com/npalm/action-docs/releases/tag/${{ needs.release.outputs.release_tag }}
         env:
           COMMITTER_TOKEN: ${{ secrets.HOMEBREW_GITHUB_TOKEN }}
