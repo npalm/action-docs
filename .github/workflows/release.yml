@@ -55,3 +55,16 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  homebrew:
+    name: "Bump Homebrew formula"
+    runs-on: ubuntu-latest
+    needs: release
+    steps:
+      - uses: mislav/bump-homebrew-formula-action@b3327118b2153c82da63fd9cbf58942146ee99f0 # v3
+        with:
+          # A PR will be sent to github.com/Homebrew/homebrew-core to update this formula
+          formula-name: action-docs
+          formula-path: Formula/a/action-docs.rb
+        env:
+          COMMITTER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
