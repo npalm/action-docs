@@ -30,10 +30,23 @@ Optionally you can also add the following section to generate a usage guide, rep
 <!-- action-docs-usage source="action.yml" project="<project>" version="<version>" -->
 ```
 
-### Generate docs via CLI
+### Install
+
+#### npm
 
 ```bash
 npm install -g action-docs
+```
+
+#### brew
+
+```bash
+brew install action-docs
+```
+
+### Generate docs via CLI
+
+```bash
 cd <your github action>
 
 # write docs to console
