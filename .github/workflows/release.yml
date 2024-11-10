@@ -51,20 +51,39 @@ jobs:
           release-type: node
 
       - name: Publish to NPM
-        run: yarn publish
+        id: npm_publish
         if: ${{ steps.release.outputs.release_created }}
+        run: |
+          yarn pack
+          # get sha256 and set output
+          echo "sha256=$(shasum -a 256 action-docs-*.tgz | cut -d ' ' -f 1)" >> $GITHUB_ENV          yarn publish
+          yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      outputs:
+        release_created: ${{ steps.release.outputs.release_created }}
+        relase_version: ${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
+        release_tag: ${{ steps.release.outputs.tag_name }} 
+        release_sha256: ${{ steps.npm_publish.outputs.sha256 }}
+
   homebrew:
+    if: ${{ needs.release.outputs.release_created }}
     name: "Bump Homebrew formula"
     runs-on: ubuntu-latest
     needs: release
     steps:
-      - uses: mislav/bump-homebrew-formula-action@b3327118b2153c82da63fd9cbf58942146ee99f0 # v3
+      - uses: npalm/bump-homebrew-formula-action@c03eb3e9122887190a202b7dc42edba8031ed0f9
         with:
           # A PR will be sent to github.com/Homebrew/homebrew-core to update this formula
           formula-name: action-docs
           formula-path: Formula/a/action-docs.rb
+          tag-name: ${{ needs.release.outputs.release_tag }}
+          download-url: https://registry.npmjs.org/action-docs/-/action-docs-${{ needs.release.outputs.release_version }}.tgz
+          download-sha256: ${{ needs.release.outputs.release_sha256 }}
+          commit-message: |
+            Bump action-docs to v${{ needs.release.outputs.release_version }}
+             
+            see: https://github.com/npalm/action-docs/releases/tag/${{ needs.release.outputs.release_tag }}
         env:
-          COMMITTER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMITTER_TOKEN: ${{ secrets.HOMEBREW_GITHUB_TOKEN }}
