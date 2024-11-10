@@ -14,6 +14,12 @@ jobs:
   release:
     runs-on: ubuntu-latest
 
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      relase_version: ${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
+      release_tag: ${{ steps.release.outputs.tag_name }} 
+      release_sha256: ${{ steps.npm_publish.outputs.sha256 }}
+
     steps:
       - uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
         with:
@@ -55,17 +61,10 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
         run: |
           yarn pack
-          # get sha256 and set output
-          echo "sha256=$(shasum -a 256 action-docs-*.tgz | cut -d ' ' -f 1)" >> $GITHUB_ENV          yarn publish
+          echo "sha256=$(shasum -a 256 action-docs-*.tgz | cut -d ' ' -f 1)" >> $GITHUB_ENV
           yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      outputs:
-        release_created: ${{ steps.release.outputs.release_created }}
-        relase_version: ${{ steps.release.outputs.major }}.${{ steps.release.outputs.minor }}.${{ steps.release.outputs.patch }}
-        release_tag: ${{ steps.release.outputs.tag_name }} 
-        release_sha256: ${{ steps.npm_publish.outputs.sha256 }}
 
   homebrew:
     if: ${{ needs.release.outputs.release_created }}
