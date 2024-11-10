@@ -36,22 +36,19 @@ jobs:
       - name: Run checks
         run: yarn run test && yarn lint && yarn build
 
+      # Use an app to authenticate to trigger workflows on the repository
       - name: Get app installation token
-        uses: npalm/action-app-token@dd4bb16d91ced5659bc618705c96b822c5a42136 # v1.1.0
+        uses: actions/create-github-app-token@https://github.com/actions/create-github-app-token/commit/5d869da34e18e7287c1daad50e0b8ea0f506ce69 # v1.11.0
         id: app-token
         with:
-          appId: ${{ secrets.APP_ID }}
-          appPrivateKeyBase64: ${{ secrets.APP_PRIVATE_KEY_BASE64 }}
-          appInstallationType: repo
-          appInstallationValue: ${{ github.repository }}
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
-      - uses: google-github-actions/release-please-action@e4dc86ba9405554aeba3c6bb2d169500e7d3b4ee # v4.1.1
+      - uses: googleapis/release-please-action@7987652d64b4581673a76e33ad5e98e3dd56832f # v.1.3
         id: release
         with:
           token: ${{ steps.app-token.outputs.token }}
           release-type: node
-          package-name: action-docs
-          changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false},{"type":"build","section":"Miscellaneous","hidden":true}]'
 
       - name: Publish to NPM
         run: yarn publish
