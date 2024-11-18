@@ -2,7 +2,7 @@
 ## Usage
 
 ```yaml
-- uses: npalm/action-docs@v1
+- uses: npalm/action-docs/__tests__/fixtures/action/action.yml@v1
   with:
     inputA:
     # - Item 1
