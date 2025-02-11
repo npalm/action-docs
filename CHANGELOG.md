@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.5.2](https://github.com/npalm/action-docs/compare/v2.5.1...v2.5.2) (2025-02-11)
+
+
+### Bug Fixes
+
+* **deps:** bump cross-spawn from 7.0.3 to 7.0.6 in the npm_and_yarn group ([#748](https://github.com/npalm/action-docs/issues/748)) ([60329fe](https://github.com/npalm/action-docs/commit/60329fe50c75418229461e7c186e37b8eb079035))
+* **deps:** bump yaml from 2.6.0 to 2.7.0 ([#770](https://github.com/npalm/action-docs/issues/770)) ([ca38507](https://github.com/npalm/action-docs/commit/ca385078bcff6f55aea72d52e0731e44ff29c0b1))
+
 ## [2.5.1](https://github.com/npalm/action-docs/compare/v2.5.0...v2.5.1) (2024-11-10)
 
 
