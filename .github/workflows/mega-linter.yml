@@ -28,6 +28,7 @@ jobs:
       contents: write
       issues: write
       pull-requests: write
+      actions: write
 
     steps:
       - uses: step-security/harden-runner@cb605e52c26070c328afc4562f0b4ada7618a84e # v2.10.4
@@ -154,4 +155,3 @@ jobs:
             }}
           commit_message: "[MegaLinter] Apply linters fixes"
           commit_user_name: megalinter-bot
-          commit_user_email: nicolas.vuillamy@ox.security
