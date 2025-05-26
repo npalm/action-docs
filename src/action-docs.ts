@@ -1,7 +1,7 @@
 import { LineBreakType, getLineBreak } from "./linebreak.js";
 import { parse } from "yaml";
 import { readFileSync } from "fs";
-import replaceInFile from "replace-in-file";
+import { replaceInFile } from "replace-in-file";
 import pkg from "showdown";
 const { Converter } = pkg;
 const converter = new Converter();
@@ -370,7 +370,7 @@ async function updateReadme(
         matchProjectVersion ? matchProjectVersion[2] : "",
       );
 
-    await replaceInFile.replaceInFile({
+    await replaceInFile({
       files: options.readmeFile,
       from: regexp,
       to:
