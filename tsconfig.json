@@ -10,5 +10,5 @@
     "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
     "declaration": true
   },
-  "exclude": ["node_modules", "**/*.test.ts", "lib"]
+  "exclude": ["node_modules", "**/*.test.ts", "lib", "vitest.config.ts"]
 }
