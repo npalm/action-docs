@@ -15,7 +15,8 @@
     "npalm",
     "nvmrc",
     "markdownlintignore",
-    "devcontainer"
+    "devcontainer",
+    "vitest"
   ],
   "language": "en",
   "noConfigSearch": true,
