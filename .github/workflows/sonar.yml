@@ -4,8 +4,7 @@ on:
     branches:
       - main
   # See https://docs.github.com/en/actions/reference/events-that-trigger-workflows#pull_request_target for security implications.
-  pull_request:
-  #pull_request_target:
+  pull_request_target:
     types: [opened, synchronize, reopened]
 
 permissions:
