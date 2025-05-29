@@ -9,9 +9,8 @@ inputs:
   inputB:
     required: false
     description: This is an input
-    deprecationMessage: ''
+    deprecationMessage: ""
 
 runs:
   using: "node12"
   main: "dist/index.js"
-  
