@@ -38,7 +38,7 @@
   "author": "Niek Palm",
   "license": "MIT",
   "dependencies": {
-    "@types/node": "^22.15.21",
+    "@types/node": "^24.0.1",
     "chalk": "^5.3.0",
     "figlet": "^1.7.0",
     "replace-in-file": "^8.3.0",
