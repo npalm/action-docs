@@ -5,7 +5,7 @@ inputs:
   inputA:
     description: 'A description A'
     required: false
-  inputB:     
+  inputB:
     description: 'A description B'
     required: true
   inputC:
@@ -30,3 +30,4 @@ outputs:
 runs:
   using: 'node12'
   main: 'dist/index.js'
+

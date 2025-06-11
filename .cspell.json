@@ -6,6 +6,9 @@
     "**/.pnpm-lock.json",
     ".vscode",
     "megalinter",
+    "megalinter-reports/**",
+    "coverage/**",
+    "coverage_nyc/**",
     "package-lock.json",
     "report",
     ".*"
@@ -15,7 +18,8 @@
     "npalm",
     "nvmrc",
     "markdownlintignore",
-    "devcontainer"
+    "devcontainer",
+    "vitest"
   ],
   "language": "en",
   "noConfigSearch": true,

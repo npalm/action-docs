@@ -15,11 +15,11 @@
         "esbenp.prettier-vscode",
         "github.vscode-pull-request-github",
         "orta.vscode-jest",
-        "yzhang.markdown-all-in-one"    
+        "yzhang.markdown-all-in-one"
       ]
     }
   },
   "postCreateCommand": "yarn install",
   "waitFor": "postCreateCommand",
-  "onCreateCommand": "sudo cp .devcontainer/welcome.txt /usr/local/etc/vscode-dev-containers/first-run-notice.txt",
+  "onCreateCommand": "sudo cp .devcontainer/welcome.txt /usr/local/etc/vscode-dev-containers/first-run-notice.txt"
 }

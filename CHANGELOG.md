@@ -26,7 +26,7 @@
 ### Bug Fixes
 
 * **deps:** bump yaml from 2.5.0 to 2.5.1 ([#692](https://github.com/npalm/action-docs/issues/692)) ([92755ae](https://github.com/npalm/action-docs/commit/92755aeeec47a015b2dcbdfba12155b65985cfb6))
-* upgrade replace-in-file and figlet depenencies ([e585c0f](https://github.com/npalm/action-docs/commit/e585c0fd9a1409e417c6bee2f62ff6d869ffa388))
+* upgrade replace-in-file and figlet dependencies ([e585c0f](https://github.com/npalm/action-docs/commit/e585c0fd9a1409e417c6bee2f62ff6d869ffa388))
 
 ## [2.4.3](https://github.com/npalm/action-docs/compare/v2.4.2...v2.4.3) (2024-09-03)
 
@@ -69,7 +69,7 @@
 
 ### Bug Fixes
 
-* -a option was ingored ([#561](https://github.com/npalm/action-docs/issues/561)) ([8dbd40e](https://github.com/npalm/action-docs/commit/8dbd40eb476605d90f9a0d94848015097c02198f))
+* -a option was ignored ([#561](https://github.com/npalm/action-docs/issues/561)) ([8dbd40e](https://github.com/npalm/action-docs/commit/8dbd40eb476605d90f9a0d94848015097c02198f))
 * **deps:** bump yaml from 2.4.0 to 2.4.1 ([#557](https://github.com/npalm/action-docs/issues/557)) ([8c2dc15](https://github.com/npalm/action-docs/commit/8c2dc15d9f90772c93c66133ef5d4948705b3e56))
 
 ## [2.2.0](https://github.com/npalm/action-docs/compare/v2.1.0...v2.2.0) (2024-03-06)
