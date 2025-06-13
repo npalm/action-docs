@@ -1,5 +1,63 @@
 # Changelog
 
+## [3.0.0](https://github.com/npalm/action-docs/compare/v2.5.2...v3.0.0) (2025-06-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* support multiple actions in a single readme ([#505](https://github.com/npalm/action-docs/issues/505))
+
+### Features
+
+* action docs ([f6e727f](https://github.com/npalm/action-docs/commit/f6e727ff1083c7cc96fab0de12473dda2e338828))
+* add 'all' option to add all the documentation to the readme in one go ([#537](https://github.com/npalm/action-docs/issues/537)) ([dc70838](https://github.com/npalm/action-docs/commit/dc708388c4bf58c9c15c4135702a4a9f0eabc897))
+* Add support for inputs deprecationMessage ([#566](https://github.com/npalm/action-docs/issues/566)) ([e283563](https://github.com/npalm/action-docs/commit/e283563580e9f0cc0e71cd4205ef587e50845ef9))
+* add support for secrets on workflow_call ([#658](https://github.com/npalm/action-docs/issues/658)) ([f427c9a](https://github.com/npalm/action-docs/commit/f427c9ae4a461111334a2d7a6b0c05cafcff56ee))
+* Allow creating of usage guide ([#401](https://github.com/npalm/action-docs/issues/401)) ([92d68be](https://github.com/npalm/action-docs/commit/92d68beb7d90f1191db7a623fb21102adbd473cf))
+* support action name attribute ([#526](https://github.com/npalm/action-docs/issues/526)) ([0e99848](https://github.com/npalm/action-docs/commit/0e998480955270e4500b38e2f2aab426c955d258))
+* support CR and CRLF line breaks ([#13](https://github.com/npalm/action-docs/issues/13)) ([2fdadb3](https://github.com/npalm/action-docs/commit/2fdadb321b6fa82d2c63df4f47f2cb2c9d89e81d))
+* support document generation for workflows ([#523](https://github.com/npalm/action-docs/issues/523)) ([f043f7f](https://github.com/npalm/action-docs/commit/f043f7f0e017821cad293ebd71293127c462663b))
+* support multi-line ([#377](https://github.com/npalm/action-docs/issues/377)) ([ec0aa99](https://github.com/npalm/action-docs/commit/ec0aa995f92fcbb97711cbbc3e9bc787b825be69))
+* support multiple actions in a single readme ([#505](https://github.com/npalm/action-docs/issues/505)) ([284bf3f](https://github.com/npalm/action-docs/commit/284bf3f977f4e1044368d57e7f16fad600b028b6))
+* trim output text ([#271](https://github.com/npalm/action-docs/issues/271)) ([411256a](https://github.com/npalm/action-docs/commit/411256ac3a08096aef37293316bb4171c1321526))
+
+
+### Bug Fixes
+
+* -a option was ingored ([#561](https://github.com/npalm/action-docs/issues/561)) ([8dbd40e](https://github.com/npalm/action-docs/commit/8dbd40eb476605d90f9a0d94848015097c02198f))
+* **deps:** bump braces from 3.0.2 to 3.0.3 in the npm_and_yarn group ([#634](https://github.com/npalm/action-docs/issues/634)) ([d250deb](https://github.com/npalm/action-docs/commit/d250debd2fd5bb7ea5a36fe21f08c6b48fe8389b))
+* **deps:** bump browserslist from 4.16.3 to 4.17.4 ([#140](https://github.com/npalm/action-docs/issues/140)) ([718cf3a](https://github.com/npalm/action-docs/commit/718cf3a264d1983f59146eca55428abc19eee520))
+* **deps:** bump cross-spawn from 7.0.3 to 7.0.6 in the npm_and_yarn group ([#748](https://github.com/npalm/action-docs/issues/748)) ([60329fe](https://github.com/npalm/action-docs/commit/60329fe50c75418229461e7c186e37b8eb079035))
+* **deps:** bump http-cache-semantics from 4.1.0 to 4.1.1 ([#376](https://github.com/npalm/action-docs/issues/376)) ([a7ef739](https://github.com/npalm/action-docs/commit/a7ef739df207ef7390093ef72ddcc3165f7ffac0))
+* **deps:** bump json5 from 1.0.1 to 1.0.2 ([#371](https://github.com/npalm/action-docs/issues/371)) ([9352507](https://github.com/npalm/action-docs/commit/9352507c7e04005e644c3f97fda9261db63ba17b))
+* **deps:** bump micromatch from 4.0.5 to 4.0.8 in the npm_and_yarn group ([#689](https://github.com/npalm/action-docs/issues/689)) ([f3f9983](https://github.com/npalm/action-docs/commit/f3f9983a041d6e2b33584644cf3c0b47996afc27))
+* **deps:** bump tmpl from 1.0.4 to 1.0.5 ([#139](https://github.com/npalm/action-docs/issues/139)) ([8ef5ec3](https://github.com/npalm/action-docs/commit/8ef5ec36f62bd77b7d20a5ccb34729ef2f0910b2))
+* **deps:** bump yaml from 2.3.4 to 2.4.0 ([#543](https://github.com/npalm/action-docs/issues/543)) ([0c76a5e](https://github.com/npalm/action-docs/commit/0c76a5e8468fc82d71f3a70b2b277b5d366877e3))
+* **deps:** bump yaml from 2.4.0 to 2.4.1 ([#557](https://github.com/npalm/action-docs/issues/557)) ([8c2dc15](https://github.com/npalm/action-docs/commit/8c2dc15d9f90772c93c66133ef5d4948705b3e56))
+* **deps:** bump yaml from 2.4.1 to 2.4.2 ([#601](https://github.com/npalm/action-docs/issues/601)) ([abe0bff](https://github.com/npalm/action-docs/commit/abe0bff7b1f82754fbccd0ab636c9600a2c5a3d8))
+* **deps:** bump yaml from 2.4.2 to 2.5.0 ([#665](https://github.com/npalm/action-docs/issues/665)) ([de67387](https://github.com/npalm/action-docs/commit/de67387cc6a8fdb651e39bb1b8011406c55bac9a))
+* **deps:** bump yaml from 2.5.0 to 2.5.1 ([#692](https://github.com/npalm/action-docs/issues/692)) ([92755ae](https://github.com/npalm/action-docs/commit/92755aeeec47a015b2dcbdfba12155b65985cfb6))
+* **deps:** bump yaml from 2.5.1 to 2.6.0 ([#722](https://github.com/npalm/action-docs/issues/722)) ([ab3653b](https://github.com/npalm/action-docs/commit/ab3653bc9ea392cfaa3a8f33ba4b43281af60ebb))
+* **deps:** bump yaml from 2.6.0 to 2.7.0 ([#770](https://github.com/npalm/action-docs/issues/770)) ([ca38507](https://github.com/npalm/action-docs/commit/ca385078bcff6f55aea72d52e0731e44ff29c0b1))
+* **deps:** bump yargs from 17.6.2 to 17.7.1 ([#372](https://github.com/npalm/action-docs/issues/372)) ([d0fbf54](https://github.com/npalm/action-docs/commit/d0fbf54cf77d00c296704ff4b03e06187a4d16a4))
+* **deps:** update replace-in-file and use vitest ([#832](https://github.com/npalm/action-docs/issues/832)) ([dbd51c2](https://github.com/npalm/action-docs/commit/dbd51c21179de240e4b7d427e37e1c665ef0fda8))
+* falsey default values not included ([#219](https://github.com/npalm/action-docs/issues/219)) ([7dc133b](https://github.com/npalm/action-docs/commit/7dc133b903811795d1441b4828d7e11d4e71aea9))
+* Ignore empty inputs in workflows and actions ([#620](https://github.com/npalm/action-docs/issues/620)) ([b0b7b4e](https://github.com/npalm/action-docs/commit/b0b7b4e73acbefc900e06f9cbb7854e4ea5dc68d))
+* parsing arguments in CLI ([#12](https://github.com/npalm/action-docs/issues/12)) ([a97635c](https://github.com/npalm/action-docs/commit/a97635c9a7efc76a64d25d3ff27ed48cc3629c4a))
+* remove new lines from inputs ([#272](https://github.com/npalm/action-docs/issues/272)) ([dbdbd50](https://github.com/npalm/action-docs/commit/dbdbd50f1377f57bd6cd7878381e5260c6c8edeb))
+* remove unsupported node version ([#83](https://github.com/npalm/action-docs/issues/83)) ([9c3326d](https://github.com/npalm/action-docs/commit/9c3326d7ad744319fad0ac5c2783a66abf1bedee))
+* type in readme ([060fa40](https://github.com/npalm/action-docs/commit/060fa40f2f5a97e34aefa5b1d86ebfb395a4dd28))
+* Update test for trim [#271](https://github.com/npalm/action-docs/issues/271) ([#297](https://github.com/npalm/action-docs/issues/297)) ([6746b95](https://github.com/npalm/action-docs/commit/6746b951bc0851a277b0854ada8d13f67510b184))
+* update tsconfig to node20 recommendations ([#579](https://github.com/npalm/action-docs/issues/579)) ([2866dcf](https://github.com/npalm/action-docs/commit/2866dcffa1a5fa41aa61633868632261dfc90a69))
+* Upgrade dependcies ([#296](https://github.com/npalm/action-docs/issues/296)) ([b2a0a32](https://github.com/npalm/action-docs/commit/b2a0a324b4adba7b2aa4b9fee1480c8c55b8e1db))
+* upgrade dependencies ([#131](https://github.com/npalm/action-docs/issues/131)) ([095bf99](https://github.com/npalm/action-docs/commit/095bf99ac54124db80a6373768252ee92e02989f))
+* upgrade dependencies ([#132](https://github.com/npalm/action-docs/issues/132)) ([a0c5c92](https://github.com/npalm/action-docs/commit/a0c5c92aa4fd188d8319617eb5a31fe2f5da60ae))
+* upgrade dependencies and bump yarn ([#839](https://github.com/npalm/action-docs/issues/839)) ([04118ce](https://github.com/npalm/action-docs/commit/04118ce87a490ca4f79a70d68cb344ad8cfec65e))
+* upgrade replace-in-file and figlet depenencies ([e585c0f](https://github.com/npalm/action-docs/commit/e585c0fd9a1409e417c6bee2f62ff6d869ffa388))
+* Upgrade to Node 16 ([b5e2c4e](https://github.com/npalm/action-docs/commit/b5e2c4e20ea1c460500c047d36eaac9a2855a0e8))
+* Use action-docs- keyword ([#4](https://github.com/npalm/action-docs/issues/4)) ([e42ac2f](https://github.com/npalm/action-docs/commit/e42ac2fd1c2cc23d8c47c705a73b69cade4caf38))
+* vulnerabilities ([#528](https://github.com/npalm/action-docs/issues/528)) ([670af1f](https://github.com/npalm/action-docs/commit/670af1f38cd52507920bfeae0efa8d88f62616a2))
+
 ## [2.5.2](https://github.com/npalm/action-docs/compare/v2.5.1...v2.5.2) (2025-02-11)
 
 
