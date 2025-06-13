@@ -1,0 +1,16 @@
+- id: action-docs
+  args:
+    - "--no-banner"
+    - "--update-readme"
+  description: Generate and update documentation for GitHub actions or workflows
+  entry: action-docs
+  files: "action\\.yml"
+  stages:
+    - pre-commit
+    - pre-merge-commit
+    - pre-push
+    - manual
+  language: node
+  name: action-docs
+  pass_filenames: false
+  require_serial: false
