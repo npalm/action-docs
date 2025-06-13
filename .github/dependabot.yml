@@ -18,9 +18,9 @@ updates:
       eslint:
         patterns:
           - "eslint*"
-      jest:
+      vitest:
         patterns:
-          - "*jest*"
+          - "*vitest*"
       figlet:
         patterns:
           - "*figlet*"

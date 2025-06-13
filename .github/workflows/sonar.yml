@@ -12,7 +12,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  build:
+  sonr:
     runs-on: ubuntu-latest
     steps:
       - uses: step-security/harden-runner@cb605e52c26070c328afc4562f0b4ada7618a84e # v2.10.4
@@ -29,7 +29,7 @@ jobs:
           echo "repo_name=$(echo "$GITHUB_REPOSITORY"| cut -d / -f 2)" >> "$GITHUB_OUTPUT"
           echo "repo_owner=$(echo "$GITHUB_REPOSITORY"| cut -d / -f 1)" >> "$GITHUB_OUTPUT"
 
-      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 20
       - name: Install dependencies
@@ -39,7 +39,7 @@ jobs:
         run: yarn run all
 
       - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@02ef91109b2d589e757aefcfb2854c2783fd7b19 # v4.0.0
+        uses: sonarsource/sonarqube-scan-action@2500896589ef8f7247069a56136f8dc177c27ccf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
