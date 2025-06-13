@@ -49,6 +49,7 @@ jobs:
         with:
           token: ${{ steps.app-token.outputs.token }}
           release-type: node
+          manifest-file: .release-please-manifest.json
 
       - name: Publish to NPM
         run: yarn publish

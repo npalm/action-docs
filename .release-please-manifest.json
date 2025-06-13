@@ -1,3 +1,5 @@
 {
-  "last-release-sha": "c6e311a8942eb3ee322fb1c551ea669f567f3b10"
+  "last-release-sha": "c6e311a8942eb3ee322fb1c551ea669f567f3b10",
+  "release-type": "node",
+  "release-as": "3.0.0"
 }
