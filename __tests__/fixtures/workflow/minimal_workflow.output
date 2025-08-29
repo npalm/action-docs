@@ -5,7 +5,7 @@
 ```yaml
 jobs:
   job1:
-    uses: ***PROJECT***@***VERSION***
+    uses: ***PROJECT******SOURCE_FILE***@***VERSION***
 ```
 
 

@@ -28,7 +28,7 @@ This action is a `node12` action.
 ### Usage
 
 ```yaml
-- uses: ***PROJECT***@***VERSION***
+- uses: ***PROJECT******SOURCE_FILE***@***VERSION***
   with:
     inputA:
     # A description A
