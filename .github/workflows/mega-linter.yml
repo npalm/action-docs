@@ -41,7 +41,7 @@ jobs:
           fetch-depth: 0
 
       - name: MegaLinter
-        uses: oxsecurity/megalinter/flavors/javascript@5a91fb06c83d0e69fbd23756d47438aa723b4a5a # v8.7.0
+        uses: oxsecurity/megalinter/flavors/javascript@0dcbedd66ea456ba2d54fd350affaa15df8a0da3 # v9.0.1
         id: ml
 
         env:
