@@ -373,7 +373,8 @@ async function updateReadme(
     await replaceInFile({
       files: options.readmeFile,
       from: regexp,
-      to:
+      // Use a function so `$` in the content isn't treated as a special replacement pattern
+      to: () =>
         commentExpression +
         lineBreak +
         processedText +

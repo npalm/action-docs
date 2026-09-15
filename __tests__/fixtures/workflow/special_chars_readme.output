@@ -1,0 +1,19 @@
+# Special characters
+
+## Test
+
+<!-- action-docs-inputs source="__tests__/fixtures/workflow/special_chars_workflow.yml" -->
+### Inputs
+
+| name | description | type | required | default |
+| --- | --- | --- | --- | --- |
+| `dollar-end` | <p>Value ending with a dollar sign.</p> | `string` | `false` | `value$` |
+| `dollar-ampersand` | <p>Value with a dollar-ampersand sequence.</p> | `string` | `false` | `a$&b` |
+| `dollar-backtick` | <p>Value with a dollar-backtick sequence.</p> | `string` | `false` | `a$`b` |
+| `dollar-group` | <p>Value with a dollar-number sequence.</p> | `string` | `false` | `a$1b` |
+| `dollar-double` | <p>Value with a double dollar sequence.</p> | `string` | `false` | `a$$b` |
+<!-- action-docs-inputs source="__tests__/fixtures/workflow/special_chars_workflow.yml" -->
+
+## Trailing content
+
+This paragraph must remain intact and must not be duplicated into a table cell.

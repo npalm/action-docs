@@ -132,6 +132,14 @@ describe("Test update readme ", () => {
       fixtureReadme: path.join(fixtureDir, "two_workflows_readme.output"),
     });
   });
+
+  test("Readme with special characters in default values", async () => {
+    await testReadme({
+      sourceFile: path.join(fixtureDir, "special_chars_workflow.yml"),
+      originalReadme: path.join(fixtureDir, "special_chars_readme.input"),
+      fixtureReadme: path.join(fixtureDir, "special_chars_readme.output"),
+    });
+  });
 });
 
 describe("Test usage format", () => {
