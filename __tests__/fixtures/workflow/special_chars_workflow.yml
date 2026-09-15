@@ -1,0 +1,36 @@
+name: "Special characters workflow"
+
+on:
+  workflow_call:
+    inputs:
+      dollar-end:
+        description: "Value ending with a dollar sign."
+        type: string
+        required: false
+        default: "value$"
+      dollar-ampersand:
+        description: "Value with a dollar-ampersand sequence."
+        type: string
+        required: false
+        default: "a$&b"
+      dollar-backtick:
+        description: "Value with a dollar-backtick sequence."
+        type: string
+        required: false
+        default: "a$`b"
+      dollar-group:
+        description: "Value with a dollar-number sequence."
+        type: string
+        required: false
+        default: "a$1b"
+      dollar-double:
+        description: "Value with a double dollar sequence."
+        type: string
+        required: false
+        default: "a$$b"
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "dummy step"

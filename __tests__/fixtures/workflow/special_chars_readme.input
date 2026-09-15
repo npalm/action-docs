@@ -1,0 +1,9 @@
+# Special characters
+
+## Test
+
+<!-- action-docs-inputs source="__tests__/fixtures/workflow/special_chars_workflow.yml" -->
+
+## Trailing content
+
+This paragraph must remain intact and must not be duplicated into a table cell.
